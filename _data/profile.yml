@@ -1,108 +1,98 @@
-primary_name: "Shiwon Kim"
+primary_name: "ChangHeon Han"
 secondary_name: ""
-navbar_name: "Shiwon Kim"
+navbar_name: "ChangHeon Han"
 
 positions:
-# - logo: /assets/images/badges/MIT_Social_circle.png  # Logo is optional
-#   name: Position 1 with logo
-- name: AI Researcher
-- name: <a href="https://yuhs.severance.healthcare/yuhs-en/index.do" target="_blank">Yonsei University Health System (YUHS)</a>
-- name: M.S. in Digital Analytics
+- name: Ph.D. Student
+- name: <a href="https://www.chalmers.se/en/" target="_blank">Chalmers University of Technology</a>
+- name: Data Science and AI Division
 
-
-email: "shiwonkim.sean@gmail.com"
-cv_link: https://shiwonkim.github.io/uploads/CV_ShiwonKim_one_page.pdf
-gscholar: 2M8pQ4MAAAAJ  # This is an example, replace it with your own Google Scholar ID
-github: shiwonkim
-# twitter: your_twitter_id  # Do not include the '@' symbol
-# wechat_qrcode: /assets/images/etc/wechat.jpg
-# wechat_prompt: >-
-#   Please tell me your <strong>name</strong> and <strong>affiliation</strong> (current or past) when adding my wechat. Thanks!
-linkedin: shiwon-kim-958462173
-# orcid: 0009-0007-8197-0816
+email: "changheon.han@chalmers.se"
+cv_link: https://chh-han.github.io/uploads/CV_HCH.pdf
+gscholar: YOUR_GOOGLE_SCHOLAR_ID  # Google Scholar ID 입력 필요
+github: chh-han
+linkedin: hch011
+# orcid: 
 
 short_bio_text_justify: false
 short_bio: >-
   <p>
-    I am an AI researcher with primary interests in developing scalable and data-efficient learning systems, particularly for applications in medical imaging. 
-    My work focuses on learning from evolving and limited (scarce or privacy-sensitive) data conditions that are common in real-world scenarios but remain challenging for deep learning models. 
-    Learn more about my research <a href="https://shiwonkim.github.io/research">here</a>.
+    I am a Ph.D. student at <a href="https://www.chalmers.se/en/" target="_blank">Chalmers University of Technology</a>, affiliated with <a href="https://wasp-hs.org/" target="_blank">WASP-HS</a> (Wallenberg AI, Autonomous Systems and Software Program – Humanity and Society).
+    My research focuses on learned cultural representation spaces in generative AI for creative domains.
+    Learn more about my research <a href="https://chh-han.github.io/research">here</a>.
   </p>
   <p>
-    Research keywords include: <span class="text-hl">continual learning</span>, <span class="text-hl">few-shot learning</span>, <span class="text-hl">medical imaging</span>, and so on.
+    Research keywords include: <span class="text-hl">Multimodal Learning</span>, <span class="text-hl">Signal Processing</span>, <span class="text-hl">Natural Language Processing</span>, <span class="text-hl">Music Information Retrieval</span>.
   </p>
-  <div class="bd-callout bd-callout-info bg-white shadow-sm">
-    <i class="fas fa-info-circle" style="margin-right: 0.2em;"></i> 
-    I am actively seeking Ph.D. opportunities starting in Fall 2026. 
-    If you're looking for a motivated Ph.D. student or collaborator in this area, please feel free to reach out!
-  </div>
   <div class="h6 mt-5">Brief Biography</div>
   <p>
-    I am currently a research assistant at the Medical Informatics Collaboration Unit (MCU) of <a href="https://yuhs.severance.healthcare/yuhs-en/index.do" target="_blank">Yonsei University Health System (YUHS)</a> in Seoul, Republic of Korea. 
-    Previously, I finished my M.S. in Digital Analytics at <a href="https://www.yonsei.ac.kr/sites/en_sc/index.do" target="_blank">Yonsei University</a> in August 2025, under the supervision of <a href="https://scholar.google.com/citations?user=DNs7sk4AAAAJ&hl=en" target="_blank">Prof. Yu Rang Park</a> at the <a href="https://www.dhlab.org/" target="_blank">Digital Healthcare Lab (DHLab)</a>. 
-    I received my B.B.A. in Business Administration from the same university in 2023. 
-    From August 2024 to February 2025, I was a visiting scholar at the <a href="https://www.cs.cmu.edu/" target="_blank">CMU School of Computer Science</a> as part of the <a href="https://www.msit.go.kr/eng/bbs/view.do?sCode=eng&mId=4&mPid=2&bbsSeqNo=42&nttSeqNo=697" target="_blank">Carnegie Mellon University Intensive AI Education Program</a> sponsored by the South Korean government.
+    Before starting my Ph.D., I was a Research Engineer at <a href="https://www.smu.edu.sg/" target="_blank">Singapore Management University</a> working on career trajectory analysis using dynamic GNNs.
+    I completed a research internship at <a href="https://www.sony.com/" target="_blank">SONY Europe</a>, where I worked on fine-grained instrument music source separation using text-audio multimodal encoders.
+    I received my M.S. in Artificial Intelligence from <a href="https://www.hanyang.ac.kr/web/eng" target="_blank">Hanyang University</a> in 2025, advised by <a href="https://scholar.google.com/citations?user=ADVISOR_ID" target="_blank">Prof. Minsam Ko</a>.
+    Prior to academia, I worked as a Data Analyst at <a href="https://www.coupang.com/" target="_blank">Coupang</a> and spent 7 years as a professional music producer, with tracks featured in Spotify K-pop Editorial Playlists reaching over 800K streams.
   </p>
 
 portrait_url: /assets/images/photos/headshot.png
-# portrait_caption: >-
-#   Photo by Manja Vitolic on Unsplash (this caption is optional, comment it out to disable).
 
 education:
-# - name: Massachusetts Institute of Technology
-#   logo: /assets/images/badges/MIT_Social_circle.png
-#   position: >- 
-#     Department of Electrical Engineering and Computer Science <br/>
-#     Ph.D. Student
-#   date: Sep. 2024 - present
-- name: Yonsei University
-  logo: /assets/images/badges/Yonsei.png
+- name: Chalmers University of Technology
+  logo: /assets/images/badges/Chalmers.png
   position: >- 
-    M.S., Digital Analytics <a href="https://shiwonkim.github.io/uploads/Masters_Thesis.pdf" target="_blank">[Thesis]</a> <br/>
+    Ph.D., Computer Science and Engineering <br/>
   description:
-    Advised by Prof. Yu Rang Park
-  date: Mar. 2023 - Aug. 2025
+    Advised by Prof. Kivanc Tatar | WASP-HS
+  date: Jan. 2026 - Present
+  place: Gothenburg, Sweden
+- name: Hanyang University
+  logo: /assets/images/badges/Hanyang.png
+  position: >- 
+    M.S., Artificial Intelligence <br/>
+  description:
+    Advised by Prof. Minsam Ko | Fully funded
+  date: Mar. 2023 - Feb. 2025
   place: Seoul, Korea
-- name: Yonsei University
-  logo: /assets/images/badges/Yonsei.png
-  position: B.B.A., Business Administration
-  date: Mar. 2017 - Feb. 2023
+- name: SoongSil University
+  logo: /assets/images/badges/SoongSil.png
+  position: B.S., Laws
+  date: 2011 - 2020
   place: Seoul, Korea
 
 experience:
-- name: Yonsei University Health System
-  logo: /assets/images/badges/Yonsei.png
+- name: Singapore Management University
+  logo: /assets/images/badges/SMU.png
   position: >- 
-    Research Assistant in AI
-  date: Jul. 2025 - Present
-  place: Seoul, Korea
-- name: Digital Healthcare Lab
-  logo: /assets/images/badges/Yonsei.png
-  position: >- 
-    Graduate Research Assistant <br/>
+    Research Engineer <br/>
   description:
-    Advised by Prof. Yu Rang Park
-  date: Mar. 2023 - Jun. 2025
-  place: Seoul, Korea
-- name: Carnegie Mellon University
-  logo: /assets/images/badges/CMU.jpg
+    Advised by Prof. Ee-peng Lim
+  date: Oct. 2025 - Dec. 2025
+  place: Singapore
+- name: SONY Europe
+  logo: /assets/images/badges/Sony.png
   position: >- 
-    Visiting Scholar, Computer Science <br/>
+    Research Intern <br/>
   description:
-    Korean Government Fellowship
-  date: Aug. 2024 - Feb. 2025
-  place: Pittsburgh, PA
-- name: University of Washington
-  logo: /assets/images/badges/UW_gold.png
+    Music Source Separation
+  date: Aug. 2024 - Jan. 2025
+  place: Europe
+- name: Hanyang University
+  logo: /assets/images/badges/Hanyang.png
   position: >- 
-    Undergraduate Exchange Student
-  date: Sep. 2018 - Jun. 2019
-  place: Seattle, WA
-
-# awards:
-# - name: Award Name 2
-#   date: 2024
-# - name: Award Name 1 
-#   date: 2021
-# - name: A quick brown fox jumps over the lazy dog and runs away award
-#   date: 2021
+    Research Assistant <br/>
+  description:
+    Advised by Prof. Minsam Ko
+  date: Feb. 2023 - Jul. 2024
+  place: Seoul, Korea
+- name: GIST
+  logo: /assets/images/badges/GIST.png
+  position: >- 
+    Research Intern <br/>
+  description:
+    Advised by Prof. Kyung-Joong Kim
+  date: Jan. 2023 - Feb. 2023
+  place: Gwangju, Korea
+- name: Coupang
+  logo: /assets/images/badges/Coupang.png
+  position: >- 
+    Data Analyst
+  date: Apr. 2020 - Apr. 2022
+  place: Seoul, Korea
