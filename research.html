@@ -44,6 +44,10 @@ body_attr: >-
     background-color: #007bff;
     color: white;
   }
+  .filter-tab[data-type="project"] {
+    background-color: #28a745;
+    color: white;
+  }
 
   .filter-tab.active i {
     filter: brightness(1.3);
@@ -61,6 +65,9 @@ body_attr: >-
           </span>
           <span class="filter-tab" data-type="publication" onclick="selectType(this, 'publication')">
             <i class="fas fa-book-open mr-1"></i> Publications
+          </span>
+          <span class="filter-tab" data-type="project" onclick="selectType(this, 'project')">
+            <i class="fas fa-lightbulb mr-1"></i> Projects
           </span>
         </div>
       </div>
