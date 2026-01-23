@@ -8,25 +8,6 @@ body_attr: >-
 
 <!-- BADGE STYLE -->
 <style>
-  .tag-filter {
-    display: inline-block;
-    padding: 0.35em 0.75em;
-    font-size: 0.75rem;
-    font-weight: 400;
-    border-radius: 999px;
-    margin-right: 0.5em;
-    margin-bottom: 0.65em;
-    cursor: pointer;
-    background-color: #e9ecef;
-    color: #495057;
-    transition: all 0.2s;
-  }
-
-  .tag-filter.active {
-    background-color: #343a40;
-    color: #fff;
-  }
-
   .filter-tab {
     display: inline-flex;
     align-items: center;
@@ -84,26 +65,6 @@ body_attr: >-
         </div>
       </div>
 
-      <!-- TAG MULTI-FILTER -->
-      <div class="mb-3 d-flex flex-wrap align-items-center">
-        <div id="tagContainer" class="d-flex flex-wrap">
-          <div class="tag-filter" onclick="toggleTagFilter('music-information-retrieval')"># music information retrieval</div>
-          <div class="tag-filter" onclick="toggleTagFilter('sequence-modeling')"># sequence modeling</div>
-          <div class="tag-filter" onclick="toggleTagFilter('music-source-separation')"># music source separation</div>
-          <div class="tag-filter" onclick="toggleTagFilter('knowledge-distillation')"># knowledge distillation</div>
-          <div class="tag-filter" onclick="toggleTagFilter('audio')"># audio</div>
-          <div class="tag-filter" onclick="toggleTagFilter('text-to-audio')"># text-to-audio</div>
-          <div class="tag-filter" onclick="toggleTagFilter('prompt-augmentation')"># prompt augmentation</div>
-          <div class="tag-filter" onclick="toggleTagFilter('asmr')"># ASMR</div>
-          <div class="tag-filter" onclick="toggleTagFilter('emotional-support')"># emotional support</div>
-          <div class="tag-filter" onclick="toggleTagFilter('multitask-learning')"># multitask learning</div>
-          <div class="tag-filter" onclick="toggleTagFilter('nlp')"># NLP</div>
-          <div class="tag-filter" onclick="toggleTagFilter('dialogue-systems')"># dialogue systems</div>
-          <div class="tag-filter" onclick="toggleTagFilter('preference-data')"># preference data</div>
-          <!-- More tags -->
-        </div>
-      </div>
-
       {% include widgets/research_brief.html %}
     </div>
   </div>
@@ -137,7 +98,6 @@ body_attr: >-
 <!-- JAVASCRIPT FOR FILTERING -->
 <script>
   let currentType = 'all';
-  let activeTags = new Set();
 
   function selectType(el, type) {
     // Remove active class from all
@@ -150,27 +110,13 @@ body_attr: >-
     applyFilters();
   }
 
-  function toggleTagFilter(tag) {
-    const badge = document.querySelector('.tag-filter[onclick*="' + tag + '"]');
-    if (activeTags.has(tag)) {
-      activeTags.delete(tag);
-      badge.classList.remove('active');
-    } else {
-      activeTags.add(tag);
-      badge.classList.add('active');
-    }
-    applyFilters();
-  }
-
   function applyFilters() {
     const items = document.getElementsByClassName("filter-item");
     const yearBlocks = document.getElementsByClassName("year-block");
 
     for (let i = 0; i < items.length; i++) {
       const typeMatch = (currentType === "all" || items[i].classList.contains(currentType));
-      const tagMatch = Array.from(activeTags).every(tag => items[i].classList.contains(tag));
-      const tagPass = (activeTags.size === 0 || tagMatch);
-      items[i].style.display = (typeMatch && tagPass) ? "block" : "none";
+      items[i].style.display = typeMatch ? "block" : "none";
     }
 
     for (let j = 0; j < yearBlocks.length; j++) {
