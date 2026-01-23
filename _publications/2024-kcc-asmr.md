@@ -1,7 +1,7 @@
 ---
 title:          "ASMR Sound Generation through Attribute-based Prompt Augmentation"
 date:           2024-06-01
-selected:       true
+selected:       false
 type:           publication
 tags:           ['# text-to-audio', '# prompt augmentation', '# ASMR']
 pub:            "Korea Computer Congress 2024 (KCC)"

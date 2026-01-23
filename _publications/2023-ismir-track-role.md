@@ -1,7 +1,7 @@
 ---
 title:          "Track Role Prediction of Single-Instrumental Sequences"
 date:           2023-11-01
-selected:       false
+selected:       true
 type:           publication
 tags:           ['# music information retrieval', '# sequence modeling']
 pub:            "ISMIR 2023 Late-Breaking/Demo (LBD)"
