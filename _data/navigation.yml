@@ -11,3 +11,5 @@ pages:
   url: /creation
 # - name: Showcase
 #   url: /showcase
+- name: CV
+  url: /uploads/CV_HCH.pdf
