@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://changheonhan.com/sitemap.xml
+
+# Allow search engines to crawl all content
+Disallow:
