@@ -64,10 +64,6 @@ body_attr: >-
     color: white;
   }
 
-  .filter-tab[data-type="project"] {
-    background-color: #28a745;
-    color: white;
-  }
   .filter-tab.active i {
     filter: brightness(1.3);
   }
@@ -85,27 +81,25 @@ body_attr: >-
           <span class="filter-tab" data-type="publication" onclick="selectType(this, 'publication')">
             <i class="fas fa-book-open mr-1"></i> Publications
           </span>
-          <span class="filter-tab" data-type="project" onclick="selectType(this, 'project')">
-            <i class="fas fa-lightbulb mr-1"></i> Projects
-          </span>
         </div>
       </div>
 
       <!-- TAG MULTI-FILTER -->
       <div class="mb-3 d-flex flex-wrap align-items-center">
         <div id="tagContainer" class="d-flex flex-wrap">
-          <div class="tag-filter" onclick="toggleTagFilter('medical-imaging')"># medical imaging</div>
-          <div class="tag-filter" onclick="toggleTagFilter('continual-learning')"># continual learning</div>
-          <div class="tag-filter" onclick="toggleTagFilter('few-shot-learning')"># few-shot learning</div>
-          <div class="tag-filter" onclick="toggleTagFilter('neural-collapse')"># neural collapse</div>
-          <div class="tag-filter" onclick="toggleTagFilter('object-detection')"># object detection</div>
-          <div class="tag-filter" onclick="toggleTagFilter('vision-language')"># vision-language</div>
-          <div class="tag-filter" onclick="toggleTagFilter('image-quality-assessment')"># image quality assessment</div>
-          <div class="tag-filter" onclick="toggleTagFilter('abstract-perception')"># abstract perception</div>
-          <div class="tag-filter" onclick="toggleTagFilter('robotics')"># robotics</div>
-          <div class="tag-filter" onclick="toggleTagFilter('data-poisoning')"># data poisoning</div>
-          <div class="tag-filter" onclick="toggleTagFilter('synthetic-data')"># synthetic data</div>
-          <div class="tag-filter" onclick="toggleTagFilter('machine-learning')"># machine learning</div>
+          <div class="tag-filter" onclick="toggleTagFilter('music-information-retrieval')"># music information retrieval</div>
+          <div class="tag-filter" onclick="toggleTagFilter('sequence-modeling')"># sequence modeling</div>
+          <div class="tag-filter" onclick="toggleTagFilter('music-source-separation')"># music source separation</div>
+          <div class="tag-filter" onclick="toggleTagFilter('knowledge-distillation')"># knowledge distillation</div>
+          <div class="tag-filter" onclick="toggleTagFilter('audio')"># audio</div>
+          <div class="tag-filter" onclick="toggleTagFilter('text-to-audio')"># text-to-audio</div>
+          <div class="tag-filter" onclick="toggleTagFilter('prompt-augmentation')"># prompt augmentation</div>
+          <div class="tag-filter" onclick="toggleTagFilter('asmr')"># ASMR</div>
+          <div class="tag-filter" onclick="toggleTagFilter('emotional-support')"># emotional support</div>
+          <div class="tag-filter" onclick="toggleTagFilter('multitask-learning')"># multitask learning</div>
+          <div class="tag-filter" onclick="toggleTagFilter('nlp')"># NLP</div>
+          <div class="tag-filter" onclick="toggleTagFilter('dialogue-systems')"># dialogue systems</div>
+          <div class="tag-filter" onclick="toggleTagFilter('preference-data')"># preference data</div>
           <!-- More tags -->
         </div>
       </div>
@@ -115,13 +109,6 @@ body_attr: >-
   </div>
 
   <div class="col-12 col-lg-7 mt-3">
-    <div class="text-right mt-0" style="margin-bottom: -3rem;">
-      <small style="font-size: 0.75em;">
-        * Equal contribution, <sup>†</sup> Corresponding author
-      </small>
-      <span class="text-muted" style="margin-left: 0.3em; margin-right: 0.75em; font-size: 0.7em;">(for publications)</span>
-    </div>
-
     <!-- GROUP PUBLICATIONS BY YEAR -->
     {% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
 
