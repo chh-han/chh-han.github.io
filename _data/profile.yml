@@ -74,14 +74,14 @@ experience:
     Music Source Separation
   date: Aug. 2024 - Jan. 2025
   place: Europe
-- name: Hanyang University
-  logo: /assets/images/badges/Hanyang.png
-  position: >- 
-    Research Assistant <br/>
-  description:
-    Advised by Prof. Minsam Ko
-  date: Feb. 2023 - Jul. 2024
-  place: Seoul, Korea
+# - name: Hanyang University
+#   logo: /assets/images/badges/Hanyang.png
+#   position: >- 
+#     Research Assistant <br/>
+#   description:
+#     Advised by Prof. Minsam Ko
+#   date: Feb. 2023 - Jul. 2024
+#   place: Seoul, Korea
 - name: GIST
   logo: /assets/images/badges/GIST.png
   position: >- 
