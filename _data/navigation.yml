@@ -7,5 +7,7 @@ pages:
 #   url: /bio
 - name: Research
   url: /research
+- name: Creation
+  url: /creation
 # - name: Showcase
 #   url: /showcase
