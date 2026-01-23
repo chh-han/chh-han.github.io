@@ -8,7 +8,7 @@ positions:
 - name: Data Science and AI Division
 
 email: "changheon.han@chalmers.se"
-cv_link: https://chh-han.github.io/uploads/CV_HCH.pdf
+cv_link: /uploads/CV_HCH.pdf
 gscholar: YOUR_GOOGLE_SCHOLAR_ID  # Google Scholar ID 입력 필요
 github: chh-han
 linkedin: hch011

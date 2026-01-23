@@ -1,5 +1,5 @@
 homepage:
-  show_education: true
+  show_education: false
   show_experience: true
   show_awards: false
   show_news: true
