@@ -7,6 +7,9 @@ tags:           ['# text-to-audio', '# prompt augmentation', '# ASMR']
 pub:            "Korea Computer Congress 2024 (KCC)"
 abstract: >-
   Introduced attribute-based prompt augmentation to improve semantic alignment in ASMR sound generation.
+tldr: >-
+  This study proposes an LLM-based prompt augmentation method for improving ASMR audio generation in Text-to-Audio models. By explicitly modeling ASMR triggers and key attributes such as action and material, the method produces more detailed sound descriptions and improves both generation quality and user experience.
+cover:          /assets/images/covers/2024-kcc-asmr.png
 authors:
   - ChangHeon Han
   - Jaemyung Shin

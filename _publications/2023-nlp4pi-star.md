@@ -7,6 +7,9 @@ tags:           ['# emotional support', '# multitask learning', '# NLP']
 pub:            "NLP for Positive Impact Workshop (ACL)"
 abstract: >-
   Presented a strategy-aware refinement module for multitask learning in emotional support conversations.
+tldr: >-
+  This work proposes STAR, a strategy-aware refinement module that mitigates task interference in emotional support dialogue systems. By disentangling decoder representations and dynamically fusing task-specific information, the model achieves state-of-the-art performance in both strategy prediction and response generation.
+cover:          /assets/images/covers/2025-nlp4pi-star.png
 authors:
   - SuHyun Lee
   - ChangHeon Han

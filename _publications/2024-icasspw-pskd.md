@@ -7,6 +7,9 @@ tags:           ['# music source separation', '# knowledge distillation', '# aud
 pub:            "ICASSP 2024 Workshops (ICASSPW) Technical Report"
 abstract: >-
   Proposed a progressive self-knowledge distillation strategy to improve robustness in music source separation for complex audio environments.
+tldr: >-
+  This technical report presents a fine-tuning strategy for hearing-aid-oriented source separation, where stereo signal entanglement makes training unstable. By softening targets using predictions from the previous epoch, the proposed method improves SDR by 1.2 dB over the baseline.
+cover:          /assets/images/covers/2024-icasspw-pskd.png
 authors:
   - ChangHeon Han
   - SuHyun Lee
