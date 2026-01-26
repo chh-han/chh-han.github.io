@@ -28,11 +28,11 @@ short_bio: >-
   <p>
     Before starting my Ph.D., I was a Research Engineer at <a href="https://www.smu.edu.sg/" target="_blank">Singapore Management University</a> working on career trajectory analysis using dynamic GNNs.
     I completed a research internship at <a href="https://www.sony.com/" target="_blank">SONY Europe</a>, where I worked on fine-grained instrument music source separation using text-audio multimodal encoders.
-    I received my M.S. in Artificial Intelligence from <a href="https://www.hanyang.ac.kr/web/eng" target="_blank">Hanyang University</a> in 2025, advised by <a href="https://scholar.google.com/citations?user=ADVISOR_ID" target="_blank">Prof. Minsam Ko</a>.
+    I received my M.S. in Artificial Intelligence from <a href="https://www.hanyang.ac.kr/web/eng" target="_blank">Hanyang University</a> in 2025, advised by <a href="https://scholar.google.com/citations?user=HYgqtDIAAAAJ&hl=ko" target="_blank">Prof. Minsam Ko</a>.
     Prior to academia, I worked as a Data Analyst at <a href="https://www.coupang.com/" target="_blank">Coupang</a> and spent 7 years as a professional music producer, with tracks featured in Spotify K-pop Editorial Playlists reaching over 800K streams.
   </p>
 
-portrait_url: /assets/images/photos/Han-head.png
+portrait_url: /assets/images/photos/Han-main-profile.png
 
 education:
 - name: Chalmers University of Technology
