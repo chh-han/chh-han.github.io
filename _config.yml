@@ -20,7 +20,6 @@ baseurl: "" # the subpath of your site, e.g. /blog
 markdown: kramdown
 plugins:
   - jekyll-email-protect
-  - jekyll-sitemap
   - jekyll-seo-tag
 
 # Exclude from processing.

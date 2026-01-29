@@ -17,20 +17,4 @@ layout: null
     {% endunless %}
   {% endfor %}
 
-  {% for collection in site.collections %}
-    {% if collection.label == "news" or collection.label == "publications" or collection.label == "showcase" %}
-      {% for doc in collection.docs %}
-        {% if doc.sitemap != false %}
-  <url>
-    <loc>{{ site.url }}{{ site.baseurl }}{{ doc.url | replace: "index.html", "" }}</loc>
-    {% if doc.last_modified_at %}
-    <lastmod>{{ doc.last_modified_at | date_to_xmlschema }}</lastmod>
-    {% elsif doc.date %}
-    <lastmod>{{ doc.date | date_to_xmlschema }}</lastmod>
-    {% endif %}
-  </url>
-        {% endif %}
-      {% endfor %}
-    {% endif %}
-  {% endfor %}
 </urlset>
