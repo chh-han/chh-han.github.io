@@ -19,7 +19,7 @@ short_bio: >-
   <p>
     I am a Ph.D. student at <a href="https://www.chalmers.se/en/" target="_blank">Chalmers University of Technology</a>, affiliated with <a href="https://wasp-hs.org/" target="_blank">WASP-HS</a> (Wallenberg AI, Autonomous Systems and Software Program – Humanity and Society).
     My research focuses on learned cultural representation spaces in generative AI for creative domains.
-    Learn more about my research <a href="https://chh-han.github.io/research">here</a>.
+    Learn more about my research <a href="/research/">here</a>.
   </p>
   <p>
     Research keywords include: <span class="text-hl">Multimodal Learning</span>, <span class="text-hl">Signal Processing</span>, <span class="text-hl">Natural Language Processing</span>, <span class="text-hl">Music Information Retrieval</span>.
