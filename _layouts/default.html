@@ -5,25 +5,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="index, follow">
-    <meta name="description" content="Changheon Han is a PhD student at Chalmers University of Technology researching AI, music information retrieval, and multimodal learning.">
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% elsif site.description %}{{ site.description }}{% else %}Changheon Han is a PhD student at Chalmers University of Technology researching AI, music information retrieval, and multimodal learning.{% endif %}">
     <meta name="author" content="Changheon Han">
     <meta name="keywords" content="Changheon Han, PhD, Chalmers University, Music Information Retrieval, MIR, Multimodal Learning, AI, Machine Learning">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
-    <meta property="og:title" content="Changheon Han | PhD Student at Chalmers University">
-    <meta property="og:description" content="PhD student researching AI, music information retrieval, and multimodal learning at Chalmers University of Technology.">
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% elsif site.description %}{{ site.description }}{% else %}PhD student researching AI, music information retrieval, and multimodal learning at Chalmers University of Technology.{% endif %}">>
     <meta property="og:image" content="https://changheonhan.com/assets/images/photos/Han-main-profile.png">
     <meta property="og:site_name" content="Changheon Han">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:url" content="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
-    <meta name="twitter:title" content="Changheon Han | PhD Student at Chalmers University">
-    <meta name="twitter:description" content="PhD student researching AI, music information retrieval, and multimodal learning at Chalmers University of Technology.">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% elsif site.description %}{{ site.description }}{% else %}PhD student researching AI, music information retrieval, and multimodal learning at Chalmers University of Technology.{% endif %}">
 
-    <title>Changheon Han | PhD Student at Chalmers University</title>
+    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <link rel="canonical" href="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
     <!-- <link rel="icon" type="image/svg" href="{{ '/assets/images/pointer_xs.svg' | relative_url }}"> -->
 

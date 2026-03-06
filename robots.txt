@@ -1,6 +1,14 @@
 User-agent: *
 Allow: /
+Disallow: /bio/
+Disallow: /showcase/
+Disallow: /vendor/
+Disallow: /.bundle/
+Disallow: /.git/
+Disallow: /.github/
+
+# Sitemap location
 Sitemap: https://changheonhan.com/sitemap.xml
 
-# Allow search engines to crawl all content
-Disallow:
+# Crawl delay (optional, in seconds)
+Crawl-delay: 1
