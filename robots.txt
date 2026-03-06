@@ -1,14 +1,19 @@
 User-agent: *
 Allow: /
+
+# 명시적으로 크롤링 금지할 경로들
 Disallow: /bio/
-Disallow: /showcase/
+Disallow: /showcase/ 
 Disallow: /vendor/
 Disallow: /.bundle/
 Disallow: /.git/
 Disallow: /.github/
 
-# Sitemap location
+# .html 확장자로 접근 금지 (trailing slash 강제)
+Disallow: /*.html$
+
+# Sitemap location  
 Sitemap: https://changheonhan.com/sitemap.xml
 
-# Crawl delay (optional, in seconds)
+# Crawl delay
 Crawl-delay: 1

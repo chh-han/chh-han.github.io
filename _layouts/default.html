@@ -24,7 +24,7 @@
     <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% elsif site.description %}{{ site.description }}{% else %}PhD student researching AI, music information retrieval, and multimodal learning at Chalmers University of Technology.{% endif %}">
 
     <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <link rel="canonical" href="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
+    <link rel="canonical" href="{% if page.canonical_url %}{{ page.canonical_url }}{% else %}{{ site.url }}{{ page.url | replace: 'index.html', '' }}{% endif %}">
     <!-- <link rel="icon" type="image/svg" href="{{ '/assets/images/pointer_xs.svg' | relative_url }}"> -->
 
     <!-- Schema.org structured data -->
