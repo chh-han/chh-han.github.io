@@ -1,3 +1,8 @@
+---
+layout: null
+permalink: /robots.txt
+---
+
 User-agent: *
 Allow: /
 
@@ -9,8 +14,8 @@ Disallow: /.bundle/
 Disallow: /.git/
 Disallow: /.github/
 
-# .html 확장자로 접근 금지 (trailing slash 강제)
-Disallow: /*.html$
+# `.html` 전체 차단은 Google이 canonical(`/creation/`)을 확인하지 못하게 만듭니다.
+# 중복 URL은 canonical과 sitemap으로 정규화하도록 둡니다.
 
 # Sitemap location  
 Sitemap: https://changheonhan.com/sitemap.xml
