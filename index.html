@@ -25,10 +25,6 @@ navbar_title: Home
     <h1 class="sr-only">Changheon Han is a PhD student at Chalmers University of Technology.</h1>
     {% include widgets/about_card.html %}
 
-    {% include widgets/debug_repo_name.html %}
-    
-    {% include widgets/debug_url.html %}
-
     {% if site.data.display.homepage.show_news %}
       {% assign count_news = site.news | size %}
       {% if count_news > 0 %}
