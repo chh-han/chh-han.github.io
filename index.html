@@ -1,43 +1,126 @@
----
-layout: default
-title : Home
-navbar_title: Home
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ChangHeon Han</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<div class="row justify-content-center">
-  <div class="col-12 col-lg-3">
-    {% include widgets/profile_card.html %}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
-    {% if site.data.display.homepage.show_education %}
-      {% include widgets/education_card.html %}
-    {% endif %}
+  <style>
+    html, body { margin: 0; padding: 0; min-height: 100%; background: #F1EEE6; }
+    body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #15171B; }
+    #root { min-height: 100vh; }
+    *, *::before, *::after { box-sizing: border-box; }
 
-    {% if site.data.display.homepage.show_experience %}
-      {% include widgets/experience_card.html %}
-    {% endif %}
+    /* Subtle fade between pages */
+    .page-fade { animation: pageFade 0.32s cubic-bezier(.2,.7,.3,1) both; }
+    @keyframes pageFade {
+      0%   { opacity: 0.4; transform: translateY(4px); }
+      100% { opacity: 1;   transform: translateY(0); }
+    }
+  </style>
 
-    {% if site.data.display.homepage.show_awards %}
-      {% include widgets/awards_card.html %}
-    {% endif %}
-  </div>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-  <div class="col-12 col-lg-7">
-    <h1 class="sr-only">Changheon Han is a PhD student at Chalmers University of Technology.</h1>
-    {% include widgets/about_card.html %}
+  <script src="data.js"></script>
+  <script type="text/babel" src="variantA.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+</head>
+<body>
+  <div id="root"></div>
 
-    {% if site.data.display.homepage.show_news %}
-      {% assign count_news = site.news | size %}
-      {% if count_news > 0 %}
-        {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
-      {% endif %}
-    {% endif %}
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "accent": "#6E1F2E",
+      "portrait": "assets/images/photos/Han-main-profile.png",
+      "showSlogan": true
+    }/*EDITMODE-END*/;
 
-    {% if site.data.display.homepage.show_selected_publications %}
-      {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
-      {% include widgets/publication_card.html 
-         publications=pubs 
-         title='<i class="fas fa-search"></i><span style="margin-left: 0.3em;">Research Highlights</span>' %}
-    {% endif %}
+    // Pages registry — single source of truth
+    const PAGES = ['Home', 'Research', 'Creation', 'Bio'];
+    const COMPONENT = { Home: window.HomeA, Research: window.ResearchA, Creation: window.CreationA, Bio: window.BioA };
 
-  </div>
-</div>
+    function App() {
+      // Tweaks
+      const [tweaks, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
+      // Apply accent to A theme (window.A is mutable; rerender will re-read)
+      React.useEffect(() => {
+        if (tweaks.accent) window.A.accent = tweaks.accent;
+        if (tweaks.portrait) window.SiteData.profile.portrait = tweaks.portrait;
+      }, [tweaks.accent, tweaks.portrait]);
+
+      // Hash-based routing so refresh preserves page
+      const getPageFromHash = () => {
+        const h = (window.location.hash || '').replace('#/', '').toLowerCase();
+        const match = PAGES.find((p) => p.toLowerCase() === h);
+        return match || 'Home';
+      };
+      const [page, setPage] = React.useState(getPageFromHash);
+      React.useEffect(() => {
+        const onHash = () => setPage(getPageFromHash());
+        window.addEventListener('hashchange', onHash);
+        return () => window.removeEventListener('hashchange', onHash);
+      }, []);
+
+      const onNav = (p) => {
+        if (p === page) return;
+        window.location.hash = '/' + p.toLowerCase();
+        // Scroll to top inside the parent frame (avoid scrollIntoView per guidance)
+        window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+      };
+
+      // Force-rerender pages when accent changes (since A is referenced by mutation, we need a re-mount or stale key)
+      const key = page + '-' + tweaks.accent;
+
+      const Page = COMPONENT[page];
+
+      return (
+        <>
+          <div key={key} className="page-fade">
+            <Page onNav={onNav} tweaks={tweaks} />
+          </div>
+
+          <window.TweaksPanel title="Tweaks">
+            <window.TweakSection label="Color">
+              <window.TweakColor
+                label="Accent"
+                value={tweaks.accent}
+                onChange={(v) => setTweak('accent', v)}
+                options={['#1B3F7A', '#6E1F2E', '#1F4F3C', '#2A2A2A', '#B85C26']}
+              />
+            </window.TweakSection>
+
+            <window.TweakSection label="Hero">
+              <window.TweakToggle
+                label="Show 'Researcher · Producer' strip"
+                value={tweaks.showSlogan}
+                onChange={(v) => setTweak('showSlogan', v)}
+              />
+            </window.TweakSection>
+
+            <window.TweakSection label="Photo">
+              <window.TweakSelect
+                label="Portrait"
+                value={tweaks.portrait}
+                onChange={(v) => setTweak('portrait', v)}
+                options={[
+                  { label: 'Han-main-profile.png', value: 'assets/images/photos/Han-main-profile.png' },
+                  { label: 'profile1.jpg', value: 'assets/images/photos/profile1.jpg' },
+                  { label: 'profile2.jpg', value: 'assets/images/photos/profile2.jpg' },
+                ]}
+              />
+            </window.TweakSection>
+          </window.TweaksPanel>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
