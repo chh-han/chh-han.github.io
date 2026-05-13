@@ -254,14 +254,43 @@ window.SiteData = {
     ],
     releases: [
       // Production work
-      { kind: 'PROD', artist: 'Gunny', title: 'Trouble', year: '2019', cover: '', youtube: 'https://youtu.be/-lerQuV3E7U' },
+      { kind: 'PROD', artist: 'Gunny', title: 'Trouble', year: '2019', cover: 'assets/images/musics/prod-gunny.jpg', youtube: 'https://youtu.be/-lerQuV3E7U' },
       { kind: 'PROD', artist: 'kingeunsan', title: 'Face Lift', year: '2020 · Album', cover: 'assets/images/musics/prod-king.jpg', youtube: 'https://youtu.be/ivjSE4UEqSo' },
       { kind: 'PROD', artist: 'Bbvdoll', title: 'Lovesick', year: '2021', cover: 'assets/images/musics/prod-bbv.jpg', youtube: 'https://youtu.be/gxZI9s0XkP8' },
       { kind: 'PROD', artist: 'Kim Hyo-kyung', title: '기다려 / Wait', year: '2021', cover: 'assets/images/musics/prod-hyo.jpg', youtube: 'https://youtu.be/U80QFEh_7F0' },
       // Singer-songwriter
-      { kind: 'SOLO', artist: 'ChangHeon Han', title: 'Now or Never 1', year: '2019', cover: 'assets/images/musics/now1.jpeg', spotify: 'https://open.spotify.com/album/2x7pTaEuhjVeEgvv1bxRzl' },
-      { kind: 'SOLO', artist: 'ChangHeon Han', title: 'Now or Never 3', year: '2021', cover: 'assets/images/musics/now3.JPG', spotify: 'https://open.spotify.com/album/5wE55heOH6cZIxiWKZj828' },
-      { kind: 'ELEC', artist: 'ChangHeon Han', title: 'Seoul Boys Night', year: '2019', cover: 'assets/images/musics/digital.JPG', youtube: 'https://youtu.be/GVB-44TqKmg' },
+      { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 1', year: '2019', cover: 'assets/images/musics/now1.jpeg', spotify: 'https://open.spotify.com/album/2x7pTaEuhjVeEgvv1bxRzl' },
+      { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 2', year: '2020', cover: 'assets/images/musics/now2.JPG', spotify: 'https://open.spotify.com/album/0wLbPZyed3eXtkkNaGvlRs', youtube: 'https://www.youtube.com/playlist?list=OLAK5uy_nMGNwjbbudZVe5fovcgZ8STXw6M3u2a9A' },
+      { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 3', year: '2021', cover: 'assets/images/musics/now3.JPG', spotify: 'https://open.spotify.com/album/5wE55heOH6cZIxiWKZj828' },
+      { kind: 'ELEC', artist: 'Digital Picasso', title: 'Seoul Boys Night', year: '2019', cover: 'assets/images/musics/digital.JPG', youtube: 'https://youtu.be/GVB-44TqKmg' },
+    ],
+
+    // Visual / video collaborations — commercial · visual-art · brand work
+    videos: [
+      {
+        title: 'Hyundai Motor Group',
+        sub: 'Vocalist + producer · official ad',
+        youtube: 'https://youtu.be/Byb36TUtLf4',
+        tag: 'BRAND',
+      },
+      {
+        title: 'Visual Art Collaboration',
+        sub: 'Music production for visual art project',
+        youtube: 'https://youtu.be/YL8kOWiAKGM',
+        tag: 'VISUAL',
+      },
+      {
+        title: 'Music-based Visual Art',
+        sub: 'Visual art created with my original music',
+        youtube: 'https://youtu.be/xLMHM-Jmezo',
+        tag: 'VISUAL',
+      },
+      {
+        title: 'Artist Release',
+        sub: 'Singer-songwriter · producer release',
+        youtube: 'https://youtu.be/J4GoO77437I',
+        tag: 'RELEASE',
+      },
     ],
   },
 };

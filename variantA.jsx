@@ -501,65 +501,181 @@ function CreationA({ onNav }) {
         </div>
       </div>
 
-      <div style={{ padding: '48px 56px 64px' }}>
-        <SectionLabel no="02" name="Releases" count={c.releases.length} right={<Mono size={10} color={A.ink3}>{active ? 'NOW PLAYING ▼' : '↓ CLICK COVER TO PLAY'}</Mono>} />
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
-          {c.releases.map((r, i) => {
-            const playable = !!(r.spotify || r.youtube);
-            const isActive = active && (active.title === r.title && active.artist === r.artist);
-            return (
-              <div
-                key={i}
-                onClick={() => playable && setActive(r)}
-                style={{
-                  border: `1px solid ${isActive ? A.accent : A.rule}`,
-                  background: A.paper,
-                  cursor: playable ? 'pointer' : 'default',
-                  transition: 'transform .15s, border-color .12s',
-                  transform: isActive ? 'translateY(-2px)' : 'none',
-                  boxShadow: isActive ? `0 8px 24px ${A.accent}33` : 'none',
-                }}
-                onMouseEnter={(e) => { if (playable) e.currentTarget.style.transform = 'translateY(-2px)'; }}
-                onMouseLeave={(e) => { if (playable && !isActive) e.currentTarget.style.transform = 'translateY(0)'; }}
-              >
-                <div style={{ position: 'relative', width: '100%', aspectRatio: '1', background: A.paperAlt, overflow: 'hidden' }}>
-                  {r.cover ? (
-                    <img src={r.cover} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                  ) : (
-                    <div style={{ display: 'grid', placeItems: 'center', width: '100%', height: '100%' }}>
-                      <Mono size={10} color={A.ink3}>NO ARTWORK</Mono>
+      {/* Featured video — brand work, visual-art collaborations */}
+      {c.videos && c.videos.length > 0 && (
+        <div style={{ padding: '48px 56px 40px', borderBottom: `1px solid ${A.rule}` }}>
+          <SectionLabel no="02" name="Featured Video" count={c.videos.length} right={<Mono size={10} color={A.ink3}>BRAND · VISUAL ART · COLLABORATIONS</Mono>} />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+            {c.videos.map((v, i) => {
+              const m = v.youtube ? v.youtube.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([A-Za-z0-9_-]+)/) : null;
+              const id = m ? m[1] : null;
+              const thumb = id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+              return (
+                <Ext key={i} href={v.youtube} style={{ display: 'block' }}>
+                  <div style={{ border: `1px solid ${A.rule}`, background: A.paper, transition: 'transform .15s', position: 'relative' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; }}>
+                    <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: A.paperAlt, overflow: 'hidden' }}>
+                      {thumb ? (
+                        <img src={thumb} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                      ) : (
+                        <div style={{ display: 'grid', placeItems: 'center', width: '100%', height: '100%' }}>
+                          <Mono size={10} color={A.ink3}>VIDEO</Mono>
+                        </div>
+                      )}
+                      <div style={{ position: 'absolute', top: 8, left: 8, padding: '3px 7px', background: A.paper, fontFamily: A.mono, fontSize: 9, letterSpacing: '0.08em', color: A.accent, fontWeight: 600 }}>{v.tag || 'VIDEO'}</div>
+                      <div style={{ position: 'absolute', bottom: 8, right: 8, width: 32, height: 32, background: A.ink, color: A.paper, display: 'grid', placeItems: 'center', fontFamily: A.mono, fontSize: 11 }}>▶</div>
                     </div>
-                  )}
-                  <div style={{ position: 'absolute', top: 8, left: 8, padding: '3px 7px', background: A.paper, fontFamily: A.mono, fontSize: 9, letterSpacing: '0.08em', color: r.kind === 'PROD' ? A.accent : A.ink }}>{r.kind}</div>
-                  {playable && (
-                    <div style={{
-                      position: 'absolute', bottom: 10, right: 10,
-                      width: 40, height: 40,
-                      background: isActive ? A.accent : A.ink,
-                      color: A.paper,
-                      display: 'grid', placeItems: 'center',
-                      fontFamily: A.mono, fontSize: 14,
-                      transition: 'background .15s',
-                    }}>
-                      {isActive ? '❚❚' : '▶'}
-                    </div>
-                  )}
-                </div>
-                <div style={{ padding: 14 }}>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: A.ink, lineHeight: 1.2 }}>{r.title}</div>
-                  <div style={{ fontSize: 12, color: A.ink2, marginTop: 4 }}>{r.artist}</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 10 }}>
-                    <Mono size={9} color={A.ink3}>{r.year}</Mono>
-                    <div style={{ display: 'flex', gap: 6 }}>
-                      {r.spotify && <Mono size={9} color={A.ink}>SPTFY</Mono>}
-                      {r.youtube && <Mono size={9} color={A.ink}>YT</Mono>}
+                    <div style={{ padding: '12px 14px' }}>
+                      <div style={{ fontSize: 14, fontWeight: 600, color: A.ink, lineHeight: 1.25 }}>{v.title}</div>
+                      <div style={{ fontSize: 12, color: A.ink2, marginTop: 4, lineHeight: 1.4 }}>{v.sub}</div>
+                      <div style={{ marginTop: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <Mono size={9} color={A.ink3}>YOUTUBE</Mono>
+                        <Mono size={9} color={A.ink}>WATCH ↗</Mono>
+                      </div>
                     </div>
                   </div>
+                </Ext>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <div style={{ padding: '48px 56px 64px' }}>
+        <SectionLabel
+          no="03"
+          name="Releases"
+          count={c.releases.length}
+          right={<Mono size={10} color={A.ink3}>{active ? 'NOW PLAYING ▼' : 'SPOTIFY: PLAY IN-PAGE · YOUTUBE: NEW TAB'}</Mono>}
+        />
+
+        {(() => {
+          // Group by kind
+          const groups = [
+            { kind: 'PROD', label: 'Production', sub: 'Produced for other artists' },
+            { kind: 'SOLO', label: 'Singer-Songwriter', sub: 'Now or Never series' },
+            { kind: 'ELEC', label: 'Electronic', sub: 'House & dance' },
+          ];
+          return groups.map((g, gi) => {
+            const items = c.releases.filter((r) => r.kind === g.kind);
+            if (!items.length) return null;
+            return (
+              <div key={g.kind} style={{ marginTop: gi === 0 ? 16 : 36 }}>
+                {/* Group header */}
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 8, paddingBottom: 8, borderBottom: `1px solid ${A.rule}` }}>
+                  <Mono size={10} color={A.accent} weight={600}>0{gi + 1}</Mono>
+                  <div style={{ fontFamily: A.sans, fontSize: 13, fontWeight: 600, color: A.ink, letterSpacing: '0.04em', textTransform: 'uppercase' }}>{g.label}</div>
+                  <Mono size={10} color={A.ink3}>{g.sub}</Mono>
+                  <div style={{ flex: 1 }} />
+                  <Mono size={10} color={A.ink3}>[{String(items.length).padStart(2, '0')}]</Mono>
                 </div>
+
+                {/* Rows */}
+                {items.map((r, ri) => {
+                  const isActive = active && active.title === r.title && active.artist === r.artist;
+                  const hasSpot = !!r.spotify;
+                  const hasYT = !!r.youtube;
+                  const ytUrl = hasYT ? r.youtube : null;
+                  return (
+                    <div
+                      key={ri}
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: '56px 110px 1fr auto',
+                        gap: 18,
+                        alignItems: 'center',
+                        padding: '12px 0',
+                        borderBottom: `1px solid ${A.ruleSoft}`,
+                        background: isActive ? A.accent + '08' : 'transparent',
+                        transition: 'background .12s',
+                      }}
+                    >
+                      {/* Thumbnail */}
+                      <div style={{ width: 56, height: 56, border: `1px solid ${A.rule}`, background: A.paperAlt, position: 'relative', overflow: 'hidden' }}>
+                        {r.cover ? (
+                          <img src={r.cover} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                        ) : (
+                          <div style={{ display: 'grid', placeItems: 'center', width: '100%', height: '100%' }}>
+                            <Mono size={8} color={A.ink3}>—</Mono>
+                          </div>
+                        )}
+                        {isActive && (
+                          <div style={{ position: 'absolute', inset: 0, background: A.accent + 'CC', color: A.paper, display: 'grid', placeItems: 'center', fontSize: 14 }}>♪</div>
+                        )}
+                      </div>
+
+                      {/* Year + kind */}
+                      <div>
+                        <Mono size={10} color={A.ink3}>{r.year}</Mono>
+                        <div style={{ marginTop: 4, padding: '2px 7px', display: 'inline-block', background: r.kind === 'PROD' ? A.ink : A.paperAlt, color: r.kind === 'PROD' ? A.paper : A.ink, fontFamily: A.mono, fontSize: 9, letterSpacing: '0.08em' }}>{r.kind}</div>
+                      </div>
+
+                      {/* Title + artist */}
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ fontSize: 16, fontWeight: 600, color: A.ink, lineHeight: 1.25, letterSpacing: '-0.005em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          {r.title}
+                        </div>
+                        <div style={{ fontSize: 13, color: A.ink2, marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.artist}</div>
+                      </div>
+
+                      {/* Actions */}
+                      <div style={{ display: 'flex', gap: 8 }}>
+                        {hasSpot && (
+                          <div
+                            onClick={() => setActive(isActive ? null : r)}
+                            style={{
+                              padding: '7px 12px',
+                              background: isActive ? A.accent : A.ink,
+                              color: A.paper,
+                              fontFamily: A.mono,
+                              fontSize: 10,
+                              letterSpacing: '0.08em',
+                              textTransform: 'uppercase',
+                              cursor: 'pointer',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: 6,
+                              transition: 'background .12s',
+                            }}
+                            title={isActive ? 'Stop' : 'Play in Spotify player'}
+                          >
+                            <span>{isActive ? '❚❚' : '▶'}</span>
+                            <span>SPOTIFY</span>
+                          </div>
+                        )}
+                        {hasYT && (
+                          <Ext href={ytUrl} style={{ display: 'inline-block' }}>
+                            <div
+                              style={{
+                                padding: '7px 12px',
+                                border: `1px solid ${A.rule}`,
+                                background: A.paper,
+                                color: A.ink,
+                                fontFamily: A.mono,
+                                fontSize: 10,
+                                letterSpacing: '0.08em',
+                                textTransform: 'uppercase',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: 6,
+                                transition: 'background .12s, color .12s',
+                              }}
+                              onMouseEnter={(e) => { e.currentTarget.style.background = A.ink; e.currentTarget.style.color = A.paper; }}
+                              onMouseLeave={(e) => { e.currentTarget.style.background = A.paper; e.currentTarget.style.color = A.ink; }}
+                            >
+                              <span>WATCH</span><span>↗</span>
+                            </div>
+                          </Ext>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             );
-          })}
-        </div>
+          });
+        })()}
       </div>
 
       <FooterA />
