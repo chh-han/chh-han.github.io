@@ -30,6 +30,9 @@
   <script src="data.js"></script>
   <script type="text/babel" src="variantA.jsx"></script>
   <script type="text/babel" src="tweaks-panel.jsx"></script>
+
+  <script data-goatcounter="https://chhan.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
   <div id="root"></div>
@@ -62,7 +65,14 @@
       };
       const [page, setPage] = React.useState(getPageFromHash);
       React.useEffect(() => {
-        const onHash = () => setPage(getPageFromHash());
+        const onHash = () => {
+          setPage(getPageFromHash());
+          if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+              path: location.pathname + location.hash,
+            });
+          }
+        };
         window.addEventListener('hashchange', onHash);
         return () => window.removeEventListener('hashchange', onHash);
       }, []);
