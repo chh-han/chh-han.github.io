@@ -120,7 +120,7 @@ function HomeA({ onNav, tweaks = {} }) {
             <div style={{ fontSize: 96, lineHeight: 0.92, fontWeight: 600, letterSpacing: '-0.04em', color: A.ink, marginBottom: 8 }}>
               ChangHeon<br />Han<span style={{ color: A.accent }}>.</span>
             </div>
-            <Mono size={11} color={A.ink3} style={{ marginBottom: 24, display: 'inline-block' }}>한창헌 · /ʧæŋhɒn/</Mono>
+            <Mono size={11} color={A.ink3} style={{ marginBottom: 24, display: 'inline-block' }}>한창헌 · HAN</Mono>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', columnGap: 24, rowGap: 8, marginTop: 32, maxWidth: 640 }}>
               <Mono size={11} color={A.ink3}>ROLE</Mono>
