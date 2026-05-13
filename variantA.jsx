@@ -252,15 +252,32 @@ function HomeA({ onNav, tweaks = {} }) {
 function ResearchA({ onNav }) {
   const d = window.SiteData;
   const pubs = d.publications;
+  // Two-axis filter: kind (All / Publication / Project) × topic (All / Music / NLP / Audio)
+  const KINDS = [
+    { key: 'all', label: 'ALL' },
+    { key: 'publication', label: 'PUBLICATIONS' },
+    { key: 'project', label: 'PROJECTS' },
+  ];
   const TOPICS = ['ALL', 'Music', 'NLP', 'Audio'];
-  const [filter, setFilter] = React.useState('ALL');
-  const counts = React.useMemo(() => {
-    const c = { ALL: pubs.length };
-    pubs.forEach((p) => { c[p.topic] = (c[p.topic] || 0) + 1; });
-    return c;
-  }, [pubs]);
+  const [kindFilter, setKindFilter] = React.useState('all');
+  const [topicFilter, setTopicFilter] = React.useState('ALL');
 
-  const filtered = filter === 'ALL' ? pubs : pubs.filter((p) => p.topic === filter);
+  const kindCounts = React.useMemo(() => ({
+    all: pubs.length,
+    publication: pubs.filter((p) => (p.kind || 'publication') === 'publication').length,
+    project: pubs.filter((p) => p.kind === 'project').length,
+  }), [pubs]);
+  const topicCounts = React.useMemo(() => {
+    // Topic counts respect the current kind filter
+    const base = kindFilter === 'all' ? pubs : pubs.filter((p) => (p.kind || 'publication') === kindFilter);
+    const c = { ALL: base.length };
+    base.forEach((p) => { c[p.topic] = (c[p.topic] || 0) + 1; });
+    return c;
+  }, [pubs, kindFilter]);
+
+  let filtered = pubs;
+  if (kindFilter !== 'all') filtered = filtered.filter((p) => (p.kind || 'publication') === kindFilter);
+  if (topicFilter !== 'ALL') filtered = filtered.filter((p) => p.topic === topicFilter);
   const byYear = filtered.reduce((m, p) => ((m[p.year] = m[p.year] || []).push(p), m), {});
   const years = Object.keys(byYear).sort((a, b) => b - a);
   return (
@@ -276,16 +293,18 @@ function ResearchA({ onNav }) {
             <div style={{ fontFamily: A.mono, fontSize: 14, color: A.ink }}>[ {filtered.length.toString().padStart(2, '0')} of {pubs.length.toString().padStart(2, '0')} · {years.length} years ]</div>
           </div>
         </div>
-        <div style={{ marginTop: 24, display: 'flex', gap: 0, borderTop: `1px solid ${A.rule}`, borderBottom: `1px solid ${A.rule}` }}>
-          {TOPICS.map((t, i) => (
+
+        {/* Filter 1 — kind */}
+        <div style={{ marginTop: 24, display: 'flex', gap: 0, borderTop: `1px solid ${A.rule}`, borderBottom: `1px solid ${A.ruleSoft}` }}>
+          {KINDS.map((k, i) => (
             <div
-              key={t}
-              onClick={() => setFilter(t)}
+              key={k.key}
+              onClick={() => setKindFilter(k.key)}
               style={{
                 padding: '12px 20px',
-                borderRight: i < TOPICS.length - 1 ? `1px solid ${A.ruleSoft}` : 'none',
-                background: t === filter ? A.ink : 'transparent',
-                color: t === filter ? A.paper : A.ink2,
+                borderRight: i < KINDS.length - 1 ? `1px solid ${A.ruleSoft}` : 'none',
+                background: k.key === kindFilter ? A.ink : 'transparent',
+                color: k.key === kindFilter ? A.paper : A.ink2,
                 fontFamily: A.mono,
                 fontSize: 11,
                 letterSpacing: '0.06em',
@@ -294,19 +313,45 @@ function ResearchA({ onNav }) {
                 transition: 'background .12s, color .12s',
               }}
             >
-              {t === 'ALL' ? 'ALL' : t.toUpperCase()} [{counts[t] || 0}]
+              {k.label} [{kindCounts[k.key] || 0}]
             </div>
           ))}
           <div style={{ flex: 1 }} />
-          <div style={{ padding: '12px 20px', borderLeft: `1px solid ${A.ruleSoft}`, fontFamily: A.mono, fontSize: 11, color: A.ink3, letterSpacing: '0.06em' }}>SORT · DATE DESC</div>
+          <div style={{ padding: '12px 20px', borderLeft: `1px solid ${A.ruleSoft}`, fontFamily: A.mono, fontSize: 11, color: A.ink3, letterSpacing: '0.06em' }}>KIND</div>
+        </div>
+
+        {/* Filter 2 — topic */}
+        <div style={{ display: 'flex', gap: 0, borderBottom: `1px solid ${A.rule}` }}>
+          {TOPICS.map((t, i) => (
+            <div
+              key={t}
+              onClick={() => setTopicFilter(t)}
+              style={{
+                padding: '10px 18px',
+                borderRight: i < TOPICS.length - 1 ? `1px solid ${A.ruleSoft}` : 'none',
+                background: t === topicFilter ? A.accent : 'transparent',
+                color: t === topicFilter ? A.paper : A.ink2,
+                fontFamily: A.mono,
+                fontSize: 10,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                transition: 'background .12s, color .12s',
+              }}
+            >
+              {t === 'ALL' ? 'ALL TOPICS' : t.toUpperCase()} [{topicCounts[t] || 0}]
+            </div>
+          ))}
+          <div style={{ flex: 1 }} />
+          <div style={{ padding: '10px 18px', borderLeft: `1px solid ${A.ruleSoft}`, fontFamily: A.mono, fontSize: 10, color: A.ink3, letterSpacing: '0.06em' }}>TOPIC · SORT DATE DESC</div>
         </div>
       </div>
 
       {years.length === 0 ? (
         <div style={{ padding: '80px 56px', textAlign: 'center' }}>
-          <Mono size={11} color={A.ink3}>NO ENTRIES MATCH FILTER · {filter.toUpperCase()}</Mono>
+          <Mono size={11} color={A.ink3}>NO ENTRIES MATCH FILTER · {kindFilter.toUpperCase()} · {topicFilter.toUpperCase()}</Mono>
           <div style={{ marginTop: 16 }}>
-            <span onClick={() => setFilter('ALL')} style={{ cursor: 'pointer', fontFamily: A.mono, fontSize: 11, color: A.accent, letterSpacing: '0.06em', textTransform: 'uppercase' }}>↺ RESET FILTER</span>
+            <span onClick={() => { setKindFilter('all'); setTopicFilter('ALL'); }} style={{ cursor: 'pointer', fontFamily: A.mono, fontSize: 11, color: A.accent, letterSpacing: '0.06em', textTransform: 'uppercase' }}>↺ RESET FILTERS</span>
           </div>
         </div>
       ) : years.map((y) => (
@@ -316,11 +361,14 @@ function ResearchA({ onNav }) {
             <Mono size={10} color={A.ink3}>{byYear[y].length} entries</Mono>
             <div style={{ flex: 1, borderBottom: `1px solid ${A.ruleSoft}`, marginBottom: 8 }} />
           </div>
-          {byYear[y].map((p, i) => (
+          {byYear[y].map((p, i) => {
+            const isProject = p.kind === 'project';
+            return (
             <div key={p.id} style={{ display: 'grid', gridTemplateColumns: '90px 1fr 200px', gap: 32, alignItems: 'start', padding: '20px 0', borderTop: i === 0 ? `1px solid ${A.ruleSoft}` : `1px solid ${A.ruleSoft}` }}>
               <div>
                 <Mono size={11} color={A.ink} weight={600}>{p.date}</Mono>
-                <div style={{ marginTop: 6, padding: '4px 8px', display: 'inline-block', background: A.ink, color: A.paper, fontFamily: A.mono, fontSize: 9, letterSpacing: '0.06em' }}>{p.venueShort}</div>
+                <div style={{ marginTop: 6, padding: '4px 8px', display: 'inline-block', background: isProject ? A.paperAlt : A.ink, color: isProject ? A.ink : A.paper, border: isProject ? `1px solid ${A.rule}` : 'none', fontFamily: A.mono, fontSize: 9, letterSpacing: '0.06em' }}>{p.venueShort}</div>
+                {isProject && <div style={{ marginTop: 4, fontFamily: A.mono, fontSize: 8, letterSpacing: '0.08em', color: A.accent, fontWeight: 600 }}>// PROJECT</div>}
               </div>
               <div>
                 <div style={{ fontSize: 20, lineHeight: 1.3, fontWeight: 600, color: A.ink, letterSpacing: '-0.01em', marginBottom: 6 }}>{p.title}</div>
@@ -359,7 +407,8 @@ function ResearchA({ onNav }) {
                 )}
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       ))}
 

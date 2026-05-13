@@ -66,11 +66,13 @@ window.SiteData = {
   ],
 
   // Selected publications first; full list afterwards
+  // `kind`: 'publication' | 'project'
   publications: [
     {
       id: 'sentimatic',
       year: 2025,
       date: '2025.04',
+      kind: 'publication',
       title:
         'Sentimatic: Sentiment-guided Automatic Generation of Preference Datasets for Customer Support Dialogue System',
       venue: 'NAACL 2025',
@@ -88,6 +90,7 @@ window.SiteData = {
       id: 'pskd',
       year: 2024,
       date: '2024.06',
+      kind: 'publication',
       title:
         'Optimizing Music Source Separation in Complex Audio Environments Through Progressive Self-Knowledge Distillation',
       venue: 'ICASSP 2024 Workshops',
@@ -108,6 +111,7 @@ window.SiteData = {
       id: 'track-role',
       year: 2023,
       date: '2023.11',
+      kind: 'publication',
       title: 'Track Role Prediction of Single-Instrumental Sequences',
       venue: 'ISMIR 2023 LBD',
       venueShort: 'ISMIR',
@@ -127,6 +131,7 @@ window.SiteData = {
       id: 'star',
       year: 2025,
       date: '2025.07',
+      kind: 'publication',
       title:
         'STAR: Strategy-Aware Refinement Module in Multitask Learning for Emotional Support Conversations',
       venue: 'ACL 2025 (NLP4PI Workshop)',
@@ -147,6 +152,7 @@ window.SiteData = {
       id: 'asmr',
       year: 2024,
       date: '2024.06',
+      kind: 'publication',
       title: 'ASMR Sound Generation through Attribute-based Prompt Augmentation',
       venue: 'KCC 2024',
       venueShort: 'KCC',
@@ -157,6 +163,57 @@ window.SiteData = {
       tldr:
         'LLM-based prompt augmentation that explicitly models ASMR triggers — produces more detailed sound descriptions and improves T2A quality.',
       links: {},
+    },
+
+    // ── Projects (open-source tools) ────────────────────────
+    {
+      id: 'nsynth-midi',
+      year: 2023,
+      date: '2023.01',
+      kind: 'project',
+      title: 'NSynth-MIDI-Renderer for massive MIDI dataset',
+      venue: 'Open-source tool',
+      venueShort: 'TOOL',
+      authors: ['ChangHeon Han'],
+      tags: ['Music Information Retrieval', 'MIDI', 'Dataset'],
+      topic: 'Music',
+      selected: false,
+      tldr:
+        'Open-source renderer that picks NSynth candidates and locks a single preset across a MIDI sequence — used to synthesize massive symbolic-to-audio datasets.',
+      cover: 'assets/images/covers/2024-NoteSynthesizer.png',
+      links: { Code: 'https://github.com/chh-han/NSynth-MIDI-Renderer-for-massive-MIDI-dataset' },
+    },
+    {
+      id: 'midi-metadata',
+      year: 2023,
+      date: '2023.01',
+      kind: 'project',
+      title: 'MIDI-Metadata-Extractor',
+      venue: 'Open-source tool',
+      venueShort: 'TOOL',
+      authors: ['ChangHeon Han'],
+      tags: ['Music Information Retrieval', 'MIDI'],
+      topic: 'Music',
+      selected: false,
+      tldr:
+        'Segregates a multi-track MIDI file into individual instrument tracks, extracts per-track metadata, and supports measure-based truncation / save.',
+      links: { Code: 'https://github.com/chh-han/MIDI-metadata-extractor' },
+    },
+    {
+      id: 'white-noise',
+      year: 2022,
+      date: '2022.01',
+      kind: 'project',
+      title: 'Soothing Sound White Noise Generator',
+      venue: 'Project · KCC copyright',
+      venueShort: 'TOOL',
+      authors: ['ChangHeon Han'],
+      tags: ['Audio', 'Signal Processing'],
+      topic: 'Audio',
+      selected: false,
+      tldr:
+        'Soothing-sound audio generator with five distinct noise colors and three weighting filters. Copyrighted with the Korea Copyright Commission.',
+      links: { Code: 'https://github.com/chh-han/white_noise_generation' },
     },
   ],
 
