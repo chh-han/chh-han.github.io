@@ -1,6 +1,6 @@
 ---
 title: "Biased Narration: Music AI Through a Producer's Eyes"
-date: 2026-05-15
+date: 2026-05-15T09:00:00
 summary: "Why this blog exists — a producer-turned-researcher's take on the gap between music AI papers and what producers actually want."
 tags: ["intro", "music-ai", "research"]
 draft: false
