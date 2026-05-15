@@ -7,9 +7,19 @@ export default defineConfig({
   site: 'https://changheonhan.com',
   output: 'static',
   outDir: './dist',
+  redirects: {
+    '/bio.html': '/bio',
+    '/creation.html': '/creation',
+    '/research.html': '/research',
+  },
   integrations: [
     react(),
     mdx(),
-    sitemap(),
+    sitemap({
+      filter: (page) =>
+        !page.endsWith('/bio.html') &&
+        !page.endsWith('/creation.html') &&
+        !page.endsWith('/research.html'),
+    }),
   ],
 });
