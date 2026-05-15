@@ -1,7 +1,7 @@
 ---
 title: "nickcheo and Source Separation: When DJ Meets Signal Processing"
 date: 2026-05-15T15:00:00
-summary: "Source separation technology helped to create a unique DJ style. What is source separation?"
+summary: "Source separation technology helped to create a unique DJing style. What is source separation?"
 tags: ["source-separation", "demucs", "music-ai", "producer"]
 draft: false
 ---
