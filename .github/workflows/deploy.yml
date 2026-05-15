@@ -48,3 +48,48 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  notify-indexnow:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for deploy to be live
+        run: sleep 30
+
+      - name: Fetch sitemap and ping IndexNow
+        env:
+          INDEXNOW_KEY: 4fccf2463697a9140dece063cc81fdeb
+          SITE_HOST: changheonhan.com
+        run: |
+          set -euo pipefail
+
+          # Pull URLs from each child sitemap referenced by the index
+          curl -fsSL "https://${SITE_HOST}/sitemap-index.xml" -o sitemap-index.xml
+          CHILDREN=$(grep -oE '<loc>[^<]+</loc>' sitemap-index.xml | sed -E 's#</?loc>##g')
+
+          : > urls.txt
+          for child in $CHILDREN; do
+            curl -fsSL "$child" \
+              | grep -oE '<loc>[^<]+</loc>' \
+              | sed -E 's#</?loc>##g' >> urls.txt
+          done
+
+          URL_COUNT=$(wc -l < urls.txt | tr -d ' ')
+          echo "Submitting ${URL_COUNT} URLs to IndexNow"
+
+          PAYLOAD=$(jq -n \
+            --arg host "$SITE_HOST" \
+            --arg key "$INDEXNOW_KEY" \
+            --arg keyLocation "https://${SITE_HOST}/${INDEXNOW_KEY}.txt" \
+            --rawfile urls urls.txt \
+            '{
+              host: $host,
+              key: $key,
+              keyLocation: $keyLocation,
+              urlList: ($urls | split("\n") | map(select(length > 0)))
+            }')
+
+          curl -fsS -X POST 'https://api.indexnow.org/IndexNow' \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            -d "$PAYLOAD" \
+            -w 'IndexNow HTTP %{http_code}\n'
