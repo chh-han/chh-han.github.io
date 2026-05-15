@@ -1,0 +1,92 @@
+---
+import '@/styles/global.css';
+import { site as siteData } from '@/data/site';
+
+interface ArticleMeta {
+  publishedTime: string;
+  modifiedTime?: string;
+  tags?: string[];
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  article?: ArticleMeta;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title = 'ChangHeon Han',
+  description = "ChangHeon Han — Ph.D. student at Chalmers University of Technology. Research on learned cultural representation spaces in generative AI for creative domains.",
+  ogType = 'website',
+  ogImage = '/assets/images/photos/Han-main-profile.png',
+  article,
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageAbs = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site).toString();
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{title}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+  <meta name="author" content={siteData.profile.name} />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:image" content={ogImageAbs} />
+  <meta property="og:site_name" content="ChangHeon Han" />
+  <meta property="og:locale" content="en_US" />
+
+  {article && <meta property="article:published_time" content={article.publishedTime} />}
+  {article?.modifiedTime && <meta property="article:modified_time" content={article.modifiedTime} />}
+  {article && <meta property="article:author" content={siteData.profile.name} />}
+  {article?.tags?.map((tag) => <meta property="article:tag" content={tag} />)}
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageAbs} />
+
+  <link rel="alternate" type="application/rss+xml" title="ChangHeon Han — Blog" href="/rss.xml" />
+  <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  {jsonLd && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+    />
+  )}
+
+  <script
+    data-goatcounter="https://chhan.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"
+  ></script>
+</head>
+<body>
+  <div class="page-fade">
+    <slot />
+  </div>
+</body>
+</html>

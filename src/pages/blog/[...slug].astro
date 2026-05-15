@@ -1,0 +1,104 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import { getCollection, render } from 'astro:content';
+import { tokens } from '@/styles/tokens';
+import { site as siteData } from '@/data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (p) => !p.data.draft || import.meta.env.DEV);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fmt = (d: Date) =>
+  `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+
+const canonical = new URL(`/blog/${post.id}`, Astro.site).toString();
+const ogImage = post.data.cover || `/og/${post.id}.png`;
+const ogImageAbs = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro.site).toString();
+const description = post.data.summary ?? `Blog post by ChangHeon Han: ${post.data.title}`;
+const publishedISO = post.data.date.toISOString();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description,
+  datePublished: publishedISO,
+  dateModified: publishedISO,
+  author: {
+    '@type': 'Person',
+    name: siteData.profile.name,
+    url: 'https://changheonhan.com',
+  },
+  publisher: {
+    '@type': 'Person',
+    name: siteData.profile.name,
+  },
+  image: ogImageAbs,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonical,
+  },
+  keywords: post.data.tags.join(', '),
+};
+---
+
+<BaseLayout
+  title={`${post.data.title} — ChangHeon Han`}
+  description={description}
+  ogType="article"
+  ogImage={ogImage}
+  article={{
+    publishedTime: publishedISO,
+    tags: post.data.tags,
+  }}
+  noindex={post.data.draft}
+  jsonLd={jsonLd}
+>
+  <div style={`background:${tokens.paper};color:${tokens.ink};font-family:${tokens.sans};min-height:100%;`}>
+    <Nav active="Blog" />
+
+    <article style="max-width:760px;margin:0 auto;padding:64px 32px 32px;">
+      <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:32px;">
+        <a href="/blog" style={`font-family:${tokens.mono};font-size:11px;font-weight:500;letter-spacing:0.06em;color:${tokens.accent};text-transform:uppercase;text-decoration:none;`}>← BLOG</a>
+        <span style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>{fmt(post.data.date)}</span>
+        {post.data.draft && (
+          <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.08em;color:${tokens.ink};background:${tokens.paperAlt};border:1px solid ${tokens.rule};padding:2px 8px;`}>DRAFT</span>
+        )}
+      </div>
+
+      <h1 style={`font-size:42px;line-height:1.15;font-weight:600;letter-spacing:-0.02em;color:${tokens.ink};margin:0 0 16px;`}>{post.data.title}</h1>
+
+      {post.data.summary && (
+        <p style={`font-size:17px;line-height:1.6;color:${tokens.ink2};margin:0 0 24px;`}>{post.data.summary}</p>
+      )}
+
+      {post.data.tags.length > 0 && (
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;">
+          {post.data.tags.map((t: string) => (
+            <div style={`padding:4px 8px;border:1px solid ${tokens.ruleSoft};font-family:${tokens.mono};font-size:9px;letter-spacing:0.06em;color:${tokens.ink2};text-transform:uppercase;`}>{t}</div>
+          ))}
+        </div>
+      )}
+
+      <div style={`border-top:1px solid ${tokens.rule};padding-top:40px;`} class="prose">
+        <Content />
+      </div>
+
+      <div style={`margin-top:64px;padding-top:32px;border-top:1px solid ${tokens.ruleSoft};display:flex;justify-content:space-between;align-items:center;`}>
+        <a href="/blog" style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.06em;color:${tokens.accent};text-transform:uppercase;text-decoration:none;`}>← MORE POSTS</a>
+        <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>END · {fmt(post.data.date)}</span>
+      </div>
+    </article>
+
+    <Footer />
+  </div>
+</BaseLayout>

@@ -1,0 +1,87 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Nav from '@/components/Nav';
+import Footer from '@/components/Footer';
+import { getCollection } from 'astro:content';
+import { tokens } from '@/styles/tokens';
+
+const allPosts = (await getCollection('blog'))
+  .filter((p) => !p.data.draft || import.meta.env.DEV)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const byYear: Record<string, typeof allPosts> = {};
+for (const post of allPosts) {
+  const year = String(post.data.date.getFullYear());
+  (byYear[year] ||= []).push(post);
+}
+const years = Object.keys(byYear).sort((a, b) => Number(b) - Number(a));
+
+const fmt = (d: Date) =>
+  `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+---
+
+<BaseLayout
+  title="Blog — ChangHeon Han"
+  description="Essays on music AI from a producer-turned-researcher's perspective."
+>
+  <div style={`background:${tokens.paper};color:${tokens.ink};font-family:${tokens.sans};min-height:100%;`}>
+    <Nav active="Blog" />
+
+    <div style={`padding:56px 56px 32px;border-bottom:1px solid ${tokens.rule};`}>
+      <span style={`font-family:${tokens.mono};font-size:11px;font-weight:500;letter-spacing:0.02em;color:${tokens.accent};text-transform:uppercase;`}>§ 05 · BLOG</span>
+      <div style="display:flex;align-items:flex-end;gap:32px;margin-top:16px;">
+        <div style={`font-size:88px;line-height:0.95;font-weight:600;letter-spacing:-0.04em;`}>Blog<span style={`color:${tokens.accent}`}>.</span></div>
+        <div style="padding-bottom:16px;">
+          <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>INDEX</span>
+          <div style={`font-family:${tokens.mono};font-size:14px;color:${tokens.ink};`}>[ {String(allPosts.length).padStart(2, '0')} {allPosts.length === 1 ? 'entry' : 'entries'} · {years.length} {years.length === 1 ? 'year' : 'years'} ]</div>
+        </div>
+        <div style="flex:1;"></div>
+        <div style="padding-bottom:16px;">
+          <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>Producer's eye on music AI research</span>
+        </div>
+      </div>
+    </div>
+
+    {allPosts.length === 0 ? (
+      <div style="padding:96px 56px;text-align:center;">
+        <span style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.06em;color:${tokens.ink3};text-transform:uppercase;`}>NO POSTS YET · STAY TUNED</span>
+      </div>
+    ) : years.map((y) => (
+      <div style={`padding:40px 56px 24px;border-bottom:1px solid ${tokens.rule};`}>
+        <div style="display:flex;align-items:baseline;gap:24px;margin-bottom:16px;">
+          <div style={`font-family:${tokens.mono};font-size:32px;font-weight:500;color:${tokens.accent};letter-spacing:-0.02em;`}>{y}</div>
+          <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>{byYear[y].length} {byYear[y].length === 1 ? 'entry' : 'entries'}</span>
+          <div style={`flex:1;border-bottom:1px solid ${tokens.ruleSoft};margin-bottom:8px;`}></div>
+        </div>
+        {byYear[y].map((post) => (
+          <a
+            href={`/blog/${post.id}`}
+            style={`display:grid;grid-template-columns:120px 1fr;gap:32px;align-items:start;padding:24px 0;border-top:1px solid ${tokens.ruleSoft};color:inherit;text-decoration:none;`}
+          >
+            <div>
+              <span style={`font-family:${tokens.mono};font-size:11px;font-weight:600;letter-spacing:0.02em;color:${tokens.ink};text-transform:uppercase;`}>{fmt(post.data.date)}</span>
+              {post.data.draft && (
+                <div style={`margin-top:6px;padding:2px 7px;display:inline-block;background:${tokens.paperAlt};color:${tokens.ink};border:1px solid ${tokens.rule};font-family:${tokens.mono};font-size:9px;letter-spacing:0.08em;`}>DRAFT</div>
+              )}
+            </div>
+            <div>
+              <div style={`font-size:22px;line-height:1.3;font-weight:600;color:${tokens.ink};letter-spacing:-0.01em;margin-bottom:8px;`}>{post.data.title}</div>
+              {post.data.summary && (
+                <div style={`font-size:14px;color:${tokens.ink2};line-height:1.6;margin-bottom:12px;`}>{post.data.summary}</div>
+              )}
+              {post.data.tags.length > 0 && (
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  {post.data.tags.map((t: string) => (
+                    <div style={`padding:4px 8px;border:1px solid ${tokens.ruleSoft};font-family:${tokens.mono};font-size:9px;letter-spacing:0.06em;color:${tokens.ink2};text-transform:uppercase;`}>{t}</div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+    ))}
+
+    <Footer />
+  </div>
+</BaseLayout>

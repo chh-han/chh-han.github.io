@@ -1,5 +1,4 @@
-// Shared content for the redesign — extracted from chh-han/chh-han.github.io
-window.SiteData = {
+export const site = {
   profile: {
     name: 'ChangHeon Han',
     nameKr: '한창헌',
@@ -17,10 +16,9 @@ window.SiteData = {
     linkedin: 'https://www.linkedin.com/in/changheonhan/',
     linkedinHandle: 'changheonhan',
     cv: '/uploads/CV_HCH.pdf',
-    portrait: 'assets/images/photos/Han-main-profile.png',
+    portrait: '/assets/images/photos/Han-main-profile.png',
   },
 
-  // One-liner identity beats — used for hero
   identity: {
     primary: 'Researcher',
     primaryCaption: 'AI · multimodal · music',
@@ -65,8 +63,6 @@ window.SiteData = {
     },
   ],
 
-  // Selected publications first; full list afterwards
-  // `kind`: 'publication' | 'project'
   publications: [
     {
       id: 'sentimatic',
@@ -83,7 +79,7 @@ window.SiteData = {
       selected: true,
       tldr:
         'Automatic, sentiment-guided framework that produces large-scale preference datasets without human annotation — improves emotional appropriateness in customer-support LLMs.',
-      cover: 'assets/images/covers/2025-naacl-sentimatic.png',
+      cover: '/assets/images/covers/2025-naacl-sentimatic.png',
       links: { Paper: 'https://aclanthology.org/2025.naacl-srw.12/', Code: 'https://github.com/chh-han/SCM-Dataset' },
     },
     {
@@ -101,7 +97,7 @@ window.SiteData = {
       selected: true,
       tldr:
         'Fine-tuning strategy for hearing-aid–oriented source separation. Softening targets with previous-epoch predictions gives +1.2 dB SDR over the baseline.',
-      cover: 'assets/images/covers/2024-icasspw-pskd.png',
+      cover: '/assets/images/covers/2024-icasspw-pskd.png',
       links: {
         Paper: 'https://ieeexplore.ieee.org/document/10626965',
         Code: 'https://github.com/chh-han/mss-pskd',
@@ -121,7 +117,7 @@ window.SiteData = {
       selected: true,
       tldr:
         'Predicts the track role of single-instrument sequences automatically. 87% symbolic / 84% audio accuracy — reduces manual annotation in MIR pipelines.',
-      cover: 'assets/images/covers/2023-ismir-track-role.png',
+      cover: '/assets/images/covers/2023-ismir-track-role.png',
       links: {
         Paper: 'https://arxiv.org/abs/2404.13286',
         Code: 'https://github.com/chh-han/SCM-Dataset',
@@ -142,7 +138,7 @@ window.SiteData = {
       selected: false,
       tldr:
         'Disentangles decoder representations and dynamically fuses task-specific info — state-of-the-art in both strategy prediction and response generation.',
-      cover: 'assets/images/covers/2025-nlp4pi-star.png',
+      cover: '/assets/images/covers/2025-nlp4pi-star.png',
       links: {
         Paper: 'https://aclanthology.org/2025.nlp4pi-1.24.pdf',
         Code: 'https://github.com/suhyun565/STAR',
@@ -164,8 +160,6 @@ window.SiteData = {
         'LLM-based prompt augmentation that explicitly models ASMR triggers — produces more detailed sound descriptions and improves T2A quality.',
       links: {},
     },
-
-    // ── Projects (open-source tools) ────────────────────────
     {
       id: 'nsynth-midi',
       year: 2023,
@@ -180,7 +174,7 @@ window.SiteData = {
       selected: false,
       tldr:
         'Open-source renderer that picks NSynth candidates and locks a single preset across a MIDI sequence — used to synthesize massive symbolic-to-audio datasets.',
-      cover: 'assets/images/covers/2024-NoteSynthesizer.png',
+      cover: '/assets/images/covers/2024-NoteSynthesizer.png',
       links: { Code: 'https://github.com/chh-han/NSynth-MIDI-Renderer-for-massive-MIDI-dataset' },
     },
     {
@@ -304,25 +298,22 @@ window.SiteData = {
       { value: '7', label: 'Collab countries' },
     ],
     highlights: [
-      'Vocalist & producer on Hyundai Motor Group\u2019s official video',
+      'Vocalist & producer on Hyundai Motor Group’s official video',
       'Producer for the insert song in Seezn Original Series "Hope or Dope" (S01E02)',
       '4 songs featured in Spotify K-pop Editorial Playlists',
       'International collaborations: USA, Germany, Hong Kong, Netherlands, +3',
     ],
     releases: [
-      // Production work
-      { kind: 'PROD', artist: 'Gunny', title: 'Trouble', year: '2019', cover: 'assets/images/musics/prod-gunny.jpg', youtube: 'https://youtu.be/-lerQuV3E7U' },
-      { kind: 'PROD', artist: 'kingeunsan', title: 'Face Lift', year: '2020 · Album', cover: 'assets/images/musics/prod-king.jpg', youtube: 'https://youtu.be/ivjSE4UEqSo' },
-      { kind: 'PROD', artist: 'Bbvdoll', title: 'Lovesick', year: '2021', cover: 'assets/images/musics/prod-bbv.jpg', youtube: 'https://youtu.be/gxZI9s0XkP8' },
-      { kind: 'PROD', artist: 'Kim Hyo-kyung', title: '기다려 / Wait', year: '2021', cover: 'assets/images/musics/prod-hyo.jpg', youtube: 'https://youtu.be/U80QFEh_7F0' },
-      // Singer-songwriter
-      { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 1', year: '2019', cover: 'assets/images/musics/now1.jpeg', spotify: 'https://open.spotify.com/album/2x7pTaEuhjVeEgvv1bxRzl' },
-      { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 2', year: '2020', cover: 'assets/images/musics/now2.JPG', spotify: 'https://open.spotify.com/album/0wLbPZyed3eXtkkNaGvlRs', youtube: 'https://www.youtube.com/playlist?list=OLAK5uy_nMGNwjbbudZVe5fovcgZ8STXw6M3u2a9A' },
-      { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 3', year: '2021', cover: 'assets/images/musics/now3.JPG', spotify: 'https://open.spotify.com/album/5wE55heOH6cZIxiWKZj828' },
-      { kind: 'ELEC', artist: 'Digital Picasso', title: 'Seoul Boys Night', year: '2019', cover: 'assets/images/musics/digital.JPG', youtube: 'https://youtu.be/GVB-44TqKmg' },
+      { kind: 'PROD', artist: 'Gunny', title: 'Trouble', year: '2019', cover: '/assets/images/musics/prod-gunny.jpg', youtube: 'https://youtu.be/-lerQuV3E7U' },
+      { kind: 'PROD', artist: 'kingeunsan', title: 'Face Lift', year: '2020 · Album', cover: '/assets/images/musics/prod-king.jpg', youtube: 'https://youtu.be/ivjSE4UEqSo' },
+      { kind: 'PROD', artist: 'Bbvdoll', title: 'Lovesick', year: '2021', cover: '/assets/images/musics/prod-bbv.jpg', youtube: 'https://youtu.be/gxZI9s0XkP8' },
+      { kind: 'PROD', artist: 'Kim Hyo-kyung', title: '기다려 / Wait', year: '2021', cover: '/assets/images/musics/prod-hyo.jpg', youtube: 'https://youtu.be/U80QFEh_7F0' },
+      { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 1', year: '2019', cover: '/assets/images/musics/now1.jpeg', spotify: 'https://open.spotify.com/album/2x7pTaEuhjVeEgvv1bxRzl' },
+      { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 2', year: '2020', cover: '/assets/images/musics/now2.JPG', spotify: 'https://open.spotify.com/album/0wLbPZyed3eXtkkNaGvlRs', youtube: 'https://www.youtube.com/playlist?list=OLAK5uy_nMGNwjbbudZVe5fovcgZ8STXw6M3u2a9A' },
+      { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 3', year: '2021', cover: '/assets/images/musics/now3.JPG', spotify: 'https://open.spotify.com/album/5wE55heOH6cZIxiWKZj828' },
+      { kind: 'ELEC', artist: 'Digital Picasso', title: 'Seoul Boys Night', year: '2019', cover: '/assets/images/musics/digital.JPG', youtube: 'https://youtu.be/GVB-44TqKmg' },
     ],
 
-    // Visual / video collaborations — commercial · visual-art · brand work
     videos: [
       {
         title: 'Hyundai Motor Group',
@@ -351,3 +342,5 @@ window.SiteData = {
     ],
   },
 };
+
+export default site;
