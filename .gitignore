@@ -6,6 +6,8 @@ _site/
 .bundle/
 vendor/
 Gemfile.lock
+blogs/
+.claude/
 
 .DS_Store
 

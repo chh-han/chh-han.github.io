@@ -1,30 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Home from '@/components/pages/Home';
-import { site } from '@/data/site';
+import { buildPersonJsonLd } from '@/data/site';
 
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: site.profile.name,
-  alternateName: site.profile.nameKr,
-  jobTitle: site.profile.title,
-  description: site.identity.tagline,
-  url: 'https://changheonhan.com',
-  image: new URL(site.profile.portrait, 'https://changheonhan.com').toString(),
-  email: `mailto:${site.profile.email}`,
-  affiliation: {
-    '@type': 'Organization',
-    name: site.profile.affiliation,
-    url: site.profile.affiliationUrl,
-  },
-  sameAs: [
-    site.profile.gscholar,
-    site.profile.github,
-    site.profile.linkedin,
-  ],
-  knowsAbout: site.identity.keywords,
-};
+const personJsonLd = buildPersonJsonLd(Astro.site?.toString());
 ---
 
 <BaseLayout title="ChangHeon Han" jsonLd={personJsonLd}>

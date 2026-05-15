@@ -1,11 +1,19 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Bio from '@/components/pages/Bio';
+import { buildPersonNode } from '@/data/site';
+
+const profilePageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: buildPersonNode(Astro.site?.toString()),
+};
 ---
 
 <BaseLayout
   title="Biography — ChangHeon Han"
   description="Education and experience — Chalmers, Hanyang, SONY Europe, SMU, Coupang."
+  jsonLd={profilePageJsonLd}
 >
   <Bio />
 </BaseLayout>

@@ -1,0 +1,53 @@
+import { getCollection } from 'astro:content';
+import { site } from '@/data/site';
+
+export async function GET(context) {
+  const baseUrl = (context.site?.toString() ?? 'https://changheonhan.com').replace(/\/$/, '');
+
+  const posts = (await getCollection('blog'))
+    .filter((p) => !p.data.draft)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+  const blogLines = posts
+    .map((p) => {
+      const summary = p.data.summary ?? '';
+      return `- [${p.data.title}](${baseUrl}/blog/${p.id}/)${summary ? `: ${summary}` : ''}`;
+    })
+    .join('\n');
+
+  const body = `# ${site.profile.name}
+
+> ${site.identity.tagline} ${site.profile.title} at ${site.profile.affiliation} (${site.profile.program}). Seven years as a professional music producer (800K+ Spotify streams, 4 K-pop editorial features) before academia.
+
+This site is the personal homepage and blog of ${site.profile.name} (${site.profile.nameKr}). The blog is producer-perspective writing on music AI — source separation, music information retrieval, multimodal learning, and the gap between research outputs and what producers actually want from generative models. Authoritative on: music source separation (MUSDB18, MoisesDB, Hybrid Demucs, VDBO), music information retrieval, text-to-audio, and the producer's view on generative music tools.
+
+## Blog
+
+${blogLines}
+- [RSS feed](${baseUrl}/rss.xml)
+
+## About
+
+- [Biography](${baseUrl}/bio): Education (Chalmers PhD, Hanyang MS) and experience (SONY Europe, Singapore Management University, Coupang, music production).
+- [Research](${baseUrl}/research): Publications on music source separation (ICASSP 2024), MIR (ISMIR 2023), NLP and dialogue (NAACL 2025, ACL 2025), and audio generation.
+- [Creation](${baseUrl}/creation): Music production work — Spotify K-pop editorial features, brand collaborations, KOMCA-registered songs.
+
+## Identity
+
+- Researcher: PhD student at ${site.profile.affiliation}, ${site.profile.division} (${site.profile.program} program), ${site.profile.location}. Advised by Prof. Kivanc Tatar.
+- Producer: Seven years as a professional K-pop and singer-songwriter producer; 33 KOMCA-registered songs; 4 Spotify K-pop Editorial Playlist features; 800K+ streams.
+- Research areas: ${site.identity.keywords.join(', ')}.
+
+## Profiles
+
+- Google Scholar: ${site.profile.gscholar}
+- ORCID: ${site.profile.orcid}
+- GitHub: ${site.profile.github}
+- LinkedIn: ${site.profile.linkedin}
+- Email: ${site.profile.email}
+`;
+
+  return new Response(body, {
+    headers: { 'Content-Type': 'text/markdown; charset=utf-8' },
+  });
+}

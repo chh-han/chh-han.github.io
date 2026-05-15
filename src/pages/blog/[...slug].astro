@@ -4,7 +4,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { getCollection, render } from 'astro:content';
 import { tokens } from '@/styles/tokens';
-import { site as siteData } from '@/data/site';
+import { site as siteData, buildPersonNode } from '@/data/site';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', (p) => !p.data.draft || import.meta.env.DEV);
@@ -26,6 +26,8 @@ const ogImageAbs = ogImage.startsWith('http') ? ogImage : new URL(ogImage, Astro
 const description = post.data.summary ?? `Blog post by ChangHeon Han: ${post.data.title}`;
 const publishedISO = post.data.date.toISOString();
 
+const personNode = buildPersonNode(Astro.site?.toString());
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -33,15 +35,8 @@ const jsonLd = {
   description,
   datePublished: publishedISO,
   dateModified: publishedISO,
-  author: {
-    '@type': 'Person',
-    name: siteData.profile.name,
-    url: 'https://changheonhan.com',
-  },
-  publisher: {
-    '@type': 'Person',
-    name: siteData.profile.name,
-  },
+  author: personNode,
+  publisher: personNode,
   image: ogImageAbs,
   mainEntityOfPage: {
     '@type': 'WebPage',

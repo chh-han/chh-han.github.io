@@ -11,6 +11,7 @@ export const site = {
     location: 'Gothenburg, Sweden',
     email: 'changheon.han@chalmers.se',
     gscholar: 'https://scholar.google.com/citations?user=dzyp9dkAAAAJ',
+    orcid: 'https://orcid.org/0009-0000-5941-1347',
     github: 'https://github.com/chh-han',
     githubHandle: 'chh-han',
     linkedin: 'https://www.linkedin.com/in/changheonhan/',
@@ -344,3 +345,37 @@ export const site = {
 };
 
 export default site;
+
+const DEFAULT_BASE_URL = 'https://changheonhan.com';
+
+const trimSlash = (s) => s.replace(/\/$/, '');
+
+export function buildPersonNode(baseUrl = DEFAULT_BASE_URL) {
+  const base = trimSlash(baseUrl);
+  return {
+    '@type': 'Person',
+    name: site.profile.name,
+    alternateName: site.profile.nameKr,
+    jobTitle: site.profile.title,
+    description: site.identity.tagline,
+    url: base,
+    image: new URL(site.profile.portrait, base).toString(),
+    email: `mailto:${site.profile.email}`,
+    affiliation: {
+      '@type': 'Organization',
+      name: site.profile.affiliation,
+      url: site.profile.affiliationUrl,
+    },
+    sameAs: [
+      site.profile.gscholar,
+      site.profile.orcid,
+      site.profile.github,
+      site.profile.linkedin,
+    ].filter(Boolean),
+    knowsAbout: site.identity.keywords,
+  };
+}
+
+export function buildPersonJsonLd(baseUrl = DEFAULT_BASE_URL) {
+  return { '@context': 'https://schema.org', ...buildPersonNode(baseUrl) };
+}

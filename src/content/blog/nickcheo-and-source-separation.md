@@ -6,13 +6,13 @@ tags: ["source-separation", "demucs", "music-ai", "producer"]
 draft: false
 ---
 
-## nickcheo and the Cocktail Party
+## How does nickcheo make impossible mashups?
 
 DJs have been carving out distinct identities lately, but nickcheo[1] stands out even in that crowd. Not long after he started posting videos of himself DJing alone in his room, he picked up hundreds of thousands of followers. What makes him unusual is the pairings — songs that, on paper, have no business being in the same set. A rock track with Soulja Boy rapping over it. A Japanese anime theme vocal sitting on top of a trap beat. How is any of that possible?
 
 The answer is source separation. He pulls vocals and instrumentals apart with Serato's Stems Separation feature, then builds his mashups from the clean acapellas and instrumentals it gives him. Sound source separation is an old problem in audio signal processing — usually framed as the cocktail party problem [2]. The original motivation wasn't music at all. It was air traffic control and speech. In a noisy party where everyone is talking at once, pick out the one voice you actually want to hear. That's the problem.
 
-## VDBO, and What "Other" Really Means
+## What is VDBO in music source separation?
 
 Music source separation treats a mixture X as the sum of stems x1 + x2 + x3 + x4. The input is X, the output is the x_i you're after. The first thing I thought when I saw that equation was: what about mastering? Compressors, limiters, saturation? The effect chain on the bus channel where I grouped my instruments? (It varies by DAW, but I've spent years in Logic Pro X, so "send it to a bus" is just how I talk.)
 
@@ -24,13 +24,13 @@ So what does this model actually predict and separate? VDBO. Vocals, Drums, Bass
 
 V, D, and B make sense. Vocals, drums, and bass each have sharp, distinctive signatures. The problem is everything else. Why is Other just "other"? Everything that isn't V, D, or B — guitars, keyboards, synths, strings, horns, FX — gets dumped in. And sometimes "Other" isn't predicted at all; it's just the residual. Remember, the mixture is x1 + x2 + x3 + x4. Subtract the first three from the mix and what's left is Other.
 
-## Sampling and Source Separation
+## How can producers use source separation for sampling?
 
 Think about how sampling actually works. You hear a section, a melody or chord progression on one instrument that you love, but there's other stuff sitting on top of it, so you can't just lift it. The usual workarounds: grab it from the intro or breakdown, EQ out the lows entirely, or pitch-shift and distort it until it doesn't sound like the original anymore. Detours, all of them.
 
 But if you could pull just that one instrument out, cleanly? The creative range of what a producer can do widens by a step. And those buried old records could get a second life through proper sample clearance. What nickcheo does at the mashup stage, producers could do at the composition stage.
 
-## The Wall of Per-Instrument Models
+## Why is fine-grained instrument source separation so hard?
 
 So where are we now. MoisesDB [7] showed up and pushed fine-grained multitrack data forward. About 240 songs, with 11 top-level stems and sub-stems below them, labeled hierarchically. The first serious public attempt at moving past the 4-stem ceiling.
 
