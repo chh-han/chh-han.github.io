@@ -118,7 +118,7 @@ export default function Research() {
           {byYear[y].map((p, i) => {
             const isProject = p.kind === 'project';
             return (
-              <div key={p.id} style={{ display: 'grid', gridTemplateColumns: '90px 1fr 200px', gap: 32, alignItems: 'start', padding: '20px 0', borderTop: i === 0 ? `1px solid ${tokens.ruleSoft}` : `1px solid ${tokens.ruleSoft}` }}>
+              <div key={p.id} id={p.id} style={{ display: 'grid', gridTemplateColumns: '90px 1fr 200px', gap: 32, alignItems: 'start', padding: '20px 0', borderTop: i === 0 ? `1px solid ${tokens.ruleSoft}` : `1px solid ${tokens.ruleSoft}`, scrollMarginTop: 80 }}>
                 <div>
                   <Mono size={11} color={tokens.ink} weight={600}>{p.date}</Mono>
                   <div style={{ marginTop: 6, padding: '4px 8px', display: 'inline-block', background: isProject ? tokens.paperAlt : tokens.ink, color: isProject ? tokens.ink : tokens.paper, border: isProject ? `1px solid ${tokens.rule}` : 'none', fontFamily: tokens.mono, fontSize: 9, letterSpacing: '0.06em' }}>{p.venueShort}</div>
