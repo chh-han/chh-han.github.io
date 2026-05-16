@@ -27,6 +27,8 @@ const description = post.data.summary ?? `Blog post by ChangHeon Han: ${post.dat
 const publishedISO = post.data.date.toISOString();
 
 const personNode = buildPersonNode(Astro.site?.toString());
+const blogId = new URL('/blog', Astro.site).toString();
+const wordCount = post.body ? post.body.trim().split(/\s+/).filter(Boolean).length : undefined;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -35,6 +37,7 @@ const jsonLd = {
   description,
   datePublished: publishedISO,
   dateModified: publishedISO,
+  inLanguage: 'en',
   author: personNode,
   publisher: personNode,
   image: ogImageAbs,
@@ -42,7 +45,13 @@ const jsonLd = {
     '@type': 'WebPage',
     '@id': canonical,
   },
+  isPartOf: {
+    '@type': 'Blog',
+    '@id': blogId,
+    name: 'ChangHeon Han — Blog',
+  },
   keywords: post.data.tags.join(', '),
+  ...(wordCount ? { wordCount } : {}),
 };
 ---
 

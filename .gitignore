@@ -8,6 +8,7 @@ vendor/
 Gemfile.lock
 blogs/
 .claude/
+CLAUDE.md
 
 .DS_Store
 

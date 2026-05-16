@@ -4,10 +4,33 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import { getCollection } from 'astro:content';
 import { tokens } from '@/styles/tokens';
+import { buildPersonNode } from '@/data/site';
 
 const allPosts = (await getCollection('blog'))
   .filter((p) => !p.data.draft || import.meta.env.DEV)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const blogId = new URL('/blog', Astro.site).toString();
+const blogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': blogId,
+  url: blogId,
+  name: 'ChangHeon Han — Blog',
+  description: "Essays on music AI from a producer-turned-researcher's perspective.",
+  inLanguage: 'en',
+  author: buildPersonNode(Astro.site?.toString()),
+  blogPost: allPosts
+    .filter((p) => !p.data.draft)
+    .map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.data.title,
+      url: new URL(`/blog/${p.id}`, Astro.site).toString(),
+      datePublished: p.data.date.toISOString(),
+      ...(p.data.summary ? { description: p.data.summary } : {}),
+      ...(p.data.tags.length > 0 ? { keywords: p.data.tags.join(', ') } : {}),
+    })),
+};
 
 const byYear: Record<string, typeof allPosts> = {};
 for (const post of allPosts) {
@@ -23,6 +46,7 @@ const fmt = (d: Date) =>
 <BaseLayout
   title="Blog — ChangHeon Han"
   description="Essays on music AI from a producer-turned-researcher's perspective."
+  jsonLd={blogJsonLd}
 >
   <div style={`background:${tokens.paper};color:${tokens.ink};font-family:${tokens.sans};min-height:100%;`}>
     <Nav active="Blog" />
