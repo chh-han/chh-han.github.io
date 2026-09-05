@@ -24,7 +24,7 @@ export const site = {
     primary: 'Researcher',
     primaryCaption: 'AI · multimodal · music',
     secondary: 'Producer',
-    secondaryCaption: '800K+ streams · Spotify K-pop',
+    secondaryCaption: '800K+ streams · K-pop editorial playlists',
     tagline:
       'Studying learned cultural representation spaces in generative AI for creative domains.',
     keywords: [
@@ -38,7 +38,7 @@ export const site = {
   bio: {
     p1: `I am a Ph.D. student at Chalmers University of Technology, affiliated with WASP-HS — the Wallenberg AI, Autonomous Systems and Software Program for Humanity and Society. My research focuses on learned cultural representation spaces in generative AI for creative domains.`,
     p2: `Before starting my Ph.D., I was a Research Engineer at Singapore Management University working on career trajectory analysis using dynamic GNNs. I completed a research internship at SONY Europe, where I worked on fine-grained instrument music source separation using text-audio multimodal encoders. I received my M.S. in Artificial Intelligence from Hanyang University in 2025, advised by Prof. Minsam Ko.`,
-    p3: `Prior to academia, I worked as a Data Analyst at Coupang and spent seven years as a professional music producer, with tracks featured in Spotify K-pop Editorial Playlists reaching over 800,000 streams.`,
+    p3: `Prior to academia, I worked as a Data Analyst at Coupang, a Korean e-commerce company, and spent seven years as a professional music producer, with tracks featured in Spotify K-pop Editorial Playlists reaching over 800,000 streams.`,
   },
 
   news: [
@@ -138,7 +138,7 @@ export const site = {
       topic: 'NLP',
       selected: false,
       tldr:
-        'Disentangles decoder representations and dynamically fuses task-specific info — state-of-the-art in both strategy prediction and response generation.',
+        'Disentangles decoder representations and dynamically fuses task-specific information — state of the art on the ESConv benchmark for both strategy prediction and response generation.',
       cover: '/assets/images/covers/2025-nlp4pi-star.png',
       links: {
         Paper: 'https://aclanthology.org/2025.nlp4pi-1.24.pdf',
@@ -151,7 +151,7 @@ export const site = {
       date: '2024.06',
       kind: 'publication',
       title: 'ASMR Sound Generation through Attribute-based Prompt Augmentation',
-      venue: 'KCC 2024',
+      venue: 'KCC 2024 (Korea Computer Congress)',
       venueShort: 'KCC',
       authors: ['ChangHeon Han', 'Jaemyung Shin', 'Minsam Ko'],
       tags: ['Text-to-Audio', 'Prompt Augmentation', 'ASMR'],
@@ -166,7 +166,7 @@ export const site = {
       year: 2023,
       date: '2023.01',
       kind: 'project',
-      title: 'NSynth-MIDI-Renderer for massive MIDI dataset',
+      title: 'NSynth-MIDI-Renderer for large-scale MIDI datasets',
       venue: 'Open-source tool',
       venueShort: 'TOOL',
       authors: ['ChangHeon Han'],
@@ -174,7 +174,7 @@ export const site = {
       topic: 'Music',
       selected: false,
       tldr:
-        'Open-source renderer that picks NSynth candidates and locks a single preset across a MIDI sequence — used to synthesize massive symbolic-to-audio datasets.',
+        'Renders MIDI into audio using NSynth instrument samples, holding one instrument preset consistent across an entire sequence — used to build large symbolic-to-audio datasets.',
       cover: '/assets/images/covers/2024-NoteSynthesizer.png',
       links: { Code: 'https://github.com/chh-han/NSynth-MIDI-Renderer-for-massive-MIDI-dataset' },
     },
@@ -191,7 +191,7 @@ export const site = {
       topic: 'Music',
       selected: false,
       tldr:
-        'Segregates a multi-track MIDI file into individual instrument tracks, extracts per-track metadata, and supports measure-based truncation / save.',
+        'Splits a multi-track MIDI file into individual instrument tracks, extracts per-track metadata, and supports measure-based truncation and saving.',
       links: { Code: 'https://github.com/chh-han/MIDI-metadata-extractor' },
     },
     {
@@ -200,7 +200,7 @@ export const site = {
       date: '2022.01',
       kind: 'project',
       title: 'Soothing Sound White Noise Generator',
-      venue: 'Project · KCC copyright',
+      venue: 'Open-source tool',
       venueShort: 'TOOL',
       authors: ['ChangHeon Han'],
       tags: ['Audio', 'Signal Processing'],
@@ -229,7 +229,7 @@ export const site = {
     },
     {
       org: 'SoongSil University',
-      degree: 'B.S., Laws',
+      degree: 'LL.B., Law',
       meta: '',
       period: '2011 — 2020',
       place: 'Seoul, Korea',
@@ -256,13 +256,13 @@ export const site = {
     {
       org: 'Hanyang University',
       role: 'Research Assistant',
-      meta: 'Sleep apnea diagnosis & text-to-audio generation.',
+      meta: 'Two separate projects: sleep apnea diagnosis from audio, and text-to-audio generation.',
       period: '2023.02 — 2024.07',
       place: 'Seoul, Korea',
       tag: 'Signal Processing',
     },
     {
-      org: 'GIST',
+      org: 'Gwangju Institute of Science and Technology (GIST)',
       role: 'Research Intern',
       meta: 'Emotion-based symbolic music generation for video games. Advised by Prof. Kyung-Joong Kim.',
       period: '2023.01 — 2023.02',
@@ -272,7 +272,7 @@ export const site = {
     {
       org: 'Coupang',
       role: 'Data Analyst',
-      meta: 'Address data cleansing & privacy protection system.',
+      meta: 'A Korean e-commerce platform. Address-data cleansing and a privacy-protection system.',
       period: '2020.04 — 2022.04',
       place: 'Seoul, Korea',
       tag: 'Data Engineering',
@@ -280,7 +280,7 @@ export const site = {
     {
       org: 'Independent',
       role: 'Music Producer · Singer-Songwriter',
-      meta: 'Hyundai Motor Group, Seezn Original Series · 800K+ Spotify streams · K-pop Editorial Playlists.',
+      meta: 'Hyundai Motor Group, Korean drama insert song · 800K+ Spotify streams · K-pop Editorial Playlists.',
       period: '2018 — 2022',
       place: 'Korea',
       tag: 'Music Production',
@@ -292,9 +292,9 @@ export const site = {
       'Seven years of music production, parallel to research. I am the sole songwriter and copyright holder on 33 songs, each registered with the Korea Music Copyright Association (KOMCA); ten produced tracks across five artists; international collaborations across seven countries and regions.',
     stats: [
       { value: '800K+', label: 'Spotify streams' },
-      { value: '96', label: 'Countries reached' },
-      { value: '4', label: 'K-pop editorial features' },
-      { value: '33', label: 'Songs I wrote and own' },
+      { value: '96', label: 'Countries with listeners' },
+      { value: '4', label: 'Spotify editorial playlist features' },
+      { value: '33', label: 'Songs written and owned' },
       { value: '10', label: 'Produced tracks' },
       { value: '7', label: 'Countries & regions' },
     ],
@@ -324,13 +324,13 @@ export const site = {
       },
       {
         title: 'Visual Art Collaboration',
-        sub: 'Music production for visual art project',
+        sub: "Background music I composed for another artist's visual work",
         youtube: 'https://youtu.be/YL8kOWiAKGM',
         tag: 'VISUAL',
       },
       {
         title: 'Music-based Visual Art',
-        sub: 'Visual art created with my original music',
+        sub: 'Visuals another artist created for my original music',
         youtube: 'https://youtu.be/xLMHM-Jmezo',
         tag: 'VISUAL',
       },
@@ -373,6 +373,111 @@ export function buildPersonNode(baseUrl = DEFAULT_BASE_URL) {
       site.profile.linkedin,
     ].filter(Boolean),
     knowsAbout: site.identity.keywords,
+  };
+}
+
+/**
+ * /research — the publication and project list as a CollectionPage whose
+ * mainEntity is an ItemList. Publications become ScholarlyArticle, open-source
+ * tools become SoftwareSourceCode. Each item deep-links to its row anchor.
+ */
+export function buildResearchJsonLd(baseUrl = DEFAULT_BASE_URL) {
+  const base = trimSlash(baseUrl);
+  const person = buildPersonNode(base);
+  const pageUrl = `${base}/research`;
+
+  const itemFor = (p) => {
+    const anchor = `${pageUrl}#${p.id}`;
+    const authors = p.authors.map((name) =>
+      name === site.profile.name ? person : { '@type': 'Person', name },
+    );
+    const common = {
+      name: p.title,
+      author: authors,
+      datePublished: String(p.year),
+      description: p.tldr,
+      keywords: p.tags.join(', '),
+      url: anchor,
+      ...(p.cover ? { image: new URL(p.cover, base).toString() } : {}),
+    };
+    if (p.kind === 'project') {
+      return {
+        '@type': 'SoftwareSourceCode',
+        ...common,
+        ...(p.links?.Code ? { codeRepository: p.links.Code } : {}),
+      };
+    }
+    return {
+      '@type': 'ScholarlyArticle',
+      ...common,
+      headline: p.title,
+      abstract: p.tldr,
+      isPartOf: { '@type': 'CreativeWork', name: p.venue },
+      sameAs: Object.values(p.links || {}),
+    };
+  };
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': pageUrl,
+    url: pageUrl,
+    name: 'Research — ChangHeon Han',
+    description:
+      'Publications and open-source projects by ChangHeon Han in NLP, music information retrieval, and audio signal processing.',
+    inLanguage: 'en',
+    author: person,
+    about: person,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: site.publications.length,
+      itemListElement: site.publications.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: itemFor(p),
+      })),
+    },
+  };
+}
+
+/**
+ * /creation — the release catalog as a CollectionPage of MusicRecording items.
+ * `producer` is asserted only for the PROD group, which the page itself labels
+ * "Produced for other artists".
+ */
+export function buildCreationJsonLd(baseUrl = DEFAULT_BASE_URL) {
+  const base = trimSlash(baseUrl);
+  const person = buildPersonNode(base);
+  const pageUrl = `${base}/creation`;
+  const releases = site.creation.releases;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': pageUrl,
+    url: pageUrl,
+    name: 'Creation — ChangHeon Han',
+    description: site.creation.blurb,
+    inLanguage: 'en',
+    author: person,
+    about: person,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: releases.length,
+      itemListElement: releases.map((r, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'MusicRecording',
+          name: r.title,
+          byArtist: { '@type': 'MusicGroup', name: r.artist },
+          datePublished: (String(r.year).match(/\d{4}/) || [])[0],
+          ...(r.cover ? { image: new URL(r.cover, base).toString() } : {}),
+          ...(r.spotify || r.youtube ? { url: r.spotify || r.youtube } : {}),
+          ...(r.kind === 'PROD' ? { producer: person } : {}),
+        },
+      })),
+    },
   };
 }
 

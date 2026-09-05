@@ -44,7 +44,7 @@ export default function Research() {
 
       <div className="section" style={{ '--pt': '56px', '--pb': '32px', borderBottom: `1px solid ${tokens.rule}` }}>
         <Mono size={11} color={tokens.accent}>§ 02 · RESEARCH</Mono>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32, marginTop: 16 }}>
+        <div className="hero-strip" style={{ display: 'flex', alignItems: 'flex-end', gap: 32, marginTop: 16 }}>
           <h1 style={{ margin: 0, fontSize: 'clamp(40px, 8.2vw, 88px)', lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Research<span style={{ color: tokens.accent }}>.</span></h1>
           <div style={{ paddingBottom: 16 }}>
             <Mono size={10} color={tokens.ink3}>INDEX</Mono>
@@ -52,7 +52,7 @@ export default function Research() {
           </div>
         </div>
 
-        <div style={{ marginTop: 24, display: 'flex', gap: 0, borderTop: `1px solid ${tokens.rule}`, borderBottom: `1px solid ${tokens.ruleSoft}` }}>
+        <div className="filter-row" style={{ marginTop: 24, display: 'flex', gap: 0, borderTop: `1px solid ${tokens.rule}`, borderBottom: `1px solid ${tokens.ruleSoft}` }}>
           {KINDS.map((k, i) => (
             <button
               type="button"
@@ -76,11 +76,11 @@ export default function Research() {
               {k.label} [{kindCounts[k.key] || 0}]
             </button>
           ))}
-          <div style={{ flex: 1 }} />
-          <div style={{ padding: '12px 20px', borderLeft: `1px solid ${tokens.ruleSoft}`, fontFamily: tokens.mono, fontSize: 11, color: tokens.ink3, letterSpacing: '0.06em' }}>KIND</div>
+          <div className="filter-spacer" style={{ flex: 1 }} />
+          <div className="filter-caption" style={{ padding: '12px 20px', borderLeft: `1px solid ${tokens.ruleSoft}`, fontFamily: tokens.mono, fontSize: 11, color: tokens.ink3, letterSpacing: '0.06em' }}>KIND</div>
         </div>
 
-        <div style={{ display: 'flex', gap: 0, borderBottom: `1px solid ${tokens.rule}` }}>
+        <div className="filter-row" style={{ display: 'flex', gap: 0, borderBottom: `1px solid ${tokens.rule}` }}>
           {TOPICS.map((t, i) => (
             <button
               type="button"
@@ -94,7 +94,7 @@ export default function Research() {
                 background: t === topicFilter ? tokens.accent : 'transparent',
                 color: t === topicFilter ? tokens.paper : tokens.ink2,
                 fontFamily: tokens.mono,
-                fontSize: 10,
+                fontSize: 11,
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
                 cursor: 'pointer',
@@ -104,8 +104,8 @@ export default function Research() {
               {t === 'ALL' ? 'ALL TOPICS' : t.toUpperCase()} [{topicCounts[t] || 0}]
             </button>
           ))}
-          <div style={{ flex: 1 }} />
-          <div style={{ padding: '10px 18px', borderLeft: `1px solid ${tokens.ruleSoft}`, fontFamily: tokens.mono, fontSize: 10, color: tokens.ink3, letterSpacing: '0.06em' }}>TOPIC · SORT DATE DESC</div>
+          <div className="filter-spacer" style={{ flex: 1 }} />
+          <div className="filter-caption" style={{ padding: '10px 18px', borderLeft: `1px solid ${tokens.ruleSoft}`, fontFamily: tokens.mono, fontSize: 11, color: tokens.ink3, letterSpacing: '0.06em' }}>TOPIC · LATEST FIRST</div>
         </div>
       </div>
 
@@ -127,10 +127,12 @@ export default function Research() {
             const isProject = p.kind === 'project';
             return (
               <div key={p.id} id={p.id} className="row-pub" style={{ display: 'grid', gridTemplateColumns: '90px 1fr 200px', gap: 32, alignItems: 'start', padding: '20px 0', borderTop: i === 0 ? `1px solid ${tokens.ruleSoft}` : `1px solid ${tokens.ruleSoft}`, scrollMarginTop: 80 }}>
-                <div>
+                {/* Stacked explicitly: as inline-block siblings the venue badge
+                    butts straight into the date once the row collapses. */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>
                   <Mono size={11} color={tokens.ink} weight={600}>{p.date}</Mono>
-                  <div style={{ marginTop: 6, padding: '4px 8px', display: 'inline-block', background: isProject ? tokens.paperAlt : tokens.ink, color: isProject ? tokens.ink : tokens.paper, border: isProject ? `1px solid ${tokens.rule}` : 'none', fontFamily: tokens.mono, fontSize: 9, letterSpacing: '0.06em' }}>{p.venueShort}</div>
-                  {isProject && <div style={{ marginTop: 4, fontFamily: tokens.mono, fontSize: 8, letterSpacing: '0.08em', color: tokens.accent, fontWeight: 600 }}>// PROJECT</div>}
+                  <div style={{ padding: '4px 8px', background: isProject ? tokens.paperAlt : tokens.ink, color: isProject ? tokens.ink : tokens.paper, border: isProject ? `1px solid ${tokens.rule}` : 'none', fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.06em' }}>{p.venueShort}</div>
+                  {isProject && <div style={{ fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.08em', color: tokens.accent, fontWeight: 600 }}>// PROJECT</div>}
                 </div>
                 <div>
                   <h3 style={{ margin: '0 0 6px', fontSize: 20, lineHeight: 1.3, fontWeight: 600, color: tokens.ink, letterSpacing: '-0.01em' }}>{p.title}</h3>
@@ -144,7 +146,7 @@ export default function Research() {
                   <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
                     {Object.entries(p.links || {}).map(([k, url]) => (
                       <Ext key={k} href={url} style={{ display: 'inline-block' }}>
-                        <div style={{ padding: '6px 12px', border: `1px solid ${tokens.rule}`, background: tokens.paper, fontFamily: tokens.mono, fontSize: 10, letterSpacing: '0.08em', color: tokens.ink, textTransform: 'uppercase', transition: 'background .12s, color .12s', display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                        <div style={{ padding: '6px 12px', border: `1px solid ${tokens.rule}`, background: tokens.paper, fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.08em', color: tokens.ink, textTransform: 'uppercase', transition: 'background .12s, color .12s', display: 'inline-flex', alignItems: 'center', gap: 6 }}
                           onMouseEnter={(e) => { e.currentTarget.style.background = tokens.ink; e.currentTarget.style.color = tokens.paper; }}
                           onMouseLeave={(e) => { e.currentTarget.style.background = tokens.paper; e.currentTarget.style.color = tokens.ink; }}>
                           <span>{k}</span><span style={{ opacity: 0.7 }}>↗</span>
@@ -154,7 +156,7 @@ export default function Research() {
                   </div>
                   <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                     {p.tags.map((t) => (
-                      <div key={t} style={{ padding: '4px 8px', border: `1px solid ${tokens.ruleSoft}`, fontFamily: tokens.mono, fontSize: 9, letterSpacing: '0.06em', color: tokens.ink2, textTransform: 'uppercase' }}>{t}</div>
+                      <div key={t} style={{ padding: '4px 8px', border: `1px solid ${tokens.ruleSoft}`, fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.06em', color: tokens.ink2, textTransform: 'uppercase' }}>{t}</div>
                     ))}
                   </div>
                 </div>

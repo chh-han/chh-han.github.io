@@ -5,7 +5,7 @@ import Mono from './ui/Mono';
 import Ext from './ui/Ext';
 
 // Bare 11px text is a ~14px tall target; the padding brings it to ~30px.
-const LINK = { display: 'inline-block', padding: '8px 0' };
+const LINK = { display: 'inline-block', padding: '8px 6px', margin: '0 -6px' };
 
 export default function Footer() {
   return (

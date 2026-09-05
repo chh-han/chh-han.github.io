@@ -73,10 +73,10 @@ const jsonLd = {
     <main id="main">
     <article class="post">
       <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:32px;">
-        <a href="/blog" style={`font-family:${tokens.mono};font-size:11px;font-weight:500;letter-spacing:0.06em;color:${tokens.accent};text-transform:uppercase;text-decoration:none;`}>← BLOG</a>
+        <a href="/blog" style={`font-family:${tokens.mono};font-size:11px;font-weight:500;letter-spacing:0.06em;color:${tokens.accent};text-transform:uppercase;text-decoration:none;display:inline-block;padding:8px 0;`}>← BLOG</a>
         <span style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>{fmt(post.data.date)}</span>
         {post.data.draft && (
-          <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.08em;color:${tokens.ink};background:${tokens.paperAlt};border:1px solid ${tokens.rule};padding:2px 8px;`}>DRAFT</span>
+          <span style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.08em;color:${tokens.ink};background:${tokens.paperAlt};border:1px solid ${tokens.rule};padding:2px 8px;`}>DRAFT</span>
         )}
       </div>
 
@@ -89,7 +89,7 @@ const jsonLd = {
       {post.data.tags.length > 0 && (
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;">
           {post.data.tags.map((t: string) => (
-            <div style={`padding:4px 8px;border:1px solid ${tokens.ruleSoft};font-family:${tokens.mono};font-size:9px;letter-spacing:0.06em;color:${tokens.ink2};text-transform:uppercase;`}>{t}</div>
+            <div style={`padding:4px 8px;border:1px solid ${tokens.ruleSoft};font-family:${tokens.mono};font-size:11px;letter-spacing:0.06em;color:${tokens.ink2};text-transform:uppercase;`}>{t}</div>
           ))}
         </div>
       )}
@@ -99,8 +99,8 @@ const jsonLd = {
       </div>
 
       <div style={`margin-top:64px;padding-top:32px;border-top:1px solid ${tokens.ruleSoft};display:flex;justify-content:space-between;align-items:center;`}>
-        <a href="/blog" style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.06em;color:${tokens.accent};text-transform:uppercase;text-decoration:none;`}>← MORE POSTS</a>
-        <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>END · {fmt(post.data.date)}</span>
+        <a href="/blog" style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.06em;color:${tokens.accent};text-transform:uppercase;text-decoration:none;display:inline-block;padding:8px 0;`}>← MORE POSTS</a>
+        <span style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>END · {fmt(post.data.date)}</span>
       </div>
     </article>
     </main>

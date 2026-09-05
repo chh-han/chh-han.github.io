@@ -79,7 +79,7 @@ function MusicPlayer({ track, onClose }) {
         <div style={{ borderLeft: `1px solid ${tokens.ruleSoft}`, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '14px 18px', flex: '0 0 auto', minWidth: 140 }}>
           {embed && embed.external ? (
             <Ext href={embed.external} style={{ display: 'inline-block' }}>
-              <div style={{ padding: '5px 9px', border: `1px solid ${tokens.rule}`, fontFamily: tokens.mono, fontSize: 9, letterSpacing: '0.06em', color: tokens.ink, textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <div style={{ padding: '5px 9px', border: `1px solid ${tokens.rule}`, fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.06em', color: tokens.ink, textTransform: 'uppercase', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                 <span>OPEN IN {embed.type === 'spotify' ? 'SPOTIFY' : 'YOUTUBE'}</span><span>↗</span>
               </div>
             </Ext>
@@ -160,7 +160,7 @@ export default function Creation() {
                           <Mono size={10} color={tokens.ink3}>VIDEO</Mono>
                         </div>
                       )}
-                      <div style={{ position: 'absolute', top: 8, left: 8, padding: '3px 7px', background: tokens.paper, fontFamily: tokens.mono, fontSize: 9, letterSpacing: '0.08em', color: tokens.accent, fontWeight: 600 }}>{v.tag || 'VIDEO'}</div>
+                      <div style={{ position: 'absolute', top: 8, left: 8, padding: '3px 7px', background: tokens.paper, fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.08em', color: tokens.accent, fontWeight: 600 }}>{v.tag || 'VIDEO'}</div>
                       <div style={{ position: 'absolute', bottom: 8, right: 8, width: 32, height: 32, background: tokens.ink, color: tokens.paper, display: 'grid', placeItems: 'center', fontFamily: tokens.mono, fontSize: 11 }}>▶</div>
                     </div>
                     <div style={{ padding: '12px 14px' }}>
@@ -249,7 +249,7 @@ export default function Creation() {
                           years collided with it inside the 110px column. */}
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5 }}>
                         <Mono size={10} color={tokens.ink3}>{r.year}</Mono>
-                        <div style={{ padding: '2px 7px', background: r.kind === 'PROD' ? tokens.ink : tokens.paperAlt, color: r.kind === 'PROD' ? tokens.paper : tokens.ink, fontFamily: tokens.mono, fontSize: 10, letterSpacing: '0.08em' }}>{r.kind}</div>
+                        <div style={{ padding: '2px 7px', background: r.kind === 'PROD' ? tokens.ink : tokens.paperAlt, color: r.kind === 'PROD' ? tokens.paper : tokens.ink, fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.08em' }}>{r.kind}</div>
                       </div>
 
                       <div style={{ minWidth: 0 }}>
@@ -272,7 +272,7 @@ export default function Creation() {
                               background: isActive ? tokens.accent : tokens.ink,
                               color: tokens.paper,
                               fontFamily: tokens.mono,
-                              fontSize: 10,
+                              fontSize: 11,
                               letterSpacing: '0.08em',
                               textTransform: 'uppercase',
                               cursor: 'pointer',
@@ -296,7 +296,7 @@ export default function Creation() {
                                 background: tokens.paper,
                                 color: tokens.ink,
                                 fontFamily: tokens.mono,
-                                fontSize: 10,
+                                fontSize: 11,
                                 letterSpacing: '0.08em',
                                 textTransform: 'uppercase',
                                 display: 'inline-flex',

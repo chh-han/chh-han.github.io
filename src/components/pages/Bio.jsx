@@ -26,11 +26,11 @@ export default function Bio() {
 
       <div className="section" style={{ '--pt': '56px', '--pb': '32px', borderBottom: `1px solid ${tokens.rule}` }}>
         <Mono size={11} color={tokens.accent}>§ 04 · CV / BIOGRAPHY</Mono>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32, marginTop: 16 }}>
+        <div className="hero-strip" style={{ display: 'flex', alignItems: 'flex-end', gap: 32, marginTop: 16 }}>
           <h1 style={{ margin: 0, fontSize: 'clamp(40px, 8.2vw, 88px)', lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Biography<span style={{ color: tokens.accent }}>.</span></h1>
           <div style={{ paddingBottom: 16 }}>
             <Mono size={10} color={tokens.ink3}>SOURCE</Mono>
-            <Ext href={d.profile.cv}>
+            <Ext href={d.profile.cv} style={{ display: 'table', padding: '6px 0' }}>
               <div style={{ fontFamily: tokens.mono, fontSize: 13, color: tokens.ink }}>{d.profile.cv} ↗</div>
             </Ext>
           </div>

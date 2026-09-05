@@ -17,11 +17,10 @@ export default function Home() {
 
       {/* Hero */}
       <div className="section" style={{ '--pt': '64px', '--pb': '48px', borderBottom: `1px solid ${tokens.rule}` }}>
-        <div className="grid-collapse" style={{ display: 'grid', gridTemplateColumns: '1fr 440px', gap: 56, alignItems: 'start' }}>
+        <div className="grid-collapse" style={{ display: 'grid', gridTemplateColumns: '1fr min(440px, 33vw)', gap: 56, alignItems: 'start' }}>
           <div>
             <div style={{ display: 'flex', gap: 16, marginBottom: 32 }}>
               <Mono size={11} color={tokens.accent}>§ 00 · INDEX</Mono>
-              <Mono size={11} color={tokens.ink3}>GOTHENBURG · 57.6878° N</Mono>
             </div>
 
             <h1 style={{ margin: '0 0 8px', fontSize: 'clamp(44px, 9vw, 96px)', lineHeight: 0.92, fontWeight: 600, letterSpacing: '-0.04em', color: tokens.ink }}>
@@ -43,7 +42,7 @@ export default function Home() {
           <div>
             <div className="portrait" style={{ width: '100%', aspectRatio: '4/5', background: tokens.paperAlt, overflow: 'hidden', position: 'relative' }}>
               <img src={d.profile.portrait} alt="ChangHeon Han" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(0.05) contrast(1.04)' }} />
-              <div style={{ position: 'absolute', left: 12, top: 12, padding: '4px 8px', background: tokens.paper, fontFamily: tokens.mono, fontSize: 9, letterSpacing: '0.08em', color: tokens.ink, textTransform: 'uppercase' }}>PORTRAIT · 2025</div>
+              <div style={{ position: 'absolute', left: 12, top: 12, padding: '4px 8px', background: tokens.paper, fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.08em', color: tokens.ink, textTransform: 'uppercase' }}>PORTRAIT · 2025</div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
               <Mono size={10} color={tokens.ink3}>FIG. 01</Mono>
@@ -58,7 +57,7 @@ export default function Home() {
         <div className="section" style={{ '--pt': '40px', '--pb': '40px', borderRight: `1px solid ${tokens.rule}` }}>
           <Mono size={10} color={tokens.ink3}>A.</Mono>
           <h2 style={{ fontSize: 'clamp(30px, 5.2vw, 56px)', lineHeight: 1, fontWeight: 600, letterSpacing: '-0.03em', margin: '8px 0 16px' }}>Researcher</h2>
-          <Mono size={11} color={tokens.accent}>AI · MULTIMODAL · MUSIC</Mono>
+          <Mono size={11} color={tokens.accent}>{d.identity.primaryCaption}</Mono>
           <div style={{ fontSize: 14, color: tokens.ink2, marginTop: 16, maxWidth: 480, lineHeight: 1.5 }}>
             Multimodal learning, signal processing, NLP, music information retrieval. Previously at SONY Europe and SMU.
           </div>
@@ -66,7 +65,7 @@ export default function Home() {
         <div className="section" style={{ '--pt': '40px', '--pb': '40px', background: tokens.paperAlt }}>
           <Mono size={10} color={tokens.ink3}>B.</Mono>
           <h2 style={{ fontSize: 'clamp(30px, 5.2vw, 56px)', lineHeight: 1, fontWeight: 600, letterSpacing: '-0.03em', margin: '8px 0 16px' }}>Producer</h2>
-          <Mono size={11} color={tokens.accent}>800K+ STREAMS · K-POP EDITORIAL</Mono>
+          <Mono size={11} color={tokens.accent}>{d.identity.secondaryCaption}</Mono>
           <div style={{ fontSize: 14, color: tokens.ink2, marginTop: 16, maxWidth: 480, lineHeight: 1.5 }}>
             Seven years of music production. Sole songwriter and rights holder on 33 copyrighted songs, four Spotify editorial features, ten produced tracks across five artists.
           </div>
@@ -82,7 +81,7 @@ export default function Home() {
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 32 }}>
           {d.identity.keywords.map((k) => (
-            <div key={k} style={{ padding: '6px 10px', border: `1px solid ${tokens.rule}`, fontFamily: tokens.mono, fontSize: 10, letterSpacing: '0.06em', textTransform: 'uppercase', color: tokens.ink }}>{k}</div>
+            <div key={k} style={{ padding: '6px 10px', border: `1px solid ${tokens.rule}`, fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.06em', textTransform: 'uppercase', color: tokens.ink }}>{k}</div>
           ))}
         </div>
       </div>
@@ -113,7 +112,7 @@ export default function Home() {
               <div style={{ flex: 1, fontSize: 13, lineHeight: 1.5, color: tokens.ink2 }}>{p.tldr}</div>
               <div style={{ display: 'flex', gap: 12, marginTop: 4 }}>
                 {Object.entries(p.links || {}).map(([k, url]) => (
-                  <Ext key={k} href={url}><Mono size={10} color={tokens.ink}>{k.toUpperCase()} ↗</Mono></Ext>
+                  <Ext key={k} href={url} style={{ display: 'inline-block', padding: '6px 0' }}><Mono size={11} color={tokens.ink}>{k.toUpperCase()} ↗</Mono></Ext>
                 ))}
               </div>
             </div>
@@ -127,7 +126,7 @@ export default function Home() {
         <div className="grid-collapse" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: 24, alignItems: 'end' }}>
           <div>
             <Mono size={10} color={tokens.ink3}>PRIMARY</Mono>
-            <Ext href={`mailto:${d.profile.email}`}>
+            <Ext href={`mailto:${d.profile.email}`} style={{ display: 'table', padding: '6px 0' }}>
               <div style={{ fontSize: 'clamp(17px, 2.6vw, 30px)', fontFamily: tokens.mono, fontWeight: 500, color: tokens.ink, letterSpacing: '-0.02em', marginTop: 6, overflowWrap: 'anywhere' }}>{d.profile.email}</div>
             </Ext>
           </div>

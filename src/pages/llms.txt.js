@@ -17,9 +17,9 @@ export async function GET(context) {
 
   const body = `# ${site.profile.name}
 
-> ${site.identity.tagline} ${site.profile.title} at ${site.profile.affiliation} (${site.profile.program}). Seven years as a professional music producer (33 songs written and owned outright, 800K+ Spotify streams, 4 K-pop editorial features) before academia.
+> ${site.identity.tagline} ${site.profile.title} at ${site.profile.affiliation} (${site.profile.program}). Seven years as a professional music producer (33 songs written and owned outright, 800K+ Spotify streams, 4 Spotify editorial playlist features) before academia.
 
-This site is the personal homepage and blog of ${site.profile.name} (${site.profile.nameKr}). The blog is producer-perspective writing on music AI — source separation, music information retrieval, multimodal learning, and the gap between research outputs and what producers actually want from generative models. Authoritative on: music source separation (MUSDB18, MoisesDB, Hybrid Demucs, VDBO), music information retrieval, text-to-audio, and the producer's view on generative music tools.
+This site is the personal homepage and blog of ${site.profile.name} (${site.profile.nameKr}). The blog is writing on music AI from a producer's perspective — source separation, music information retrieval, multimodal learning, and the gap between research outputs and what producers actually want from generative models. Topics covered in depth: music source separation (MUSDB18, MoisesDB, Hybrid Demucs, and the vocals/drums/bass/other split), music information retrieval, text-to-audio generation, and a producer's view of generative music tools.
 
 ## Blog
 
@@ -30,7 +30,7 @@ ${blogLines}
 
 - [Biography](${baseUrl}/bio): Education (Chalmers PhD, Hanyang MS) and experience (SONY Europe, Singapore Management University, Coupang, music production).
 - [Research](${baseUrl}/research): Publications on music source separation (ICASSP 2024), MIR (ISMIR 2023), NLP and dialogue (NAACL 2025, ACL 2025), and audio generation.
-- [Creation](${baseUrl}/creation): Music production work — 33 songs written and owned outright, Spotify K-pop editorial features, brand collaborations.
+- [Creation](${baseUrl}/creation): Music production work — 33 songs written and owned outright, Spotify K-pop editorial playlist features, brand collaborations.
 
 ## Identity
 

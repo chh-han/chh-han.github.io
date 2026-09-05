@@ -58,12 +58,12 @@ const fmt = (d: Date) =>
       <div class="hero-strip" style="display:flex;align-items:flex-end;gap:32px;margin-top:16px;">
         <h1 style={`margin:0;font-size:clamp(40px, 8.2vw, 88px);line-height:0.95;font-weight:600;letter-spacing:-0.04em;`}>Blog<span style={`color:${tokens.accent}`}>.</span></h1>
         <div style="padding-bottom:16px;">
-          <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>INDEX</span>
+          <span style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>INDEX</span>
           <div style={`font-family:${tokens.mono};font-size:14px;color:${tokens.ink};`}>[ {String(allPosts.length).padStart(2, '0')} {allPosts.length === 1 ? 'entry' : 'entries'} · {years.length} {years.length === 1 ? 'year' : 'years'} ]</div>
         </div>
         <div style="flex:1;"></div>
         <div style="padding-bottom:16px;">
-          <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>Producer's eye on music AI research</span>
+          <span style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>Producer's eye on music AI research</span>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@ const fmt = (d: Date) =>
       <div class="section" style={`--pt:40px;--pb:24px;border-bottom:1px solid ${tokens.rule};`}>
         <div style="display:flex;align-items:baseline;gap:24px;margin-bottom:16px;">
           <h2 style={`margin:0;font-family:${tokens.mono};font-size:clamp(18px, 3vw, 32px);font-weight:500;color:${tokens.accent};letter-spacing:-0.02em;`}>{y}</h2>
-          <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>{byYear[y].length} {byYear[y].length === 1 ? 'entry' : 'entries'}</span>
+          <span style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>{byYear[y].length} {byYear[y].length === 1 ? 'entry' : 'entries'}</span>
           <div style={`flex:1;border-bottom:1px solid ${tokens.ruleSoft};margin-bottom:8px;`}></div>
         </div>
         {byYear[y].map((post) => (
@@ -88,7 +88,7 @@ const fmt = (d: Date) =>
             <div>
               <span style={`font-family:${tokens.mono};font-size:11px;font-weight:600;letter-spacing:0.02em;color:${tokens.ink};text-transform:uppercase;`}>{fmt(post.data.date)}</span>
               {post.data.draft && (
-                <div style={`margin-top:6px;padding:2px 7px;display:inline-block;background:${tokens.paperAlt};color:${tokens.ink};border:1px solid ${tokens.rule};font-family:${tokens.mono};font-size:9px;letter-spacing:0.08em;`}>DRAFT</div>
+                <div style={`margin-top:6px;padding:2px 7px;display:inline-block;background:${tokens.paperAlt};color:${tokens.ink};border:1px solid ${tokens.rule};font-family:${tokens.mono};font-size:11px;letter-spacing:0.08em;`}>DRAFT</div>
               )}
             </div>
             <div>
@@ -99,7 +99,7 @@ const fmt = (d: Date) =>
               {post.data.tags.length > 0 && (
                 <div style="display:flex;gap:8px;flex-wrap:wrap;">
                   {post.data.tags.map((t: string) => (
-                    <div style={`padding:4px 8px;border:1px solid ${tokens.ruleSoft};font-family:${tokens.mono};font-size:9px;letter-spacing:0.06em;color:${tokens.ink2};text-transform:uppercase;`}>{t}</div>
+                    <div style={`padding:4px 8px;border:1px solid ${tokens.ruleSoft};font-family:${tokens.mono};font-size:11px;letter-spacing:0.06em;color:${tokens.ink2};text-transform:uppercase;`}>{t}</div>
                   ))}
                 </div>
               )}

@@ -1,11 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Research from '@/components/pages/Research';
+import { buildResearchJsonLd } from '@/data/site';
+
+const jsonLd = buildResearchJsonLd(Astro.site?.toString());
 ---
 
 <BaseLayout
   title="Research — ChangHeon Han"
   description="Publications and open-source projects by ChangHeon Han in NLP, music information retrieval, and audio signal processing."
+  jsonLd={jsonLd}
 >
   <Research client:load />
 </BaseLayout>

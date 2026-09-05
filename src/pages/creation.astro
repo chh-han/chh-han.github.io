@@ -1,11 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Creation from '@/components/pages/Creation';
+import { buildCreationJsonLd } from '@/data/site';
+
+const jsonLd = buildCreationJsonLd(Astro.site?.toString());
 ---
 
 <BaseLayout
   title="Creation — ChangHeon Han"
-  description="Music production catalog — seven years of releases, K-pop editorial features, and brand collaborations."
+  description="Music production catalog — seven years of releases, Spotify editorial playlist features, and brand collaborations."
+  jsonLd={jsonLd}
 >
   <Creation client:load />
 </BaseLayout>
