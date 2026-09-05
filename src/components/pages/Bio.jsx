@@ -24,10 +24,10 @@ export default function Bio() {
 
       <main id="main">
 
-      <div style={{ padding: '56px 56px 32px', borderBottom: `1px solid ${tokens.rule}` }}>
+      <div className="section" style={{ '--pt': '56px', '--pb': '32px', borderBottom: `1px solid ${tokens.rule}` }}>
         <Mono size={11} color={tokens.accent}>§ 04 · CV / BIOGRAPHY</Mono>
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32, marginTop: 16 }}>
-          <h1 style={{ margin: 0, fontSize: 88, lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Biography<span style={{ color: tokens.accent }}>.</span></h1>
+          <h1 style={{ margin: 0, fontSize: 'clamp(40px, 8.2vw, 88px)', lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Biography<span style={{ color: tokens.accent }}>.</span></h1>
           <div style={{ paddingBottom: 16 }}>
             <Mono size={10} color={tokens.ink3}>SOURCE</Mono>
             <Ext href={d.profile.cv}>
@@ -37,9 +37,9 @@ export default function Bio() {
         </div>
       </div>
 
-      <div style={{ padding: '48px 56px 64px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 32 }}>
-          <div style={{ position: 'sticky', top: 24, height: 'fit-content' }}>
+      <div className="section" style={{ '--pt': '48px', '--pb': '64px', }}>
+        <div className="grid-collapse" style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 32 }}>
+          <div className="side-sticky" style={{ position: 'sticky', top: 24, height: 'fit-content' }}>
             <Mono size={10} color={tokens.ink3}>FILTER</Mono>
             <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 4 }}>
               {[['ALL', events.length], ['EDU', d.education.length], ['WORK', d.experience.length]].map(([k, c], i) => (
@@ -58,7 +58,7 @@ export default function Bio() {
           <div>
             <div style={{ borderTop: `1px solid ${tokens.rule}` }}>
               {events.map((e, i) => (
-                <div key={i} style={{ display: 'grid', gridTemplateColumns: '160px 70px 1fr 160px', gap: 24, padding: '22px 0', borderBottom: `1px solid ${tokens.ruleSoft}`, alignItems: 'start' }}>
+                <div key={i} className="row-event" style={{ display: 'grid', gridTemplateColumns: '160px 70px 1fr 160px', gap: 24, padding: '22px 0', borderBottom: `1px solid ${tokens.ruleSoft}`, alignItems: 'start' }}>
                   <Mono size={12} color={tokens.ink} weight={600}>{e.period}</Mono>
                   <Mono size={10} color={e.type === 'EDU' ? tokens.accent : tokens.ink2}>{e.type}</Mono>
                   <div>

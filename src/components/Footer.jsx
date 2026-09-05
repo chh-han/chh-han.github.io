@@ -9,7 +9,7 @@ const LINK = { display: 'inline-block', padding: '8px 0' };
 
 export default function Footer() {
   return (
-    <footer style={{ borderTop: `1px solid ${tokens.rule}`, padding: '32px 56px', display: 'flex', alignItems: 'flex-end', gap: 40, background: tokens.paper }}>
+    <footer className="section site-footer" style={{ '--pt': '32px', '--pb': '32px' }}>
       <div style={{ flex: 1 }}>
         <Mono size={10} color={tokens.ink3}>© 2026 · CHANGHEON HAN · BUILT IN GOTHENBURG</Mono>
       </div>

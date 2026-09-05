@@ -42,10 +42,10 @@ export default function Research() {
 
       <main id="main">
 
-      <div style={{ padding: '56px 56px 32px', borderBottom: `1px solid ${tokens.rule}` }}>
+      <div className="section" style={{ '--pt': '56px', '--pb': '32px', borderBottom: `1px solid ${tokens.rule}` }}>
         <Mono size={11} color={tokens.accent}>§ 02 · RESEARCH</Mono>
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32, marginTop: 16 }}>
-          <h1 style={{ margin: 0, fontSize: 88, lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Research<span style={{ color: tokens.accent }}>.</span></h1>
+          <h1 style={{ margin: 0, fontSize: 'clamp(40px, 8.2vw, 88px)', lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Research<span style={{ color: tokens.accent }}>.</span></h1>
           <div style={{ paddingBottom: 16 }}>
             <Mono size={10} color={tokens.ink3}>INDEX</Mono>
             <div style={{ fontFamily: tokens.mono, fontSize: 14, color: tokens.ink }}>[ {filtered.length.toString().padStart(2, '0')} of {pubs.length.toString().padStart(2, '0')} · {years.length} years ]</div>
@@ -110,23 +110,23 @@ export default function Research() {
       </div>
 
       {years.length === 0 ? (
-        <div style={{ padding: '80px 56px', textAlign: 'center' }}>
+        <div className="section" style={{ '--pt': '80px', '--pb': '80px', textAlign: 'center' }}>
           <Mono size={11} color={tokens.ink3}>NO ENTRIES MATCH FILTER · {kindFilter.toUpperCase()} · {topicFilter.toUpperCase()}</Mono>
           <div style={{ marginTop: 16 }}>
             <button type="button" className="btn-reset" onClick={() => { setKindFilter('all'); setTopicFilter('ALL'); }} style={{ cursor: 'pointer', fontFamily: tokens.mono, fontSize: 11, color: tokens.accent, letterSpacing: '0.06em', textTransform: 'uppercase', minHeight: 32, padding: '0 8px' }}>↺ RESET FILTERS</button>
           </div>
         </div>
       ) : years.map((y) => (
-        <div key={y} style={{ padding: '40px 56px 24px', borderBottom: `1px solid ${tokens.rule}` }}>
+        <div key={y} className="section" style={{ '--pt': '40px', '--pb': '24px', borderBottom: `1px solid ${tokens.rule}` }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 24, marginBottom: 16 }}>
-            <h2 style={{ margin: 0, fontFamily: tokens.mono, fontSize: 32, fontWeight: 500, color: tokens.accent, letterSpacing: '-0.02em' }}>{y}</h2>
+            <h2 style={{ margin: 0, fontFamily: tokens.mono, fontSize: 'clamp(18px, 3vw, 32px)', fontWeight: 500, color: tokens.accent, letterSpacing: '-0.02em' }}>{y}</h2>
             <Mono size={10} color={tokens.ink3}>{byYear[y].length} entries</Mono>
             <div style={{ flex: 1, borderBottom: `1px solid ${tokens.ruleSoft}`, marginBottom: 8 }} />
           </div>
           {byYear[y].map((p, i) => {
             const isProject = p.kind === 'project';
             return (
-              <div key={p.id} id={p.id} style={{ display: 'grid', gridTemplateColumns: '90px 1fr 200px', gap: 32, alignItems: 'start', padding: '20px 0', borderTop: i === 0 ? `1px solid ${tokens.ruleSoft}` : `1px solid ${tokens.ruleSoft}`, scrollMarginTop: 80 }}>
+              <div key={p.id} id={p.id} className="row-pub" style={{ display: 'grid', gridTemplateColumns: '90px 1fr 200px', gap: 32, alignItems: 'start', padding: '20px 0', borderTop: i === 0 ? `1px solid ${tokens.ruleSoft}` : `1px solid ${tokens.ruleSoft}`, scrollMarginTop: 80 }}>
                 <div>
                   <Mono size={11} color={tokens.ink} weight={600}>{p.date}</Mono>
                   <div style={{ marginTop: 6, padding: '4px 8px', display: 'inline-block', background: isProject ? tokens.paperAlt : tokens.ink, color: isProject ? tokens.ink : tokens.paper, border: isProject ? `1px solid ${tokens.rule}` : 'none', fontFamily: tokens.mono, fontSize: 9, letterSpacing: '0.06em' }}>{p.venueShort}</div>

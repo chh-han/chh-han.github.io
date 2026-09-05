@@ -34,7 +34,7 @@ function MusicPlayer({ track, onClose }) {
   if (!track) return null;
   const embed = getEmbed(track);
   return (
-    <div style={{
+    <div className="player" style={{
       position: 'fixed', left: 0, right: 0, bottom: 0,
       background: tokens.paper,
       borderTop: `2px solid ${tokens.rule}`,
@@ -104,22 +104,22 @@ export default function Creation() {
   const c = site.creation;
   const [active, setActive] = React.useState(null);
   return (
-    <div style={{ background: tokens.paper, color: tokens.ink, fontFamily: tokens.sans, minHeight: '100%', paddingBottom: active ? 240 : 0 }}>
+    <div style={{ background: tokens.paper, color: tokens.ink, fontFamily: tokens.sans, minHeight: '100%', paddingBottom: active ? 'var(--player-gap, 240px)' : 0 }}>
       <Nav active="Creation" />
 
       <main id="main">
 
-      <div style={{ padding: '56px 56px 40px', borderBottom: `1px solid ${tokens.rule}` }}>
+      <div className="section" style={{ '--pt': '56px', '--pb': '40px', borderBottom: `1px solid ${tokens.rule}` }}>
         <Mono size={11} color={tokens.accent}>§ 03 · MUSIC PRACTICE</Mono>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56, marginTop: 16, alignItems: 'end' }}>
+        <div className="grid-collapse" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56, marginTop: 16, alignItems: 'end' }}>
           <div>
-            <h1 style={{ margin: 0, fontSize: 88, lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Creation<span style={{ color: tokens.accent }}>.</span></h1>
+            <h1 style={{ margin: 0, fontSize: 'clamp(40px, 8.2vw, 88px)', lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Creation<span style={{ color: tokens.accent }}>.</span></h1>
             <div style={{ fontSize: 15, color: tokens.ink2, marginTop: 16, maxWidth: 520, lineHeight: 1.55 }}>{c.blurb}</div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, border: `1px solid ${tokens.rule}` }}>
+          <div className="grid-collapse" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, border: `1px solid ${tokens.rule}` }}>
             {c.stats.slice(0, 6).map((s, i) => (
               <div key={i} style={{ padding: '20px 16px', borderRight: i % 3 !== 2 ? `1px solid ${tokens.ruleSoft}` : 'none', borderBottom: i < 3 ? `1px solid ${tokens.ruleSoft}` : 'none' }}>
-                <div style={{ fontFamily: tokens.mono, fontSize: 28, fontWeight: 500, color: tokens.ink, letterSpacing: '-0.02em' }}>{s.value}</div>
+                <div style={{ fontFamily: tokens.mono, fontSize: 'clamp(17px, 2.4vw, 28px)', fontWeight: 500, color: tokens.ink, letterSpacing: '-0.02em' }}>{s.value}</div>
                 <Mono size={9} color={tokens.ink3} style={{ marginTop: 4, display: 'block' }}>{s.label}</Mono>
               </div>
             ))}
@@ -127,9 +127,9 @@ export default function Creation() {
         </div>
       </div>
 
-      <div style={{ padding: '48px 56px 32px', borderBottom: `1px solid ${tokens.rule}` }}>
+      <div className="section" style={{ '--pt': '48px', '--pb': '32px', borderBottom: `1px solid ${tokens.rule}` }}>
         <SectionLabel no="01" name="Highlights" />
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, maxWidth: 1100 }}>
+        <div className="grid-collapse" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, maxWidth: 1100 }}>
           {c.highlights.map((h, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '14px 0', borderTop: `1px solid ${tokens.ruleSoft}` }}>
               <Mono size={11} color={tokens.accent}>+{String(i + 1).padStart(2, '0')}</Mono>
@@ -140,9 +140,9 @@ export default function Creation() {
       </div>
 
       {c.videos && c.videos.length > 0 && (
-        <div style={{ padding: '48px 56px 40px', borderBottom: `1px solid ${tokens.rule}` }}>
+        <div className="section" style={{ '--pt': '48px', '--pb': '40px', borderBottom: `1px solid ${tokens.rule}` }}>
           <SectionLabel no="02" name="Featured Video" count={c.videos.length} right={<Mono size={10} color={tokens.ink3}>BRAND · VISUAL ART · COLLABORATIONS</Mono>} />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+          <div className="grid-collapse" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
             {c.videos.map((v, i) => {
               const m = v.youtube ? v.youtube.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=)([A-Za-z0-9_-]+)/) : null;
               const id = m ? m[1] : null;
@@ -179,7 +179,7 @@ export default function Creation() {
         </div>
       )}
 
-      <div style={{ padding: '48px 56px 64px' }}>
+      <div className="section" style={{ '--pt': '48px', '--pb': '64px', }}>
         <SectionLabel
           no="03"
           name="Releases"
@@ -216,6 +216,7 @@ export default function Creation() {
                   return (
                     <div
                       key={ri}
+                      className="row-release"
                       style={{
                         display: 'grid',
                         gridTemplateColumns: '56px 110px 1fr auto',

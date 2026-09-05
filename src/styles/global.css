@@ -55,8 +55,87 @@ body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-
   margin: 0 auto;
 }
 
-/* Separate the control layer from content scrolling beneath it. */
-nav[aria-label="Primary"] { box-shadow: var(--lift); }
+/* Section shell. Horizontal gutters and the vertical rhythm scale here, driven
+   by --pt/--pb, so a component can change its spacing without a matching
+   string in a [style*="padding:..."] selector having to be kept in sync. */
+.section {
+  padding-left: 56px;
+  padding-right: 56px;
+  padding-top: var(--pt, 56px);
+  padding-bottom: var(--pb, 40px);
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: calc(var(--pt, 56px) * 0.65);
+    padding-bottom: calc(var(--pb, 40px) * 0.70);
+  }
+}
+
+@media (max-width: 480px) {
+  .section { padding-left: 16px; padding-right: 16px; }
+}
+
+/* Research highlights: columns divided by rules, not boxed as cards, so the
+   section speaks the same language as the rest of the page. */
+.hl-cell { border-right: 1px solid var(--rule-soft); }
+.hl-cell:first-child { padding-left: 0 !important; }
+.hl-cell:last-child { border-right: 0; padding-right: 0 !important; }
+
+@media (max-width: 900px) {
+  .hl-cell {
+    border-right: 0 !important;
+    border-top: 1px solid var(--rule-soft);
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .hl-cell:first-child { border-top: 0; }
+}
+
+/* Chrome shells. Living in CSS means the breakpoint behaviour no longer keys
+   off the exact pixel strings these elements happen to serialize. */
+.site-nav {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 56px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* Separate the control layer from content scrolling beneath it. */
+  box-shadow: var(--lift);
+}
+
+.site-footer {
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.post {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 64px 32px 32px;
+}
+
+@media (max-width: 900px) {
+  .site-nav { height: auto; flex-wrap: wrap; padding: 10px 20px; gap: 10px; }
+  .site-nav > div:last-child { gap: 14px; flex-wrap: wrap; row-gap: 8px; }
+  .site-footer { flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+  .site-footer > div:last-child { flex-wrap: wrap; gap: 12px 18px; }
+  .post { padding: 32px 20px; }
+}
+
+@media (max-width: 480px) {
+  .site-nav { padding-left: 16px; padding-right: 16px; }
+  .post { padding-left: 16px; padding-right: 16px; }
+}
 
 nav[aria-label="Primary"] a:hover,
 footer a:hover {
@@ -71,205 +150,85 @@ img { filter: var(--img-adjust); }
   100% { opacity: 1;   transform: translateY(0); }
 }
 
-/* Astro/React SSR emits inline styles with no space after the colon
-   (e.g. `padding:64px 56px`). Selectors below include both formats so
-   the responsive rules survive future formatter changes. */
+/* Responsive layer. Everything below keys off classes, not serialized
+   inline-style substrings. */
 @media (max-width: 900px) {
   html, body { overflow-x: hidden; }
 
-  [style*="padding:64px 56px"],
-  [style*="padding:56px 56px"],
-  [style*="padding:48px 56px"],
-  [style*="padding:40px 56px"],
-  [style*="padding:32px 56px"],
-  [style*="padding:0 56px"],
-  [style*="padding:0px 56px"],
-  [style*="padding: 64px 56px"],
-  [style*="padding: 56px 56px"],
-  [style*="padding: 48px 56px"],
-  [style*="padding: 40px 56px"],
-  [style*="padding: 32px 56px"],
-  [style*="padding: 0 56px"],
-  [style*="padding: 0px 56px"] {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
 
-  [style*="padding:64px 56px 48px"], [style*="padding: 64px 56px 48px"] { padding-top: 36px !important; padding-bottom: 28px !important; }
-  [style*="padding:56px 56px 64px"], [style*="padding: 56px 56px 64px"] { padding-top: 36px !important; padding-bottom: 40px !important; }
-  [style*="padding:56px 56px 40px"], [style*="padding: 56px 56px 40px"] { padding-top: 36px !important; padding-bottom: 28px !important; }
-  [style*="padding:56px 56px 32px"], [style*="padding: 56px 56px 32px"] { padding-top: 36px !important; padding-bottom: 24px !important; }
-  [style*="padding:48px 56px 64px"], [style*="padding: 48px 56px 64px"] { padding-top: 32px !important; padding-bottom: 40px !important; }
-  [style*="padding:48px 56px 40px"], [style*="padding: 48px 56px 40px"] { padding-top: 32px !important; padding-bottom: 28px !important; }
-  [style*="padding:48px 56px 32px"], [style*="padding: 48px 56px 32px"] { padding-top: 32px !important; padding-bottom: 24px !important; }
-  [style*="padding:40px 56px 24px"], [style*="padding: 40px 56px 24px"] { padding-top: 28px !important; padding-bottom: 20px !important; }
+  /* Section headers: let the trailing note drop to its own line instead of
+     squeezing the name into "FEATURED / VIDEO". */
+  .section-label { flex-wrap: wrap; gap: 6px 14px; }
+  .section-label > * { white-space: nowrap; }
+  .section-label .sl-spacer { display: none; }
+  .section-label > *:last-child { flex: 1 0 100%; white-space: normal; }
 
-  [style*="grid-template-columns:1fr 440px"],
-  [style*="grid-template-columns:1fr 1fr"],
-  [style*="grid-template-columns:1fr 1fr 1fr"],
-  [style*="grid-template-columns:repeat(4"],
-  [style*="grid-template-columns:2fr 1fr 1fr 1fr"],
-  [style*="grid-template-columns:180px 1fr"],
-  [style*="grid-template-columns:120px 1fr"],
-  [style*="grid-template-columns: 1fr 440px"],
-  [style*="grid-template-columns: 1fr 1fr"],
-  [style*="grid-template-columns: 1fr 1fr 1fr"],
-  [style*="grid-template-columns: repeat(4"],
-  [style*="grid-template-columns: 2fr 1fr 1fr 1fr"],
-  [style*="grid-template-columns: 180px 1fr"],
-  [style*="grid-template-columns: 120px 1fr"] {
+  /* Layout collapse is keyed to classes now, so changing a grid's column
+     values in a component no longer silently unhooks its mobile behaviour. */
+  .grid-collapse {
     grid-template-columns: 1fr !important;
     gap: 20px !important;
   }
 
-  /* Blog post article: shrink horizontal padding */
-  [style*="padding:64px 32px 32px"], [style*="padding: 64px 32px 32px"] {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    padding-top: 32px !important;
-  }
-
-  /* Blog index hero strip: wrap title + INDEX + tagline */
-  [style*="align-items:flex-end"][style*="gap:32px"][style*="margin-top:16px"],
-  [style*="align-items: flex-end"][style*="gap: 32px"][style*="margin-top: 16px"] {
+  .hero-strip {
     flex-wrap: wrap !important;
     gap: 12px 20px !important;
     align-items: flex-start !important;
   }
 
-  [style*="aspect-ratio:4/5"],
-  [style*="aspect-ratio:4 / 5"],
-  [style*="aspect-ratio: 4/5"],
-  [style*="aspect-ratio: 4 / 5"] {
-    max-width: 280px;
-  }
+  .portrait { max-width: 280px; }
 
-  [style*="grid-template-columns:120px 80px 1fr"],
-  [style*="grid-template-columns: 120px 80px 1fr"] {
+  .row-news {
     grid-template-columns: auto auto !important;
     column-gap: 12px !important;
     row-gap: 4px !important;
   }
-  [style*="grid-template-columns:120px 80px 1fr"] > *:nth-child(3),
-  [style*="grid-template-columns: 120px 80px 1fr"] > *:nth-child(3) {
-    grid-column: 1 / -1 !important;
-  }
+  .row-news > *:nth-child(3) { grid-column: 1 / -1 !important; }
 
-  [style*="grid-template-columns:90px 1fr 200px"],
-  [style*="grid-template-columns: 90px 1fr 200px"] {
+  .row-pub {
     grid-template-columns: 1fr !important;
     gap: 14px !important;
   }
-  [style*="grid-template-columns:90px 1fr 200px"] > *:nth-child(3) img,
-  [style*="grid-template-columns:90px 1fr 200px"] > *:nth-child(3) > div,
-  [style*="grid-template-columns: 90px 1fr 200px"] > *:nth-child(3) img,
-  [style*="grid-template-columns: 90px 1fr 200px"] > *:nth-child(3) > div {
-    max-width: 260px;
-  }
+  .row-pub > *:nth-child(3) img,
+  .row-pub > *:nth-child(3) > div { max-width: 260px; }
 
-  [style*="grid-template-columns:56px 110px 1fr auto"],
-  [style*="grid-template-columns: 56px 110px 1fr auto"] {
+  .row-release {
     grid-template-columns: 48px 1fr !important;
     column-gap: 12px !important;
     row-gap: 8px !important;
     align-items: start !important;
   }
-  [style*="grid-template-columns:56px 110px 1fr auto"] > *:nth-child(2),
-  [style*="grid-template-columns:56px 110px 1fr auto"] > *:nth-child(3),
-  [style*="grid-template-columns:56px 110px 1fr auto"] > *:nth-child(4),
-  [style*="grid-template-columns: 56px 110px 1fr auto"] > *:nth-child(2),
-  [style*="grid-template-columns: 56px 110px 1fr auto"] > *:nth-child(3),
-  [style*="grid-template-columns: 56px 110px 1fr auto"] > *:nth-child(4) {
-    grid-column: 2 / -1 !important;
-  }
+  .row-release > *:nth-child(2),
+  .row-release > *:nth-child(3),
+  .row-release > *:nth-child(4) { grid-column: 2 / -1 !important; }
 
-  [style*="grid-template-columns:160px 70px 1fr 160px"],
-  [style*="grid-template-columns: 160px 70px 1fr 160px"] {
+  .row-event {
     grid-template-columns: auto auto !important;
     column-gap: 10px !important;
     row-gap: 4px !important;
   }
-  [style*="grid-template-columns:160px 70px 1fr 160px"] > *:nth-child(3),
-  [style*="grid-template-columns: 160px 70px 1fr 160px"] > *:nth-child(3) {
-    grid-column: 1 / -1 !important;
-  }
-  [style*="grid-template-columns:160px 70px 1fr 160px"] > *:nth-child(4),
-  [style*="grid-template-columns: 160px 70px 1fr 160px"] > *:nth-child(4) {
+  .row-event > *:nth-child(3) { grid-column: 1 / -1 !important; }
+  .row-event > *:nth-child(4) {
     grid-column: 1 / -1 !important;
     text-align: left !important;
   }
 
-  [style*="font-size:96px"], [style*="font-size: 96px"] { font-size: 52px !important; line-height: 0.95 !important; }
-  [style*="font-size:88px"], [style*="font-size: 88px"] { font-size: 48px !important; line-height: 0.98 !important; }
-  [style*="font-size:56px"], [style*="font-size: 56px"] { font-size: 36px !important; }
-  [style*="font-size:42px"], [style*="font-size: 42px"] { font-size: 30px !important; line-height: 1.2 !important; }
-  [style*="font-size:32px"], [style*="font-size: 32px"] {
-    font-size: 22px !important;
-    word-break: break-all;
-  }
-  /* Contact email — shrink like the 32px bucket but break at @ / . instead of
-     mid-character, so the address stays readable. */
-  [style*="font-size:30px"], [style*="font-size: 30px"] { font-size: 21px !important; }
-  [style*="font-size:28px"], [style*="font-size: 28px"] { font-size: 20px !important; }
+  .side-sticky { position: static !important; }
 
-  [style*="height:64px"][style*="position:sticky"],
-  [style*="height: 64px"][style*="position: sticky"] {
-    height: auto !important;
-    flex-wrap: wrap !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    gap: 10px !important;
-  }
-  [style*="height:64px"][style*="position:sticky"] > div:last-child,
-  [style*="height: 64px"][style*="position: sticky"] > div:last-child {
-    gap: 14px !important;
-    flex-wrap: wrap !important;
-    row-gap: 8px !important;
-  }
-
-  [style*="padding:32px 56px"][style*="border-top"],
-  [style*="padding:32px 20px"][style*="border-top"],
-  [style*="padding: 32px 56px"][style*="border-top"],
-  [style*="padding: 32px 20px"][style*="border-top"] {
-    flex-wrap: wrap !important;
-    gap: 16px !important;
-    align-items: flex-start !important;
-  }
-  [style*="padding:32px 56px"][style*="border-top"] > div:last-child,
-  [style*="padding:32px 20px"][style*="border-top"] > div:last-child,
-  [style*="padding: 32px 56px"][style*="border-top"] > div:last-child,
-  [style*="padding: 32px 20px"][style*="border-top"] > div:last-child {
-    flex-wrap: wrap !important;
-    gap: 12px 18px !important;
-  }
-
-  [style*="position:sticky"][style*="top:24px"],
-  [style*="position: sticky"][style*="top: 24px"] {
-    position: static !important;
-  }
-
-  [style*="position:fixed"][style*="bottom:0"] > div,
-  [style*="position: fixed"][style*="bottom: 0"] > div {
-    flex-direction: column !important;
-  }
-  [style*="position:fixed"][style*="bottom:0"] > div > div,
-  [style*="position: fixed"][style*="bottom: 0"] > div > div {
+  .player > div { flex-direction: column !important; }
+  .player > div > div {
     min-width: 0 !important;
     border-right: none !important;
     border-left: none !important;
-    border-top: 1px solid rgba(21,23,27,0.08) !important;
+    border-top: 1px solid var(--rule-soft) !important;
   }
-  [style*="position:fixed"][style*="bottom:0"] > div > div:first-child,
-  [style*="position: fixed"][style*="bottom: 0"] > div > div:first-child {
+  .player > div > div:first-child {
     border-top: none !important;
     padding: 10px 16px !important;
   }
-  [style*="position:fixed"][style*="bottom:0"] iframe,
-  [style*="position: fixed"][style*="bottom: 0"] iframe {
-    height: 80px !important;
-  }
+  .player iframe { height: 80px !important; }
 
-  [style*="padding-bottom:240px"], [style*="padding-bottom: 240px"] { padding-bottom: 320px !important; }
+  :root { --player-gap: 320px; }
 }
 
 .prose {
@@ -358,30 +317,6 @@ img { filter: var(--img-adjust); }
 }
 
 @media (max-width: 480px) {
-  [style*="padding:64px 56px"],
-  [style*="padding:56px 56px"],
-  [style*="padding:48px 56px"],
-  [style*="padding:40px 56px"],
-  [style*="padding:32px 56px"],
-  [style*="padding:0 56px"],
-  [style*="padding:0px 56px"],
-  [style*="padding: 64px 56px"],
-  [style*="padding: 56px 56px"],
-  [style*="padding: 48px 56px"],
-  [style*="padding: 40px 56px"],
-  [style*="padding: 32px 56px"],
-  [style*="padding: 0 56px"],
-  [style*="padding: 0px 56px"] {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-  [style*="font-size:96px"], [style*="font-size: 96px"] { font-size: 44px !important; }
-  [style*="font-size:88px"], [style*="font-size: 88px"] { font-size: 40px !important; }
-  [style*="font-size:56px"], [style*="font-size: 56px"] { font-size: 30px !important; }
-  [style*="font-size:42px"], [style*="font-size: 42px"] { font-size: 26px !important; }
-  [style*="font-size:32px"], [style*="font-size: 32px"] { font-size: 18px !important; }
-  [style*="font-size:30px"], [style*="font-size: 30px"] { font-size: 17px !important; }
-  [style*="font-size:28px"], [style*="font-size: 28px"] { font-size: 17px !important; }
 }
 
 /* Controls that look like plain text still need to BE buttons. Inline styles
