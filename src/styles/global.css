@@ -1,8 +1,71 @@
-html, body { margin: 0; padding: 0; min-height: 100%; background: #F1EEE6; }
-body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: #15171B; }
+/* Paper-and-ink palette. Light is the origin design; dark is a deliberate
+   night edition, not an inversion — the ground stays warm and the accent
+   maroon lifts to a dusty rose so it survives on a dark field. */
+:root {
+  color-scheme: light;
+  --paper: #F1EEE6;
+  --paper-alt: #E8E4DA;
+  --ink: #15171B;
+  --ink-2: #3B3D44;
+  --ink-3: #63656D;
+  --rule: #15171B;
+  --rule-soft: rgba(21, 23, 27, 0.14);
+  --accent: #6E1F2E;
+  --accent-soft: #E4E1F0;
+  --accent-wash: rgba(110, 31, 46, 0.05);
+  --accent-veil: rgba(110, 31, 46, 0.80);
+  --code-bg: #15171B;
+  --code-fg: #F1EEE6;
+  --lift: 0 10px 24px -20px rgba(21, 23, 27, 0.55);
+  --img-adjust: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --paper: #16171A;
+    --paper-alt: #1F2126;
+    --ink: #ECE8DF;
+    --ink-2: #B5B1A8;
+    --ink-3: #918D85;
+    --rule: #D5D0C6;
+    --rule-soft: rgba(236, 232, 223, 0.18);
+    --accent: #C97F8C;
+    --accent-soft: #2A2430;
+    --accent-wash: rgba(201, 127, 140, 0.10);
+    --accent-veil: rgba(201, 127, 140, 0.85);
+    --code-bg: #0F1013;
+    --code-fg: #ECE8DF;
+    --lift: 0 10px 24px -18px rgba(0, 0, 0, 0.9);
+    /* Keep bright photography from glowing against the dark ground. */
+    --img-adjust: brightness(0.88) contrast(1.02);
+  }
+}
+
+html, body { margin: 0; padding: 0; min-height: 100%; background: var(--paper); }
+body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-smoothing: antialiased; color: var(--ink); }
 *, *::before, *::after { box-sizing: border-box; }
 
-.page-fade { animation: pageFade 0.32s cubic-bezier(.2,.7,.3,1) both; }
+/* `both` retained transform:translateY(0) after the animation, and a transformed
+   ancestor becomes the containing block — which silently killed the sticky nav.
+   `backwards` gives the same entrance without leaving a transform behind. */
+.page-fade {
+  animation: pageFade 0.32s cubic-bezier(.2,.7,.3,1) backwards;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Separate the control layer from content scrolling beneath it. */
+nav[aria-label="Primary"] { box-shadow: var(--lift); }
+
+nav[aria-label="Primary"] a:hover,
+footer a:hover {
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+img { filter: var(--img-adjust); }
 @keyframes pageFade {
   0%   { opacity: 0.4; transform: translateY(4px); }
   100% { opacity: 1;   transform: translateY(0); }
@@ -41,14 +104,14 @@ body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-
   [style*="padding:48px 56px 32px"], [style*="padding: 48px 56px 32px"] { padding-top: 32px !important; padding-bottom: 24px !important; }
   [style*="padding:40px 56px 24px"], [style*="padding: 40px 56px 24px"] { padding-top: 28px !important; padding-bottom: 20px !important; }
 
-  [style*="grid-template-columns:1fr 380px"],
+  [style*="grid-template-columns:1fr 440px"],
   [style*="grid-template-columns:1fr 1fr"],
   [style*="grid-template-columns:1fr 1fr 1fr"],
   [style*="grid-template-columns:repeat(4"],
   [style*="grid-template-columns:2fr 1fr 1fr 1fr"],
   [style*="grid-template-columns:180px 1fr"],
   [style*="grid-template-columns:120px 1fr"],
-  [style*="grid-template-columns: 1fr 380px"],
+  [style*="grid-template-columns: 1fr 440px"],
   [style*="grid-template-columns: 1fr 1fr"],
   [style*="grid-template-columns: 1fr 1fr 1fr"],
   [style*="grid-template-columns: repeat(4"],
@@ -81,19 +144,15 @@ body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-
     max-width: 280px;
   }
 
-  [style*="grid-template-columns:120px 80px 1fr auto"],
-  [style*="grid-template-columns: 120px 80px 1fr auto"] {
-    grid-template-columns: auto auto 1fr !important;
+  [style*="grid-template-columns:120px 80px 1fr"],
+  [style*="grid-template-columns: 120px 80px 1fr"] {
+    grid-template-columns: auto auto !important;
     column-gap: 12px !important;
     row-gap: 4px !important;
   }
-  [style*="grid-template-columns:120px 80px 1fr auto"] > *:nth-child(3),
-  [style*="grid-template-columns: 120px 80px 1fr auto"] > *:nth-child(3) {
+  [style*="grid-template-columns:120px 80px 1fr"] > *:nth-child(3),
+  [style*="grid-template-columns: 120px 80px 1fr"] > *:nth-child(3) {
     grid-column: 1 / -1 !important;
-  }
-  [style*="grid-template-columns:120px 80px 1fr auto"] > *:nth-child(4),
-  [style*="grid-template-columns: 120px 80px 1fr auto"] > *:nth-child(4) {
-    display: none !important;
   }
 
   [style*="grid-template-columns:90px 1fr 200px"],
@@ -217,22 +276,22 @@ body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-
   font-family: 'Geist', -apple-system, system-ui, sans-serif;
   font-size: 17px;
   line-height: 1.7;
-  color: #15171B;
+  color: var(--ink);
 }
-.prose p { margin: 0 0 1.4em; color: #15171B; }
+.prose p { margin: 0 0 1.4em; color: var(--ink); }
 .prose h2 {
   font-size: 26px;
   font-weight: 600;
   letter-spacing: -0.015em;
   margin: 2em 0 0.6em;
-  color: #15171B;
+  color: var(--ink);
 }
 .prose h3 {
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.01em;
   margin: 1.8em 0 0.5em;
-  color: #15171B;
+  color: var(--ink);
 }
 .prose h4 {
   font-size: 16px;
@@ -240,37 +299,37 @@ body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-
   letter-spacing: 0.02em;
   text-transform: uppercase;
   font-family: 'Geist Mono', ui-monospace, monospace;
-  color: #3B3D44;
+  color: var(--ink-2);
   margin: 1.8em 0 0.4em;
 }
 .prose a {
-  color: #6E1F2E;
+  color: var(--accent);
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
 }
 .prose a:hover { text-decoration-thickness: 2px; }
-.prose strong { font-weight: 600; color: #15171B; }
+.prose strong { font-weight: 600; color: var(--ink); }
 .prose em { font-style: italic; }
 .prose ul, .prose ol { margin: 0 0 1.4em; padding-left: 1.4em; }
 .prose li { margin: 0.3em 0; }
 .prose blockquote {
   margin: 1.4em 0;
   padding: 0.4em 0 0.4em 18px;
-  border-left: 3px solid #6E1F2E;
-  color: #3B3D44;
+  border-left: 3px solid var(--accent);
+  color: var(--ink-2);
   font-style: italic;
 }
 .prose code {
   font-family: 'Geist Mono', ui-monospace, monospace;
   font-size: 0.92em;
-  background: #E8E4DA;
+  background: var(--paper-alt);
   padding: 1px 6px;
   border-radius: 2px;
 }
 .prose pre {
-  background: #15171B;
-  color: #F1EEE6;
+  background: var(--code-bg);
+  color: var(--code-fg);
   padding: 18px 20px;
   overflow-x: auto;
   font-family: 'Geist Mono', ui-monospace, monospace;
@@ -290,11 +349,11 @@ body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-
   height: auto;
   display: block;
   margin: 1.6em auto;
-  border: 1px solid rgba(21,23,27,0.14);
+  border: 1px solid var(--rule-soft);
 }
 .prose hr {
   border: 0;
-  border-top: 1px solid rgba(21,23,27,0.14);
+  border-top: 1px solid var(--rule-soft);
   margin: 2.4em 0;
 }
 
@@ -346,8 +405,8 @@ body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-
   left: -9999px;
   top: 0;
   z-index: 200;
-  background: #15171B;
-  color: #F1EEE6;
+  background: var(--ink);
+  color: var(--paper);
   padding: 10px 16px;
   font-family: 'Geist Mono', ui-monospace, monospace;
   font-size: 11px;
@@ -361,7 +420,7 @@ body { font-family: 'Geist', -apple-system, system-ui, sans-serif; -webkit-font-
    ring is the only keyboard position cue — and it is nearly invisible on the
    paper ground. Accent maroon matches the active-nav underline. */
 :where(a, button, [tabindex]):focus-visible {
-  outline: 2px solid #6E1F2E;
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 

@@ -183,6 +183,8 @@ export default function Creation() {
         <SectionLabel
           no="03"
           name="Releases"
+          lead
+          maxWidth={1100}
           count={c.releases.length}
           right={<Mono size={10} color={tokens.ink3}>{active ? 'NOW PLAYING ▼' : 'SPOTIFY: PLAY IN-PAGE · YOUTUBE: NEW TAB'}</Mono>}
         />
@@ -198,7 +200,7 @@ export default function Creation() {
             if (!items.length) return null;
             return (
               <div key={g.kind} style={{ marginTop: gi === 0 ? 16 : 36 }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 8, paddingBottom: 8, borderBottom: `1px solid ${tokens.rule}` }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 8, paddingBottom: 8, maxWidth: 1100, borderBottom: `1px solid ${tokens.rule}` }}>
                   <Mono size={10} color={tokens.accent} weight={600}>0{gi + 1}</Mono>
                   <h3 style={{ margin: 0, fontFamily: tokens.sans, fontSize: 13, fontWeight: 600, color: tokens.ink, letterSpacing: '0.04em', textTransform: 'uppercase' }}>{g.label}</h3>
                   <Mono size={10} color={tokens.ink3}>{g.sub}</Mono>
@@ -218,10 +220,13 @@ export default function Creation() {
                         display: 'grid',
                         gridTemplateColumns: '56px 110px 1fr auto',
                         gap: 18,
+                        // Without a cap the play button lands ~1100px from the
+                        // artist name it belongs to on a wide screen.
+                        maxWidth: 1100,
                         alignItems: 'center',
                         padding: '12px 0',
                         borderBottom: `1px solid ${tokens.ruleSoft}`,
-                        background: isActive ? tokens.accent + '08' : 'transparent',
+                        background: isActive ? tokens.accentWash : 'transparent',
                         transition: 'background .12s',
                       }}
                     >
@@ -234,13 +239,16 @@ export default function Creation() {
                           </div>
                         )}
                         {isActive && (
-                          <div style={{ position: 'absolute', inset: 0, background: tokens.accent + 'CC', color: tokens.paper, display: 'grid', placeItems: 'center', fontSize: 14 }}>♪</div>
+                          <div style={{ position: 'absolute', inset: 0, background: tokens.accentVeil, color: tokens.paper, display: 'grid', placeItems: 'center', fontSize: 14 }}>♪</div>
                         )}
                       </div>
 
-                      <div>
+                      {/* Stacked explicitly: as inline-block siblings the badge
+                          butted straight into the year with no gap, and four-digit
+                          years collided with it inside the 110px column. */}
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5 }}>
                         <Mono size={10} color={tokens.ink3}>{r.year}</Mono>
-                        <div style={{ marginTop: 4, padding: '2px 7px', display: 'inline-block', background: r.kind === 'PROD' ? tokens.ink : tokens.paperAlt, color: r.kind === 'PROD' ? tokens.paper : tokens.ink, fontFamily: tokens.mono, fontSize: 9, letterSpacing: '0.08em' }}>{r.kind}</div>
+                        <div style={{ padding: '2px 7px', background: r.kind === 'PROD' ? tokens.ink : tokens.paperAlt, color: r.kind === 'PROD' ? tokens.paper : tokens.ink, fontFamily: tokens.mono, fontSize: 10, letterSpacing: '0.08em' }}>{r.kind}</div>
                       </div>
 
                       <div style={{ minWidth: 0 }}>

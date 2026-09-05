@@ -8,7 +8,7 @@ import path from 'node:path';
 
 const PAPER = '#F1EEE6';
 const INK = '#15171B';
-const INK3 = '#7B7D85';
+const INK3 = '#63656D';
 const ACCENT = '#6E1F2E';
 
 let fontsCache: Array<{ name: string; data: Buffer; weight: number; style: 'normal' }> | null = null;

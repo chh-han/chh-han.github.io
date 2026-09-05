@@ -1,13 +1,20 @@
+// Values resolve to CSS custom properties declared in src/styles/global.css,
+// so the whole palette swaps under `prefers-color-scheme: dark` even though
+// components apply it as inline styles.
 export const tokens = {
-  paper: '#F1EEE6',
-  paperAlt: '#E8E4DA',
-  ink: '#15171B',
-  ink2: '#3B3D44',
-  ink3: '#63656D',
-  rule: '#15171B',
-  ruleSoft: 'rgba(21,23,27,0.14)',
-  accent: '#6E1F2E',
-  accentSoft: '#E4E1F0',
+  paper: 'var(--paper)',
+  paperAlt: 'var(--paper-alt)',
+  ink: 'var(--ink)',
+  ink2: 'var(--ink-2)',
+  ink3: 'var(--ink-3)',
+  rule: 'var(--rule)',
+  ruleSoft: 'var(--rule-soft)',
+  accent: 'var(--accent)',
+  accentSoft: 'var(--accent-soft)',
+  // Pre-mixed accent alphas — inline styles used to build these by string
+  // concatenation (accent + '08'), which a var() reference cannot support.
+  accentWash: 'var(--accent-wash)',
+  accentVeil: 'var(--accent-veil)',
   sans: '"Geist", -apple-system, system-ui, sans-serif',
   mono: '"Geist Mono", ui-monospace, monospace',
 };

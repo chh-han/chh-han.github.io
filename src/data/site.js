@@ -289,20 +289,20 @@ export const site = {
 
   creation: {
     blurb:
-      'Seven years of music production, parallel to research. 33 songs registered with the Korea Music Copyright Association; ten produced tracks across five artists; international collaborations from seven countries.',
+      'Seven years of music production, parallel to research. I am the sole songwriter and copyright holder on 33 songs, each registered with the Korea Music Copyright Association (KOMCA); ten produced tracks across five artists; international collaborations across seven countries and regions.',
     stats: [
       { value: '800K+', label: 'Spotify streams' },
       { value: '96', label: 'Countries reached' },
       { value: '4', label: 'K-pop editorial features' },
-      { value: '33', label: 'KOMCA-registered songs' },
+      { value: '33', label: 'Songs I wrote and own' },
       { value: '10', label: 'Produced tracks' },
-      { value: '7', label: 'Collab countries' },
+      { value: '7', label: 'Countries & regions' },
     ],
     highlights: [
       'Vocalist & producer on Hyundai Motor Group’s official video',
-      'Producer for the insert song in Seezn Original Series "Hope or Dope" (S01E02)',
+      'Producer for the insert song in the Korean drama series "Hope or Dope" (S01E02)',
       '4 songs featured in Spotify K-pop Editorial Playlists',
-      'International collaborations: USA, Germany, Hong Kong, Netherlands, +3',
+      'International collaborations with artists in the USA, Germany, the Netherlands, Sweden, China, Japan, and Hong Kong',
     ],
     releases: [
       { kind: 'PROD', artist: 'Gunny', title: 'Trouble', year: '2019', cover: '/assets/images/musics/prod-gunny.jpg', youtube: 'https://youtu.be/-lerQuV3E7U' },

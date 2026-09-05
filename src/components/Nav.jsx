@@ -24,14 +24,14 @@ export default function Nav({ active = 'Home' }) {
           <a
             key={it.label}
             href={it.href}
-            style={{ position: 'relative', textDecoration: 'none', fontFamily: tokens.sans, fontSize: 13, fontWeight: 500, color: it.label === active ? tokens.ink : tokens.ink2, letterSpacing: '0.02em' }}
+            style={{ position: 'relative', padding: '10px 0', textDecoration: 'none', fontFamily: tokens.sans, fontSize: 13, fontWeight: 500, color: it.label === active ? tokens.ink : tokens.ink2, letterSpacing: '0.02em' }}
           >
             <Mono size={9} color={tokens.ink3} style={{ marginRight: 4 }}>0{i + 1}</Mono>
             {it.label}
-            {it.label === active && <div style={{ position: 'absolute', left: 0, right: 0, bottom: -22, height: 2, background: tokens.accent }} />}
+            {it.label === active && <div style={{ position: 'absolute', left: 0, right: 0, bottom: -14, height: 2, background: tokens.accent }} />}
           </a>
         ))}
-        <a href={site.profile.cv} target="_blank" rel="noreferrer" style={{ fontFamily: tokens.sans, fontSize: 13, fontWeight: 500, color: tokens.ink2, textDecoration: 'none' }}>
+        <a href={site.profile.cv} target="_blank" rel="noreferrer" style={{ padding: '10px 0', fontFamily: tokens.sans, fontSize: 13, fontWeight: 500, color: tokens.ink2, textDecoration: 'none' }}>
           <Mono size={9} color={tokens.ink3} style={{ marginRight: 4 }}>06</Mono>CV ↗
         </a>
       </div>
