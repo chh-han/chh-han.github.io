@@ -22,10 +22,12 @@ export default function Bio() {
     <div style={{ background: tokens.paper, color: tokens.ink, fontFamily: tokens.sans, minHeight: '100%' }}>
       <Nav active="Bio" />
 
+      <main id="main">
+
       <div style={{ padding: '56px 56px 32px', borderBottom: `1px solid ${tokens.rule}` }}>
         <Mono size={11} color={tokens.accent}>§ 04 · CV / BIOGRAPHY</Mono>
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32, marginTop: 16 }}>
-          <div style={{ fontSize: 88, lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Biography<span style={{ color: tokens.accent }}>.</span></div>
+          <h1 style={{ margin: 0, fontSize: 88, lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Biography<span style={{ color: tokens.accent }}>.</span></h1>
           <div style={{ paddingBottom: 16 }}>
             <Mono size={10} color={tokens.ink3}>SOURCE</Mono>
             <Ext href={d.profile.cv}>
@@ -60,7 +62,7 @@ export default function Bio() {
                   <Mono size={12} color={tokens.ink} weight={600}>{e.period}</Mono>
                   <Mono size={10} color={e.type === 'EDU' ? tokens.accent : tokens.ink2}>{e.type}</Mono>
                   <div>
-                    <div style={{ fontSize: 17, fontWeight: 600, color: tokens.ink, letterSpacing: '-0.01em' }}>{e.label}</div>
+                    <h2 style={{ margin: 0, fontSize: 17, fontWeight: 600, color: tokens.ink, letterSpacing: '-0.01em' }}>{e.label}</h2>
                     <div style={{ fontSize: 14, color: tokens.ink2, marginTop: 4 }}>{e.sub}</div>
                     {e.meta && <div style={{ fontSize: 13, color: tokens.ink3, marginTop: 8, lineHeight: 1.5 }}>{e.meta}</div>}
                   </div>
@@ -71,6 +73,8 @@ export default function Bio() {
           </div>
         </div>
       </div>
+
+      </main>
 
       <Footer />
     </div>

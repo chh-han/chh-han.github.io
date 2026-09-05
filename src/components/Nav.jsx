@@ -13,7 +13,7 @@ const ITEMS = [
 
 export default function Nav({ active = 'Home' }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', height: 64, borderBottom: `1px solid ${tokens.rule}`, padding: '0 56px', background: tokens.paper, position: 'sticky', top: 0, zIndex: 50 }}>
+    <nav aria-label="Primary" style={{ display: 'flex', alignItems: 'center', height: 64, borderBottom: `1px solid ${tokens.rule}`, padding: '0 56px', background: tokens.paper, position: 'sticky', top: 0, zIndex: 50 }}>
       <a href="/" style={{ display: 'flex', alignItems: 'baseline', gap: 10, textDecoration: 'none', color: 'inherit' }}>
         <div style={{ fontFamily: tokens.sans, fontSize: 18, fontWeight: 700, letterSpacing: '-0.02em', color: tokens.ink }}>ChangHeon&nbsp;Han</div>
         <Mono size={10} color={tokens.ink3}>/ CH.H</Mono>
@@ -35,6 +35,6 @@ export default function Nav({ active = 'Home' }) {
           <Mono size={9} color={tokens.ink3} style={{ marginRight: 4 }}>06</Mono>CV ↗
         </a>
       </div>
-    </div>
+    </nav>
   );
 }

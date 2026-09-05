@@ -70,7 +70,8 @@ const jsonLd = {
   <div style={`background:${tokens.paper};color:${tokens.ink};font-family:${tokens.sans};min-height:100%;`}>
     <Nav active="Blog" />
 
-    <article style="max-width:760px;margin:0 auto;padding:64px 32px 32px;">
+    <main id="main">
+    <article style="max-width:680px;margin:0 auto;padding:64px 32px 32px;">
       <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:32px;">
         <a href="/blog" style={`font-family:${tokens.mono};font-size:11px;font-weight:500;letter-spacing:0.06em;color:${tokens.accent};text-transform:uppercase;text-decoration:none;`}>← BLOG</a>
         <span style={`font-family:${tokens.mono};font-size:11px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>{fmt(post.data.date)}</span>
@@ -102,6 +103,7 @@ const jsonLd = {
         <span style={`font-family:${tokens.mono};font-size:10px;letter-spacing:0.02em;color:${tokens.ink3};text-transform:uppercase;`}>END · {fmt(post.data.date)}</span>
       </div>
     </article>
+    </main>
 
     <Footer />
   </div>

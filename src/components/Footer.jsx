@@ -6,7 +6,7 @@ import Ext from './ui/Ext';
 
 export default function Footer() {
   return (
-    <div style={{ borderTop: `1px solid ${tokens.rule}`, padding: '32px 56px', display: 'flex', alignItems: 'flex-end', gap: 40, background: tokens.paper }}>
+    <footer style={{ borderTop: `1px solid ${tokens.rule}`, padding: '32px 56px', display: 'flex', alignItems: 'flex-end', gap: 40, background: tokens.paper }}>
       <div style={{ flex: 1 }}>
         <Mono size={10} color={tokens.ink3}>© 2026 · CHANGHEON HAN · BUILT IN GOTHENBURG</Mono>
       </div>
@@ -16,6 +16,6 @@ export default function Footer() {
         <Ext href={site.profile.github}><Mono size={11} color={tokens.ink}>GITHUB ↗</Mono></Ext>
         <Ext href={site.profile.linkedin}><Mono size={11} color={tokens.ink}>LINKEDIN ↗</Mono></Ext>
       </div>
-    </div>
+    </footer>
   );
 }

@@ -40,10 +40,12 @@ export default function Research() {
     <div style={{ background: tokens.paper, color: tokens.ink, fontFamily: tokens.sans, minHeight: '100%' }}>
       <Nav active="Research" />
 
+      <main id="main">
+
       <div style={{ padding: '56px 56px 32px', borderBottom: `1px solid ${tokens.rule}` }}>
         <Mono size={11} color={tokens.accent}>§ 02 · RESEARCH</Mono>
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32, marginTop: 16 }}>
-          <div style={{ fontSize: 88, lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Research<span style={{ color: tokens.accent }}>.</span></div>
+          <h1 style={{ margin: 0, fontSize: 88, lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Research<span style={{ color: tokens.accent }}>.</span></h1>
           <div style={{ paddingBottom: 16 }}>
             <Mono size={10} color={tokens.ink3}>INDEX</Mono>
             <div style={{ fontFamily: tokens.mono, fontSize: 14, color: tokens.ink }}>[ {filtered.length.toString().padStart(2, '0')} of {pubs.length.toString().padStart(2, '0')} · {years.length} years ]</div>
@@ -52,8 +54,11 @@ export default function Research() {
 
         <div style={{ marginTop: 24, display: 'flex', gap: 0, borderTop: `1px solid ${tokens.rule}`, borderBottom: `1px solid ${tokens.ruleSoft}` }}>
           {KINDS.map((k, i) => (
-            <div
+            <button
+              type="button"
               key={k.key}
+              className="btn-reset"
+              aria-pressed={k.key === kindFilter}
               onClick={() => setKindFilter(k.key)}
               style={{
                 padding: '12px 20px',
@@ -69,7 +74,7 @@ export default function Research() {
               }}
             >
               {k.label} [{kindCounts[k.key] || 0}]
-            </div>
+            </button>
           ))}
           <div style={{ flex: 1 }} />
           <div style={{ padding: '12px 20px', borderLeft: `1px solid ${tokens.ruleSoft}`, fontFamily: tokens.mono, fontSize: 11, color: tokens.ink3, letterSpacing: '0.06em' }}>KIND</div>
@@ -77,8 +82,11 @@ export default function Research() {
 
         <div style={{ display: 'flex', gap: 0, borderBottom: `1px solid ${tokens.rule}` }}>
           {TOPICS.map((t, i) => (
-            <div
+            <button
+              type="button"
               key={t}
+              className="btn-reset"
+              aria-pressed={t === topicFilter}
               onClick={() => setTopicFilter(t)}
               style={{
                 padding: '10px 18px',
@@ -94,7 +102,7 @@ export default function Research() {
               }}
             >
               {t === 'ALL' ? 'ALL TOPICS' : t.toUpperCase()} [{topicCounts[t] || 0}]
-            </div>
+            </button>
           ))}
           <div style={{ flex: 1 }} />
           <div style={{ padding: '10px 18px', borderLeft: `1px solid ${tokens.ruleSoft}`, fontFamily: tokens.mono, fontSize: 10, color: tokens.ink3, letterSpacing: '0.06em' }}>TOPIC · SORT DATE DESC</div>
@@ -105,13 +113,13 @@ export default function Research() {
         <div style={{ padding: '80px 56px', textAlign: 'center' }}>
           <Mono size={11} color={tokens.ink3}>NO ENTRIES MATCH FILTER · {kindFilter.toUpperCase()} · {topicFilter.toUpperCase()}</Mono>
           <div style={{ marginTop: 16 }}>
-            <span onClick={() => { setKindFilter('all'); setTopicFilter('ALL'); }} style={{ cursor: 'pointer', fontFamily: tokens.mono, fontSize: 11, color: tokens.accent, letterSpacing: '0.06em', textTransform: 'uppercase' }}>↺ RESET FILTERS</span>
+            <button type="button" className="btn-reset" onClick={() => { setKindFilter('all'); setTopicFilter('ALL'); }} style={{ cursor: 'pointer', fontFamily: tokens.mono, fontSize: 11, color: tokens.accent, letterSpacing: '0.06em', textTransform: 'uppercase', minHeight: 32, padding: '0 8px' }}>↺ RESET FILTERS</button>
           </div>
         </div>
       ) : years.map((y) => (
         <div key={y} style={{ padding: '40px 56px 24px', borderBottom: `1px solid ${tokens.rule}` }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 24, marginBottom: 16 }}>
-            <div style={{ fontFamily: tokens.mono, fontSize: 32, fontWeight: 500, color: tokens.accent, letterSpacing: '-0.02em' }}>{y}</div>
+            <h2 style={{ margin: 0, fontFamily: tokens.mono, fontSize: 32, fontWeight: 500, color: tokens.accent, letterSpacing: '-0.02em' }}>{y}</h2>
             <Mono size={10} color={tokens.ink3}>{byYear[y].length} entries</Mono>
             <div style={{ flex: 1, borderBottom: `1px solid ${tokens.ruleSoft}`, marginBottom: 8 }} />
           </div>
@@ -125,7 +133,7 @@ export default function Research() {
                   {isProject && <div style={{ marginTop: 4, fontFamily: tokens.mono, fontSize: 8, letterSpacing: '0.08em', color: tokens.accent, fontWeight: 600 }}>// PROJECT</div>}
                 </div>
                 <div>
-                  <div style={{ fontSize: 20, lineHeight: 1.3, fontWeight: 600, color: tokens.ink, letterSpacing: '-0.01em', marginBottom: 6 }}>{p.title}</div>
+                  <h3 style={{ margin: '0 0 6px', fontSize: 20, lineHeight: 1.3, fontWeight: 600, color: tokens.ink, letterSpacing: '-0.01em' }}>{p.title}</h3>
                   <div style={{ fontSize: 13, color: tokens.ink2, marginBottom: 10 }}>
                     {p.authors.map((a, j) => (
                       <span key={j} style={{ fontWeight: a === 'ChangHeon Han' ? 700 : 400, color: a === 'ChangHeon Han' ? tokens.ink : tokens.ink2 }}>{a}{j < p.authors.length - 1 ? ', ' : ''}</span>
@@ -152,7 +160,7 @@ export default function Research() {
                 </div>
                 <div>
                   {p.cover ? (
-                    <img src={p.cover} style={{ width: '100%', height: 120, objectFit: 'cover', border: `1px solid ${tokens.rule}`, display: 'block' }} />
+                    <img src={p.cover} alt="" style={{ width: '100%', height: 120, objectFit: 'cover', border: `1px solid ${tokens.rule}`, display: 'block' }} />
                   ) : (
                     <div style={{ width: '100%', height: 120, border: `1px solid ${tokens.rule}`, background: tokens.paperAlt, display: 'grid', placeItems: 'center' }}>
                       <Mono size={10} color={tokens.ink3}>NO COVER</Mono>
@@ -164,6 +172,8 @@ export default function Research() {
           })}
         </div>
       ))}
+
+      </main>
 
       <Footer />
     </div>

@@ -13,6 +13,8 @@ export default function Home() {
     <div style={{ background: tokens.paper, color: tokens.ink, fontFamily: tokens.sans, minHeight: '100%' }}>
       <Nav active="Home" />
 
+      <main id="main">
+
       {/* Hero */}
       <div style={{ padding: '64px 56px 48px', borderBottom: `1px solid ${tokens.rule}` }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: 56, alignItems: 'start' }}>
@@ -24,9 +26,9 @@ export default function Home() {
               <Mono size={11} color={tokens.ink3}>2026 EDITION</Mono>
             </div>
 
-            <div style={{ fontSize: 96, lineHeight: 0.92, fontWeight: 600, letterSpacing: '-0.04em', color: tokens.ink, marginBottom: 8 }}>
+            <h1 style={{ margin: '0 0 8px', fontSize: 96, lineHeight: 0.92, fontWeight: 600, letterSpacing: '-0.04em', color: tokens.ink }}>
               ChangHeon<br />Han<span style={{ color: tokens.accent }}>.</span>
-            </div>
+            </h1>
             <Mono size={11} color={tokens.ink3} style={{ marginBottom: 24, display: 'inline-block' }}>한창헌 · HAN</Mono>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', columnGap: 24, rowGap: 8, marginTop: 32, maxWidth: 640 }}>
@@ -42,7 +44,7 @@ export default function Home() {
           {/* Portrait */}
           <div>
             <div style={{ width: '100%', aspectRatio: '4/5', background: '#ddd', overflow: 'hidden', position: 'relative' }}>
-              <img src={d.profile.portrait} style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(0.05) contrast(1.04)' }} />
+              <img src={d.profile.portrait} alt="ChangHeon Han" style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(0.05) contrast(1.04)' }} />
               <div style={{ position: 'absolute', left: 12, top: 12, padding: '4px 8px', background: tokens.paper, fontFamily: tokens.mono, fontSize: 9, letterSpacing: '0.08em', color: tokens.ink, textTransform: 'uppercase' }}>PORTRAIT · 2025</div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
@@ -57,7 +59,7 @@ export default function Home() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderBottom: `1px solid ${tokens.rule}` }}>
         <div style={{ padding: '40px 56px', borderRight: `1px solid ${tokens.rule}` }}>
           <Mono size={10} color={tokens.ink3}>A.</Mono>
-          <div style={{ fontSize: 56, lineHeight: 1, fontWeight: 600, letterSpacing: '-0.03em', margin: '8px 0 16px' }}>Researcher</div>
+          <h2 style={{ fontSize: 56, lineHeight: 1, fontWeight: 600, letterSpacing: '-0.03em', margin: '8px 0 16px' }}>Researcher</h2>
           <Mono size={11} color={tokens.accent}>AI · MULTIMODAL · MUSIC</Mono>
           <div style={{ fontSize: 14, color: tokens.ink2, marginTop: 16, maxWidth: 480, lineHeight: 1.5 }}>
             Multimodal learning, signal processing, NLP, music information retrieval. Previously at SONY Europe and SMU.
@@ -65,7 +67,7 @@ export default function Home() {
         </div>
         <div style={{ padding: '40px 56px', background: tokens.paperAlt }}>
           <Mono size={10} color={tokens.ink3}>B.</Mono>
-          <div style={{ fontSize: 56, lineHeight: 1, fontWeight: 600, letterSpacing: '-0.03em', margin: '8px 0 16px' }}>Producer</div>
+          <h2 style={{ fontSize: 56, lineHeight: 1, fontWeight: 600, letterSpacing: '-0.03em', margin: '8px 0 16px' }}>Producer</h2>
           <Mono size={11} color={tokens.accent}>800K+ STREAMS · K-POP EDITORIAL</Mono>
           <div style={{ fontSize: 14, color: tokens.ink2, marginTop: 16, maxWidth: 480, lineHeight: 1.5 }}>
             Seven years of music production. 33 KOMCA-registered songs, four Spotify editorial features, ten produced tracks across five artists.
@@ -112,7 +114,7 @@ export default function Home() {
                 <Mono size={11} color={tokens.accent} weight={600}>{p.venueShort} · {p.year}</Mono>
                 <Mono size={10} color={tokens.ink3}>HL.0{i + 1}</Mono>
               </div>
-              <div style={{ fontSize: 17, lineHeight: 1.25, fontWeight: 600, color: tokens.ink, letterSpacing: '-0.01em' }}>{p.title}</div>
+              <h3 style={{ margin: 0, fontSize: 17, lineHeight: 1.25, fontWeight: 600, color: tokens.ink, letterSpacing: '-0.01em' }}>{p.title}</h3>
               <div style={{ fontSize: 12, color: tokens.ink3 }}>{p.authors.join(' · ')}</div>
               <div style={{ flex: 1, fontSize: 13, lineHeight: 1.5, color: tokens.ink2 }}>{p.tldr}</div>
               <div style={{ display: 'flex', gap: 12, marginTop: 4 }}>
@@ -132,7 +134,7 @@ export default function Home() {
           <div>
             <Mono size={10} color={tokens.ink3}>PRIMARY</Mono>
             <Ext href={`mailto:${d.profile.email}`}>
-              <div style={{ fontSize: 32, fontFamily: tokens.mono, fontWeight: 500, color: tokens.ink, letterSpacing: '-0.02em', marginTop: 6 }}>{d.profile.email}</div>
+              <div style={{ fontSize: 30, fontFamily: tokens.mono, fontWeight: 500, color: tokens.ink, letterSpacing: '-0.02em', marginTop: 6, overflowWrap: 'anywhere' }}>{d.profile.email}</div>
             </Ext>
           </div>
           {[
@@ -149,6 +151,8 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      </main>
 
       <Footer />
     </div>

@@ -45,7 +45,7 @@ function MusicPlayer({ track, onClose }) {
       <div style={{ display: 'flex', alignItems: 'stretch', maxWidth: 1400, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 24px', borderRight: `1px solid ${tokens.ruleSoft}`, minWidth: 320, flex: '0 0 auto' }}>
           {track.cover ? (
-            <img src={track.cover} style={{ width: 56, height: 56, objectFit: 'cover', border: `1px solid ${tokens.rule}`, flex: '0 0 auto' }} />
+            <img src={track.cover} alt="" style={{ width: 56, height: 56, objectFit: 'cover', border: `1px solid ${tokens.rule}`, flex: '0 0 auto' }} />
           ) : (
             <div style={{ width: 56, height: 56, background: tokens.paperAlt, border: `1px solid ${tokens.rule}`, display: 'grid', placeItems: 'center', flex: '0 0 auto' }}>
               <Mono size={9} color={tokens.ink3}>—</Mono>
@@ -66,6 +66,7 @@ function MusicPlayer({ track, onClose }) {
             <iframe
               key={embed.src}
               src={embed.src}
+              title={`${track.title} — ${embed.type === 'spotify' ? 'Spotify' : 'YouTube'} player`}
               style={{ width: '100%', height: embed.type === 'spotify' ? 152 : 180, border: 0, display: 'block' }}
               allow="autoplay; encrypted-media; clipboard-write; picture-in-picture"
               allowFullScreen
@@ -83,13 +84,16 @@ function MusicPlayer({ track, onClose }) {
               </div>
             </Ext>
           ) : <div />}
-          <div
+          <button
+            type="button"
+            className="btn-reset"
             onClick={onClose}
-            style={{ cursor: 'pointer', fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.06em', color: tokens.ink, textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 6 }}
+            style={{ cursor: 'pointer', fontFamily: tokens.mono, fontSize: 11, letterSpacing: '0.06em', color: tokens.ink, textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: 6, minHeight: 32 }}
+            aria-label="Close player"
             title="Close player"
           >
             ✕ CLOSE
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -103,11 +107,13 @@ export default function Creation() {
     <div style={{ background: tokens.paper, color: tokens.ink, fontFamily: tokens.sans, minHeight: '100%', paddingBottom: active ? 240 : 0 }}>
       <Nav active="Creation" />
 
+      <main id="main">
+
       <div style={{ padding: '56px 56px 40px', borderBottom: `1px solid ${tokens.rule}` }}>
         <Mono size={11} color={tokens.accent}>§ 03 · MUSIC PRACTICE</Mono>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56, marginTop: 16, alignItems: 'end' }}>
           <div>
-            <div style={{ fontSize: 88, lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Creation<span style={{ color: tokens.accent }}>.</span></div>
+            <h1 style={{ margin: 0, fontSize: 88, lineHeight: 0.95, fontWeight: 600, letterSpacing: '-0.04em' }}>Creation<span style={{ color: tokens.accent }}>.</span></h1>
             <div style={{ fontSize: 15, color: tokens.ink2, marginTop: 16, maxWidth: 520, lineHeight: 1.55 }}>{c.blurb}</div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, border: `1px solid ${tokens.rule}` }}>
@@ -148,7 +154,7 @@ export default function Creation() {
                     onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; }}>
                     <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: tokens.paperAlt, overflow: 'hidden' }}>
                       {thumb ? (
-                        <img src={thumb} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                        <img src={thumb} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                       ) : (
                         <div style={{ display: 'grid', placeItems: 'center', width: '100%', height: '100%' }}>
                           <Mono size={10} color={tokens.ink3}>VIDEO</Mono>
@@ -158,7 +164,7 @@ export default function Creation() {
                       <div style={{ position: 'absolute', bottom: 8, right: 8, width: 32, height: 32, background: tokens.ink, color: tokens.paper, display: 'grid', placeItems: 'center', fontFamily: tokens.mono, fontSize: 11 }}>▶</div>
                     </div>
                     <div style={{ padding: '12px 14px' }}>
-                      <div style={{ fontSize: 14, fontWeight: 600, color: tokens.ink, lineHeight: 1.25 }}>{v.title}</div>
+                      <h3 style={{ margin: 0, fontSize: 14, fontWeight: 600, color: tokens.ink, lineHeight: 1.25 }}>{v.title}</h3>
                       <div style={{ fontSize: 12, color: tokens.ink2, marginTop: 4, lineHeight: 1.4 }}>{v.sub}</div>
                       <div style={{ marginTop: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                         <Mono size={9} color={tokens.ink3}>YOUTUBE</Mono>
@@ -194,7 +200,7 @@ export default function Creation() {
               <div key={g.kind} style={{ marginTop: gi === 0 ? 16 : 36 }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 8, paddingBottom: 8, borderBottom: `1px solid ${tokens.rule}` }}>
                   <Mono size={10} color={tokens.accent} weight={600}>0{gi + 1}</Mono>
-                  <div style={{ fontFamily: tokens.sans, fontSize: 13, fontWeight: 600, color: tokens.ink, letterSpacing: '0.04em', textTransform: 'uppercase' }}>{g.label}</div>
+                  <h3 style={{ margin: 0, fontFamily: tokens.sans, fontSize: 13, fontWeight: 600, color: tokens.ink, letterSpacing: '0.04em', textTransform: 'uppercase' }}>{g.label}</h3>
                   <Mono size={10} color={tokens.ink3}>{g.sub}</Mono>
                   <div style={{ flex: 1 }} />
                   <Mono size={10} color={tokens.ink3}>[{String(items.length).padStart(2, '0')}]</Mono>
@@ -221,7 +227,7 @@ export default function Creation() {
                     >
                       <div style={{ width: 56, height: 56, border: `1px solid ${tokens.rule}`, background: tokens.paperAlt, position: 'relative', overflow: 'hidden' }}>
                         {r.cover ? (
-                          <img src={r.cover} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                          <img src={r.cover} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                         ) : (
                           <div style={{ display: 'grid', placeItems: 'center', width: '100%', height: '100%' }}>
                             <Mono size={8} color={tokens.ink3}>—</Mono>
@@ -238,15 +244,19 @@ export default function Creation() {
                       </div>
 
                       <div style={{ minWidth: 0 }}>
-                        <div style={{ fontSize: 16, fontWeight: 600, color: tokens.ink, lineHeight: 1.25, letterSpacing: '-0.005em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <h4 style={{ margin: 0, fontSize: 16, fontWeight: 600, color: tokens.ink, lineHeight: 1.25, letterSpacing: '-0.005em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                           {r.title}
-                        </div>
+                        </h4>
                         <div style={{ fontSize: 13, color: tokens.ink2, marginTop: 2, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{r.artist}</div>
                       </div>
 
                       <div style={{ display: 'flex', gap: 8 }}>
                         {hasSpot && (
-                          <div
+                          <button
+                            type="button"
+                            className="btn-reset"
+                            aria-pressed={!!isActive}
+                            aria-label={`${isActive ? 'Stop' : 'Play'} ${r.title} in the Spotify player`}
                             onClick={() => setActive(isActive ? null : r)}
                             style={{
                               padding: '7px 12px',
@@ -266,7 +276,7 @@ export default function Creation() {
                           >
                             <span>{isActive ? '❚❚' : '▶'}</span>
                             <span>SPOTIFY</span>
-                          </div>
+                          </button>
                         )}
                         {hasYT && (
                           <Ext href={ytUrl} style={{ display: 'inline-block' }}>
@@ -301,6 +311,8 @@ export default function Creation() {
           });
         })()}
       </div>
+
+      </main>
 
       <Footer />
 
