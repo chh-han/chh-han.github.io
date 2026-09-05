@@ -281,7 +281,7 @@ export const site = {
       org: 'Independent',
       role: 'Music Producer · Singer-Songwriter',
       meta: 'Hyundai Motor Group, Korean drama insert song · 800K+ Spotify streams · K-pop Editorial Playlists.',
-      period: '2018 — 2022',
+      period: '2018 — 2024',
       place: 'Korea',
       tag: 'Music Production',
     },
@@ -312,6 +312,7 @@ export const site = {
       { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 1', year: '2019', cover: '/assets/images/musics/now1.jpeg', spotify: 'https://open.spotify.com/album/2x7pTaEuhjVeEgvv1bxRzl' },
       { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 2', year: '2020', cover: '/assets/images/musics/now2.JPG', spotify: 'https://open.spotify.com/album/0wLbPZyed3eXtkkNaGvlRs', youtube: 'https://www.youtube.com/playlist?list=OLAK5uy_nMGNwjbbudZVe5fovcgZ8STXw6M3u2a9A' },
       { kind: 'SOLO', artist: 'Sha Hardy', title: 'Now or Never 3', year: '2021', cover: '/assets/images/musics/now3.JPG', spotify: 'https://open.spotify.com/album/5wE55heOH6cZIxiWKZj828' },
+      { kind: 'SOLO', artist: 'Sha Hardy', title: 'Bipolar', year: '2024', cover: '/assets/images/musics/bipolar.png', spotify: 'https://open.spotify.com/track/2711E2JIJ9UUIKdRmvfXiX' },
       { kind: 'ELEC', artist: 'Digital Picasso', title: 'Seoul Boys Night', year: '2019', cover: '/assets/images/musics/digital.JPG', youtube: 'https://youtu.be/GVB-44TqKmg' },
     ],
 

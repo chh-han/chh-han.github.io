@@ -10,10 +10,10 @@ import Footer from '../Footer';
 function getEmbed(r) {
   if (!r) return null;
   if (r.spotify) {
-    const m = r.spotify.match(/album\/([A-Za-z0-9]+)/);
+    const m = r.spotify.match(/open\.spotify\.com\/(track|album|playlist)\/([A-Za-z0-9]+)/);
     if (m) return {
       type: 'spotify',
-      src: `https://open.spotify.com/embed/album/${m[1]}?utm_source=generator&theme=0`,
+      src: `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator&theme=0`,
       height: 152,
       external: r.spotify,
     };
@@ -192,7 +192,7 @@ export default function Creation() {
         {(() => {
           const groups = [
             { kind: 'PROD', label: 'Production', sub: 'Produced for other artists' },
-            { kind: 'SOLO', label: 'Singer-Songwriter', sub: 'Now or Never series' },
+            { kind: 'SOLO', label: 'Singer-Songwriter', sub: 'Solo releases' },
             { kind: 'ELEC', label: 'Electronic', sub: 'House & dance' },
           ];
           return groups.map((g, gi) => {
